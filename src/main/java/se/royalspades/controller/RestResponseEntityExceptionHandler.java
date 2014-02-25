@@ -47,7 +47,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         final String bodyOfResponse = "Kunde inte läsa alla värden som krävs av metoden!";
         // ex.getCause() instanceof JsonMappingException, JsonParseException // for additional information later on
         return handleExceptionInternal(ex, bodyOfResponse, headers, HttpStatus.BAD_REQUEST, request);
-    }
+    } 
 
     // 403
 
@@ -72,10 +72,10 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     // 500
 
     @ExceptionHandler({ NullPointerException.class, IllegalArgumentException.class, IllegalStateException.class })
-    /*500*/public ResponseEntity<Object> handleInternal(final RuntimeException ex, final WebRequest request) {
+    public ResponseEntity<Object> handleInternal(final RuntimeException ex, final WebRequest request) {
         logger.error("500 Status Code", ex);
         final String bodyOfResponse = "Internt serverfel. Det efterfrågade kunde inte nås!";
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
-}
+} 

@@ -137,12 +137,14 @@ public class ProductController {
 	}
 	
 	
-	// add store product as shop owner, (price is sent in data as {"storePrice":"12"} )
+	// add store product as shop owner, (price is sent in data as ex. 144)
 	@Secured("ROLE_MODERATOR")
 	@RequestMapping(value = "/add_product_to_store/{storeId}/product/{productId}/store_category/{storeCategory}", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
-	ResponseEntity<String> addProductToStore(@PathVariable int storeId, @PathVariable int productId, @PathVariable int storeCategory, @RequestBody int storePrice){
+	ResponseEntity<String> addProductToStore(@PathVariable int storeId, @PathVariable int productId, @PathVariable int storeCategory, @RequestBody String storePrice){
+		// convert to integer
+		int price = Integer.parseInt(storePrice);
 		
-		if(storePrice > 9000 || storePrice < 1){
+		if(price > 9000 || price < 1){
 			return new ResponseEntity<String>("Pris kan sättas mellan 1-9000", HttpStatus.BAD_REQUEST);
 		}
 		
@@ -162,7 +164,7 @@ public class ProductController {
     		storeProduct.Store(store);
     		storeProduct.setProduct(product);
     		storeProduct.setCategory(category);
-    		storeProduct.setPrice(storePrice);
+    		storeProduct.setPrice(price);
     		
     		// get all store products
     		Set<StoreProduct> storeProducts = product.getStoreProducts();
