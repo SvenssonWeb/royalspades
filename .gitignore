@@ -6,6 +6,8 @@
 .idea/*
 target/
 target/*
+classes/
+classes/*
 #################
 ## Eclipse
 #################
