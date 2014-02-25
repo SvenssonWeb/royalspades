@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 		<link href="<c:url value="/resources/theme/standard.css" />" rel="stylesheet">
 		<link href="<c:url value="/resources/theme/shop.css" />" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <%--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">--%>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://datatables.net/download/build/jquery.dataTables.min.js"></script>
 		<script src="<c:url value="/resources/scripts/JsonParse.js" />"></script>
