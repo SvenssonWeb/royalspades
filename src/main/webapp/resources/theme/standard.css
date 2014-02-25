@@ -1,11 +1,10 @@
-/* Notes
+﻿/* Notes
 
 	Fine ass colors:
 	#000000
 	#f30808
 	#FFFFFF
-
-
+	
 */
 
 /* Imports */
@@ -31,7 +30,7 @@ body {
 .mainwrapper {
 	background:#0C365B;
 	width:930px;
-	margin: 80px 0px 175px 190px;
+	margin: 80px 0px 40px 190px;
 	border-left:1px solid black;
 	border-right:1px solid black;
 	overflow:hidden;
@@ -102,10 +101,10 @@ div.headermenu ul li a, div.menu ul li a:visited
     color: #E8E8E8;
     display:inline-block;
     line-height: 1.35em;
-    padding: 4px 20px;
+    padding: 4px 5px;
     text-decoration: none;
     white-space: nowrap;
-    margin-left:45px;
+    margin-left: 0px;
 }
 
 div.headermenu ul li a:hover
