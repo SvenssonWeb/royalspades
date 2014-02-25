@@ -35,6 +35,7 @@
                     Pris <i class="fa fa-sort-down"></i>
                 </th>
                 <th></th>
+                <th></th>
             </tr></thead>
             <tbody></tbody>
         </table>
@@ -138,23 +139,32 @@
                 $("#shopAddress").html(data["address"]);
 
                 //$(".shopTable").append("<tbody>");
-                $(".productTable tbody").empty();
+                var tableBody = $(".productTable tbody");
+                tableBody.empty();
+                console.clear();
+                var fullHTML = "";
                 for(var i = 0; i < arr.length; i++){
+                    var rowData = arr[i];
+                    var rowID = 2 + '-'
+                            + rowData['product']['id'] + '-'
+                            + rowData['category']['id'];
+
                     var row = '<tr>' +
                             '<td><a href="#"><i class="fa fa-sort-down"></i></a></td>' +
                             '<td><a href="#"><i class="fa fa-sort-up"></i></a></td>' +
                             '<td>';
-                    row += arr[i]["product"]["name"];
+                    row += rowData["product"]["name"];
                     row +=  '</td><td>';
-                    row +=  arr[i]["category"]["name"];
+                    row +=  rowData["category"]["name"];
                     row +=  '</td><td>';
-                    row +=  arr[i]["price"];
-                    row +=  '</td><td>' +
-                            '<a href="editShop/?id=' + arr[i].id + '"><i class="fa fa-edit"></i></a>' +
-                            '</td></tr>';
-
-                    $(".productTable tbody").append(row);
+                    row +=  rowData["price"];
+                    row +=  '</td><td><a href="editShop/?id=' + rowID + '"><i class="fa fa-edit"></i></a></td>';
+                    row +=  '<td><a><i data-product-id="'+rowID+'" class="fa fa-times shopRemoveRow"></i></a></td></tr>';
+                    console.log(row);
+                    fullHTML += row;
+                    //tableBody.append(row);
                 }
+                tableBody.append(fullHTML);
             },
             error: function (data, textStatus, jqXHR) {
                 alert("Error: " + textStatus + ", " + jqXHR);

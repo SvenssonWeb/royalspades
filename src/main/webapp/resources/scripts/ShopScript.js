@@ -66,12 +66,36 @@ $( document).on("click", "#shopFormNewProducts button", function(event){
         var data = {
             store: rawFormData[0].value,
             category: rawFormData[1].value,
-            price: JSON.stringify({storePrice: rawFormData[2].value})
+            price: rawFormData[2].value
         };
         console.log(data);
         addStoreProduct(data);
     });
 });
+$( document).on("click", '.shopProductPage .shopRemoveRow', function(event){
+    console.log($(this).data());
+    var dataString = $(this).data().productId;
+    var dataArray = dataString.split('-');
+    var url = '/api/product/remove_product_from_store/'+dataArray[0]
+                +'/product/'+dataArray[1]+'/category/'+dataArray[2];
+    $.ajax({
+        type: "DELETE",
+        url: url,
+        headers: {
+            'Accept':"application/json",
+            'Content-Type':"application/json"
+        },
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            console.log(textStatus);
+        },
+        error: function (data, textStatus, jqXHR) {
+            alert("Error: " + textStatus + ", " + jqXHR);
+        }
+    });
+
+});
+
 function createCategorySelect(selected){
     //console.log("createCategorySelect");
     var html = '<select name="category">';
@@ -189,8 +213,11 @@ function setStoreNewProductBrandSelect(){
                 for (var j = 0; j < brand['brandProducts'].length; j++) {
                     var product = brand['brandProducts'][j];
                     if(!checkStoreHasProduct(product)){
+
+                        var text = product['name'] + ' ' + product['volume'] + ' ' + product['unit'];
+
                         var row = '<option value="'+product['id']+'">';
-                        row +=  product["name"];
+                        row +=  text;
                         row +=  '</option>';
 
                         selector.append(row);
@@ -250,7 +277,6 @@ function addStoreProduct(storeProduct){
     var productID = storeProduct.store;
     var categoryID = storeProduct.category;
     var price = storeProduct.price;
-    price = "";
     // /api/product/add_product_to_store/{storeId}/product/{productId}/store_category/{storeCategory}
     var url = '/api/product/add_product_to_store/'+storeID+'/product/'+productID+'/store_category/'+categoryID;
 
@@ -260,3 +286,4 @@ function addStoreProduct(storeProduct){
     });
 
 }
+
