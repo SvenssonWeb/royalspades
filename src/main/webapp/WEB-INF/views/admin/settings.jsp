@@ -44,15 +44,38 @@
 					<input type="text" id="email" name="email">
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<input type="hidden" id="id" name="id">
+			   </td>
+			</tr>
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="oldPassword">Nuvarande lösenord: </label>
+					<input type="Submit" value="Spara">
+				</td>
+			</tr>
+		</table>
+	</form>
+</fieldset>
+<br />
+<div id="accountResponse" class="response"></div>
+<div id="accountError" class="error"></div>
+<br />
+<br />
+<fieldset class="passwordSettings">
+	<legend>Ändra Lösenord</legend>
+	<form name="passwordForm" id="passwordForm">
+		<table class="formtable">
+			<tr>
+				<td>
+					<label for="oldPassword">Ditt nuvarande lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="oldPassword" name="oldPassword">
 				</td>
 			</tr>
+			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
 					<label for="password">Nytt lösenord: </label>
@@ -61,9 +84,10 @@
 					<input type="password" id="password" name="password">
 				</td>
 			</tr>
+			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="passwordConfirm">Upprepa nytt lösenord: </label>
+					<label for="passwordConfirm">Bekräfta nytt lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="passwordConfirm" name="passwordConfirm">
@@ -72,16 +96,20 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<input type="Submit" value="Spara">
-				</td>
+					<input type="hidden" id="id" name="id">
+			   </td>
+			</tr>
+			<tr>
 				<td>
+					<input type="Submit" value="Spara">
 				</td>
 			</tr>
 		</table>
 	</form>
 </fieldset>
-<div class="response"></div>
-<div class="error"></div>
+<br />
+<div id="passwordResponse" class="response"></div>
+<div id="passwordError" class="error"></div>
 
 
 <script>
@@ -108,6 +136,8 @@ $(document).ready(function() {
 	function getValues(){
 		$.getJSON("/royalspades/api/user/${username}")
 			.done(function(data) {
+				$($("input[name='id']")[0]).val(data.id);
+				$($("input[name='id']")[1]).val(data.id);
 				$("input[name='firstName']").val(data.firstName);
 				$("input[name='lastName']").val(data.lastName);
 				$("input[name='username']").val(data.username);
@@ -115,7 +145,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('#accountError').text("Något gick fel: " + err);
 			});
 	}
 	
@@ -125,10 +155,10 @@ $(document).ready(function() {
 	
 	// Edit Account
 	$('#account').submit(function(e) {
-		  $(".response").text("");
-	  	  $('.error').text("");
+		  $("#accountResponse").text("");
+	  	  $('#accountError').text("");
 
-    	  var data = $(this).serializeObject();
+    	  var data = $('#account').serializeObject();
     	  // will pass the form data and parse it to json string
     	  $.ajax({
     		  url:'/royalspades/api/user/edit_account',
@@ -140,10 +170,10 @@ $(document).ready(function() {
     		  complete: function(response) {
   				if(response.status == 200){
   	    			// clear values
-  				    $(':input','#editSupplierForm')
+  				    $(':input','#account')
   						.not(':button, :submit, :reset, :hidden')
   						.val('');
-  		    	    $('.response').text(response.responseText);
+  		    	    $('#accountResponse').text(response.responseText);
   		    	    
   		    	    getValues();
   				}
@@ -160,10 +190,10 @@ $(document).ready(function() {
                 	  	   	errors += '<br>';
             	  	   	}
             	  	  	
-            	  	   	$('.error').append(errors);
+            	  	   	$('#accountError').append(errors);
 
         	  	   	} else {
-            	  	   	$('.error').text(response.responseText); 
+            	  	   	$('#accountError').text(response.responseText); 
         	  	   	}
     			}
     	  	   	
@@ -172,5 +202,57 @@ $(document).ready(function() {
 	   
 	  e.preventDefault(); // prevent actual form submit and page reload
 	});
+	
+	// Edit Password
+	$('#passwordForm').submit(function(e) {
+		  $("#passwordResponse").text("");
+	  	  $('#passwordError').text("");
+
+    	  var data = $('#passwordForm').serializeObject();
+    	  // will pass the form data and parse it to json string
+    	  $.ajax({
+    		  url:'/royalspades/api/user/edit_password',
+    		  data: JSON.stringify(data),
+    		  contentType:'application/json',
+    		  accept:'application/json',
+    		  processData:false,
+    		  type: 'PUT',
+    		  complete: function(response) {
+  				if(response.status == 200){
+  	    			// clear values
+  				    $(':input','#passwordForm')
+  						.not(':button, :submit, :reset, :hidden')
+  						.val('');
+  		    	    $('#passwordResponse').text(response.responseText);
+  		    	    
+  		    	    getValues();
+  				}
+				
+    		  }, error: function(response){
+    			if(response.status != 200){
+        			var responseJSON = response.responseJSON;
+        			
+        	  	   	if(typeof responseJSON != 'undefined'){
+        	  	   		var errors = '';
+        	  	   		
+            	  	   	for(var i = 0; i < responseJSON.fieldErrors.length; i ++){
+                	  	   	errors += (responseJSON.fieldErrors[i].message); 
+                	  	   	errors += '<br>';
+            	  	   	}
+            	  	  	
+            	  	   	$('#passwordError').append(errors);
+
+        	  	   	} else {
+            	  	   	$('#passwordError').text(response.responseText); 
+        	  	   	}
+    			}
+    	  	   	
+    		  }
+    	  });
+	   
+	  e.preventDefault(); // prevent actual form submit and page reload
+	});
+	
   });
+
 </script>

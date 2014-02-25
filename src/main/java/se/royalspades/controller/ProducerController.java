@@ -59,6 +59,16 @@ public class ProducerController {
 		return "producer/wares";
 	}
 	
+	@RequestMapping("/settings")
+	public String settings(Locale locale, Model model, Principal principal){
+		//Producer - wares page
+        final String currentUser = principal.getName();
+        model.addAttribute("username", currentUser);
+		model.addAttribute("pageUid", "d2d3dec0-9d78-99e3-bda8-1230246c9a66" );
+		
+		return "producer/settings";
+	}
+	
 	@RequestMapping("/help")
 	public String help(Locale locale, Model model){
 		//Producer - wares page

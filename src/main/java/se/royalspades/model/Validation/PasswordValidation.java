@@ -9,16 +9,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class PasswordValidation implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	int id;
 	@NotEmpty
 	@Size(min = 2, max = 45)
 	private String password;
-	@NotEmpty
-	@Size(min = 2, max = 45)
 	private String passwordConfirm;
 	@NotEmpty
 	@Size(min = 2, max = 45)
 	private String oldPassword;
 	
+	public PasswordValidation(){
+		
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getPassword() {
 		return password;
 	}

@@ -6,8 +6,8 @@ $( document ).ready(function() {
 	
 	
 	
-	function openMainPage(){
-		openPageUrl( baseUrl + "/main");
+	function openMainPage(){    //main
+		openPageUrl( baseUrl + "/login/");
 	}
 	
 	
@@ -16,7 +16,6 @@ $( document ).ready(function() {
 		if(p == '2f5gdd560-8d75-11e3-cdd8-0220230c9a66'){
 			return  baseUrl + "/login/";
 		}
-		
 	}
 
 	
@@ -67,13 +66,20 @@ $( document ).ready(function() {
 	
 	function switchData(){
 		$(".maincontent").html(newData);
-		
+		refreshLinks();
+		setTimeout(refreshLinks, 250);
+		setTimeout(refreshLinks, 500);
+		setTimeout(refreshLinks, 2000);
+		  
+	 }
+		 
+	function refreshLinks(){
+		$('.link').off();
 		$(".link").click(function (event){
 			event.preventDefault();
 			openPageUrl(this.href);
-		});
+		 });
 	}
-
 	
 	var hashArray = window.location.hash.replace("#", "").split('&');
 	var page = "";

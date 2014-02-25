@@ -75,7 +75,7 @@
 	<h4>/api/product/add_product/category/{categoryId}/brand/{brandId}</h4>
 	<p>Lägg till produkt till ditt varumärke, Säkerhet: Bara leverantörsägare kan lägga till produkter till sitt varumärke.</p>
 	<h4>/api/product/add_product_to_store/{storeId}/product/{productId}/store_category/{storeCategory}</h4>
-	<p>Lägg till produkt till din butik, pris skickas som JSON ex: {"storePrice":"12"}, Säkerhet: Bara butiksägaren kan lägga till produkter till sin butik.</p>
+	<p>Lägg till produkt till din butik, pris skickas som JSON ex: 144, Säkerhet: Bara butiksägaren kan lägga till produkter till sin butik.</p>
 	<h4>/api/user/new_user</h4>
 	<p>Skapa ny användare, Säkerhet: Ingen.</p>
 </div>
@@ -109,7 +109,7 @@
 	<h4>/api/admin/set_new_password/user/{userId}</h4>
 	<p>Sätt nytt lösenord för användare, Säkerhet: Admin.</p>
 	<h4>/api/user/{userId}/request_authority</h4>
-	<p>Begär högre behörighet på ditt konto. Skicka behörigheten som JSON ex: {"authority","producer"}, Säkerhet: Alla användare.</p>
+	<p>Begär högre behörighet på ditt konto. Skicka behörigheten som ex: ""producer", Säkerhet: Alla användare.</p>
 	<h4>/api/admin/authorize/user/{userId}</h4>
 	<p>Bekräfta ansökning om högre behörighet, Säkerhet: Admin.</p>
 </div>

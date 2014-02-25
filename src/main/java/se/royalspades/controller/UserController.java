@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import se.royalspades.model.Brand;
 import se.royalspades.model.Store;
 import se.royalspades.model.User;
+import se.royalspades.model.Validation.PasswordValidation;
+import se.royalspades.model.Validation.UserValidation;
 import se.royalspades.service.BrandService;
 import se.royalspades.service.StoreService;
 import se.royalspades.service.UserService;
@@ -36,6 +38,7 @@ public class UserController {
 	@Autowired UserService userService;
 	@Autowired BrandService brandService;
 	@Autowired StoreService storeService;
+	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -139,7 +142,6 @@ public class UserController {
 		user.setRole("user");
 		user.setRequestedAuthority(" ");
 			
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 			
 		userService.add(user);						
@@ -174,32 +176,32 @@ public class UserController {
 		return new ResponseEntity<String>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
 	}
 	
-													// skapa object för input och använd sedan värden ifrån object till att skapa user...
-	// modify your own account details            (OBS "Disable" valid here, send full object and ignore passwords?, then set password here from old user?)?
-	@SuppressWarnings("unchecked")
+
+	// modify your own account details
 	@Secured({"ROLE_USER","ROLE_ADMIN","ROLE_MODERATOR","ROLE_SUPERVISOR"})
 	@RequestMapping(value="/user/edit_account", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
-	ResponseEntity <String> editYourUser(@RequestBody @Valid User user){			
+	ResponseEntity <String> editYourUser(@RequestBody @Valid UserValidation userValidation){			
+		// after all values are validated, then set all values to User object.
+		User user = new User();
+		user.setId(userValidation.getId());
+		user.setUsername(userValidation.getUsername());
+		user.setFirstName(userValidation.getFirstName());
+		user.setLastName(userValidation.getLastName());
+		user.setEmail(userValidation.getEmail());
+		userValidation = null;
+		
 		// get the user calling the method
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String username = authentication.getName();
 		
     	if(username.equals(user.getUsername())){
-    		
-    		List<User> users = userService.getAllUsers();
-    		
-    		// if the username is taken
-    		for(User u : users){
-    			if(u.getUsername().equals(user.getUsername()) && u.getId() != user.getId()){
-    				return new ResponseEntity<String>("Användarnamnet är upptaget, Välj ett annat.", HttpStatus.BAD_REQUEST);
-    			}
-    		}
-		    			
+    		    				
 			// get current password
 			User oldUser = userService.getUser(user.getId());
 			
-			// set same password
+			// set same password and role
 			user.setPassword(oldUser.getPassword());
+			user.setRole(oldUser.getRole());
 			
 			userService.edit(user);		
 	    	return new ResponseEntity<String>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
@@ -209,49 +211,35 @@ public class UserController {
     	}
 	}
 	
-	// modify your own password						(OBS Check valid at controller level here??)
-	@SuppressWarnings("unchecked")
+	// modify your own password
 	@Secured({"ROLE_USER","ROLE_ADMIN","ROLE_MODERATOR","ROLE_SUPERVISOR"})
 	@RequestMapping(value="/user/edit_password", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
-	ResponseEntity <String> editYourPassword(@RequestBody int userId, @RequestBody String password, @RequestBody String passwordConfirm, @RequestBody String oldPassword){			
+	ResponseEntity <String> editYourPassword(@RequestBody @Valid PasswordValidation passwordValidation){			
 		// get user with id
-		User user = userService.getUser(userId);
+		User user = userService.getUser(passwordValidation.getId());
 		
 		// get the user calling the method
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String username = authentication.getName();
 		
     	if(username.equals(user.getUsername())){
-    		
-    		List<User> users = userService.getAllUsers();
-    		
-    		// if the username is taken
-    		for(User u : users){
-    			if(u.getUsername().equals(user.getUsername()) && u.getId() != user.getId()){
-    				return new ResponseEntity<String>("Användarnamnet är upptaget, Välj ett annat.", HttpStatus.BAD_REQUEST);
-    			}
-    		}
-		    			
+			
 			// get current password
 			String currentPassword = user.getPassword();
-			
-			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			
+						
 			// check if the password the user entered matches the old password     
-			if(passwordEncoder.matches(oldPassword, currentPassword)){
+			if(passwordEncoder.matches(passwordValidation.getOldPassword(), currentPassword)){
 				
 				//check if password equals passwordConfirm
-				if(password.equals(passwordConfirm)){
+				if(passwordValidation.getPassword().equals(passwordValidation.getPasswordConfirm())){
 					// matches set password
-					user.setPassword(passwordEncoder.encode(password));
+					user.setPassword(passwordEncoder.encode(passwordValidation.getPassword()));
 	    			userService.edit(user);
 	    			
 	    			return new ResponseEntity<String>("Lösenord ändrat!", HttpStatus.OK);
 				} else {
 					return new ResponseEntity<String>("Lösenorden matchar inte varandra!", HttpStatus.BAD_REQUEST);
 				}
-				
-
 
 			} else {
 				return new ResponseEntity<String>("Du angav fel lösenord!", HttpStatus.BAD_REQUEST);
@@ -298,7 +286,6 @@ public class UserController {
 		// matches, update user
 		
 		// password
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
 		userService.edit(user);
@@ -307,17 +294,23 @@ public class UserController {
 	}
 	
 	
-	// request a higher authority in the system   (just send the authority as data like {"authority":"producer"})
+	// request a higher authority in the system   (just send the authority as data like "producer")
 	@Secured({"ROLE_USER","ROLE_ADMIN","ROLE_MODERATOR","ROLE_SUPERVISOR"})
 	@RequestMapping(value = "/user/{userId}/request_authority", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
 	ResponseEntity <String> requestAuthority(@PathVariable int userId, @RequestBody String authority){
 		// get user
 		User user = userService.getUser(userId);
+				
+		if(authority.length() > 40){
+			return new ResponseEntity<String>("Max 40 tecken!", HttpStatus.BAD_REQUEST);
+		} else if(authority.length() < 1){
+			return new ResponseEntity<String>("Minst 1 tecken!", HttpStatus.BAD_REQUEST);
+		}
 		
 		// check so we don't already have that authority or already have requested it
 		if(user.getRole().equals(authority)){
 			return new ResponseEntity<String>("Du har redan denna behörigheten!", HttpStatus.BAD_REQUEST);
-		} else if(user.getRequestedAuthority().equals(authority)){
+		} else if(user.getRequestedAuthority() != null && user.getRequestedAuthority().equals(authority)){
 			return new ResponseEntity<String>("Du har redan begärt denna behörighet!", HttpStatus.BAD_REQUEST);
 		} else {
 			// set requested authority

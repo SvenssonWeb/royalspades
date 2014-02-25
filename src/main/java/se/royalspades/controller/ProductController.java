@@ -141,8 +141,13 @@ public class ProductController {
 	@Secured("ROLE_MODERATOR")
 	@RequestMapping(value = "/add_product_to_store/{storeId}/product/{productId}/store_category/{storeCategory}", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
 	ResponseEntity<String> addProductToStore(@PathVariable int storeId, @PathVariable int productId, @PathVariable int storeCategory, @RequestBody String storePrice){
+		int price;
 		// convert to integer
-		int price = Integer.parseInt(storePrice);
+		try{
+			price = Integer.parseInt(storePrice);
+		} catch (NumberFormatException ex) {
+			return new ResponseEntity<String>("Pris måste vara i siffror!", HttpStatus.BAD_REQUEST);
+		}
 		
 		if(price > 9000 || price < 1){
 			return new ResponseEntity<String>("Pris kan sättas mellan 1-9000", HttpStatus.BAD_REQUEST);

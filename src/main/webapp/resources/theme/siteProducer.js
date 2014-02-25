@@ -53,11 +53,19 @@
 	
 	function switchData(){
 		$(".maincontent").html(newData);
-		
+		refreshLinks();
+		setTimeout(refreshLinks, 250);
+		setTimeout(refreshLinks, 500);
+		setTimeout(refreshLinks, 2000);
+		  
+	 }
+		 
+	function refreshLinks(){
+		$('.link').off();
 		$(".link").click(function (event){
 			event.preventDefault();
 			openPageUrl(this.href);
-		});
+		 });
 	}
 	
 	function getUrl(p){

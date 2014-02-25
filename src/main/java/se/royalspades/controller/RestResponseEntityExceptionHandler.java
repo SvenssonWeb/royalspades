@@ -77,5 +77,4 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         final String bodyOfResponse = "Internt serverfel. Det efterfrågade kunde inte nås!";
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
-
-} 
+}

@@ -18,6 +18,3 @@ table tbody tr:last-child i.fa-sort-down {
 .priceInput {
     width: 80px;
 }
-.shopRemoveRow {
-    cursor: pointer;
-}

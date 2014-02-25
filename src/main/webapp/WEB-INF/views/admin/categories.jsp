@@ -1,4 +1,4 @@
-<script>
+Ôªø<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2> 
@@ -19,13 +19,43 @@
 	<input type="text" type="text" name="name" placeholder = "Skriv in din nya varukategori." >
 	<button submit="" id="toggleCatBtn">Spara</button>
 </form>
-	<button id="addCatBtn">L‰gg till ny kategori</button><br>
-	<form id="editCatForm" style="display: none">
+<button id="addCatBtn">L√§gg till ny kategori</button><br>
+
+<form id="editCatForm" style="display: none">
 	<input type="text" type="text" name="name" placeholder = "Skriv in din nya varukategori." >
 	<button submit="" id="toggleeditCatBtn">Spara</button>
 </form>
 	
-	<script>
+<script>
+function deleteCategory(event, id){
+	event.preventDefault();
+	  
+	if (confirm(' √Ñr du s√§ker p√• att du vill ta bort kategorin?')) {		
+		
+		$.ajax({
+		url:'/royalspades/api/category/admin/remove_category/' + id, 
+		type:'DELETE',
+		 	contentType:'application/json',
+	    accept:'application/json',
+	    processData:false,
+	    complete: function(response) {
+    		
+    		if(response.status == 200) {
+    			$('#' + id).remove();
+    		} else {
+    			$('.error').text(response.responseText);
+    		}
+		},
+		error: function (response, data, textStatus, jqXHR) {
+			if(response.status != 200){
+				$('error').text("Error: " + textStatus + ", " + jqXHR);
+			}
+		}
+    });
+	}
+}
+
+
 $( document ).ready(function() {	
 	refreshTable();
 	function preZero(s){
@@ -76,59 +106,19 @@ $( document ).ready(function() {
 	var d = new Date();
 	$("input[name$='date']").val(d.getFullYear() + "-" + preZero(d.getMonth()+1) + "-" + preZero(d.getDate()) + " " + preZero(d.getHours()) + ":" + preZero(d.getMinutes())).prop('disabled', true);
 	
-	function getCategory (id){
-		//Diven tˆms pÂ information och sedan laddas om
-			//$("#categoryTableDiv").html("<table id=\"categoryTable\" class=\"listtable\"><tr><th>Kategorier</th><th>&nbsp;</th></tr></table>");
-		
-		//H√§mtar all data fr√•n kategorier i db:n
-		$.ajax({
-			type: "GET",
-			url: "/royalspades/api/category/"+id,
-			dataType: "text",
-			success: function (data, textStatus, jqXHR) {
-				var arr = JSON.parse(data);
-				//startar en tbody-tag
-				//loopar igenom all data och l√§gger i en tabell
-				for(var i = 0; i < arr.length; i++){
-					var row = arr[i].name;
-				}
-				
-			},
-			error: function (data, textStatus, jqXHR) {
-				alert("Error: " + textStatus + ", " + jqXHR);
-			}
-		});
-	}
-	
-	function deleteCategory(event, id){
-		  event.preventDefault();
-		  
-		  if (confirm(' ƒr du s‰ker pÂ att du vill ta bort kategorin?')) {
-		   
-		   $.post('/royalspades/api/admin/remove_category/' + id, null, function(response) {
-		      console.log(response);
-		        });
-		  	}
-		 }
-	
+
 });
 function refreshTable (){
-//Diven tˆms pÂ information och sedan laddas om
-	
-
-//H‰mtar all data frÂn kategorier i db:n
 	$.ajax({
 		type: "GET",
 		url: "/royalspades/api/category/all/",
 		dataType: "text",
 		success: function (data, textStatus, jqXHR) {
 			var arr = JSON.parse(data);
-			//startar en tbody-tag
 			
 			$("#categoryTable tbody").empty();
-			//loopar igenom all data och l‰gger i en tabell
 			for(var i = 0; i < arr.length; i++){
-				var row = "<tr><td>";
+				var row = "<tr id=\"" + arr[i].id + "\"><td>";
 				row += arr[i].name;
 				row += '</td><td style="text-align:center;">';
 				row += '<a class="link black" href="" onclick="editCategory(event, ' + arr[i].id + ')"><i class="fa fa-pencil black"></i></a>';

@@ -141,4 +141,14 @@ public class AdminController {
 		return "admin/categories";
 		
 	}
+	
+	@RequestMapping("/editCategory")
+	public String editCategory(Locale locale, Model model, @RequestParam(value = "id", required = true) int id){
+		//Admin - supplier page
+		model.addAttribute("pageUid", "decd0e0b-c2cd-4322-9486-b96cb026bb3c" );
+		
+		model.addAttribute("id", id);
+
+		return "admin/editCategory";
+	}
 }

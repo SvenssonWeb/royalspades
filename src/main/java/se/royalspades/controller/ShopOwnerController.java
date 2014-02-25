@@ -1,5 +1,6 @@
 package se.royalspades.controller;
 
+import java.security.Principal;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -48,8 +49,10 @@ public class ShopOwnerController {
 	}
 	
 	@RequestMapping("/settings")
-	public String settings(Locale locale, Model model){
+	public String settings(Locale locale, Model model, Principal principal){
 		//ShopOwner - wares page
+        final String currentUser = principal.getName();
+        model.addAttribute("username", currentUser);
 		model.addAttribute("pageUid", "8f93bc70-8d79-11e3-baa8-0800200c9a66" );
 		
 		

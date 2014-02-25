@@ -64,6 +64,7 @@
 	 }
 		 
 	function refreshLinks(){
+		$('.link').off();
 		$(".link").click(function (event){
 			event.preventDefault();
 			openPageUrl(this.href);

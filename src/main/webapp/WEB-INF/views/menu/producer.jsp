@@ -7,6 +7,9 @@
 		<a class="menulink" href="categories">Kategorier</a>
 	</li>
 	<li>
+		<a class="menulink" href="settings">Inställningar</a>
+	</li>
+	<li>
 		<a class="menulink" href="help">Hjälp</a>
 	</li>
 	<li>

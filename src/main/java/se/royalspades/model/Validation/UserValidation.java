@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class UserValidation implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	int id;
 	@NotEmpty
 	@Size(min = 2, max = 45)
 	private String firstName;
@@ -24,6 +25,16 @@ public class UserValidation implements Serializable{
 	@Size(min = 2, max = 45)
 	private String username;
 	
+	public UserValidation(){
+		
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

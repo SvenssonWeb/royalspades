@@ -53,10 +53,17 @@
 	
 	function switchData(){
 		$(".maincontent").html(newData);
-		
+	    refreshLinks();
+	    //setTimeout(refreshLinks, 250);
+	    setTimeout(refreshLinks, 500);
+	   // setTimeout(refreshLinks, 2000);
+	 }
+		 
+	function refreshLinks(){
+		$('.link').off();
 		$(".link").click(function (event){
 			event.preventDefault();
-			openPageUrl(this.href);
+		    openPageUrl(this.href);
 		});
 	}
 	
@@ -85,6 +92,9 @@
 		}
 		if(p == 'ad1gef60-8d22-33r3-baa8-0555020c9r66'){
 			return  baseUrl + "/admin/newSupplier";
+		}
+		if(p == 'decd0e0b-c2cd-4322-9486-b96cb026bb3c'){
+			return baseUrl + '/admin/editCategory';
 		}
 	}
 	
