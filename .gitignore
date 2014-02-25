@@ -2,9 +2,9 @@
 ## Intellij IDEA
 #################
 
-.idea
+.idea/
 .idea/*
-target
+target/
 target/*
 #################
 ## Eclipse
