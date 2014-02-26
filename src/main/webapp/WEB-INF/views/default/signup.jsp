@@ -4,7 +4,7 @@
 				<table>
 					<tr>
 						<td>
-							<label for="firstName" data-icon="u">Förnamn</label>
+							<label for="firstName" data-icon="u">Fï¿½rnamn</label>
 						</td><td>
 							<input id="firstName" name="firstName" required="required" type="text"  maxlength="45" placeholder="Olle" />
 						</td>
@@ -91,7 +91,7 @@ $(document).ready(function() {
     	  var data = $(this).serializeObject();
     	  // will pass the form data and parse it to json string
     	  $.ajax({
-    		  url:'/royalspades/api/admin/user/new_user',
+    		  url:baseUrl+'/api/admin/user/new_user',
     		  data: JSON.stringify(data),
     		  contentType:'application/json',
     		  accept:'application/json',

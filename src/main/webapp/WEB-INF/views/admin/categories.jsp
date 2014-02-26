@@ -33,7 +33,7 @@ function deleteCategory(event, id){
 	if (confirm(' Är du säker på att du vill ta bort kategorin?')) {		
 		
 		$.ajax({
-		url:'/royalspades/api/category/admin/remove_category/' + id, 
+		url:baseUrl+'/api/category/admin/remove_category/' + id,
 		type:'DELETE',
 		 	contentType:'application/json',
 	    accept:'application/json',
@@ -111,7 +111,7 @@ $( document ).ready(function() {
 function refreshTable (){
 	$.ajax({
 		type: "GET",
-		url: "/royalspades/api/category/all/",
+		url: baseUrl+"/api/category/all/",
 		dataType: "text",
 		success: function (data, textStatus, jqXHR) {
 			var arr = JSON.parse(data);

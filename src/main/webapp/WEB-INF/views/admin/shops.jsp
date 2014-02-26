@@ -45,10 +45,10 @@ var oTable;
 function deleteShop(event, id){
 	$('.error').text("");
 	
-	if (confirm('är du säker på att du vill ta bort affären?')) {
+	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort affï¿½ren?')) {
    
 		$.ajax({
-			url:'/royalspades/api/store/admin/remove_store/' + id, 
+			url:baseUrl+'/api/store/admin/remove_store/' + id,
 			type:'DELETE',
   		 	contentType:'application/json',
 		    accept:'application/json',
@@ -91,7 +91,7 @@ $( document ).ready(function() {
 	
 	$.ajax({
 		type: "GET",
-		url: "/royalspades/api/store/all/",
+		url: baseUrl+"/api/store/all/",
 		headers: {
 			'Accept':"application/json",
 			'Content-Type':"application/json"
@@ -146,10 +146,10 @@ $( document ).ready(function() {
 		        "sScrollY": "300px",
 				"oLanguage": {
 					"sLengthMenu": "Visar _MENU_ butiker per sida",
-					"sZeroRecords": "Hittade inget - tyvärr",
+					"sZeroRecords": "Hittade inget - tyvï¿½rr",
 					"sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
 					"sInfoEmpty": "Visar 0 av 0 butiker",
-					"sInfoFiltered": "(filtrerat från _MAX_ varor)",
+					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ varor)",
 					"sSearch": "Filtrera: "
 				}		
 			});

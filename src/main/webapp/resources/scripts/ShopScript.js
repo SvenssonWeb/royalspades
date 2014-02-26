@@ -78,6 +78,9 @@ $( document).on("click", '.shopProductPage .shopRemoveRow', function(event){
     var dataArray = dataString.split('-');
     var url = '/api/product/remove_product_from_store/'+dataArray[0]
                 +'/product/'+dataArray[1]+'/category/'+dataArray[2];
+    if(!confirm('Du kommer nu ta bort produkten?')){
+        return;
+    }
     $.ajax({
         type: "DELETE",
         url: url,
@@ -147,6 +150,8 @@ function setStoreProductTable(id){
             var fullHTML = "";
             for(var i = 0; i < arr.length; i++){
                 var rowData = arr[i];
+                console.log(rowData);
+                var productInfo = rowData["product"]["name"] + ' ' + rowData["product"]["volume"] + rowData["product"]["unit"]
                 var rowID = 2 + '-'
                     + rowData['product']['id'] + '-'
                     + rowData['category']['id'];
@@ -154,7 +159,7 @@ function setStoreProductTable(id){
                 var row = '<tr>' +
                             '<td><a href="#"><i class="fa fa-sort-down"></i></a></td>' +
                             '<td><a href="#"><i class="fa fa-sort-up"></i></a></td>' +
-                            '<td>'+rowData["product"]["name"]+'</td>' +
+                            '<td>'+productInfo+'</td>' +
                             '<td>'+rowData["category"]["name"]+'</td>' +
                             '<td>'+rowData["price"]+'</td>' +
                             '<td><a href="editShop/?id=' + rowID + '"><i class="fa fa-edit"></i></a></td>' +
@@ -288,5 +293,9 @@ function addStoreProduct(storeProduct){
         console.log(textStatus);
     });
 
+}
+
+function changeStoreProduct(){
+    var url = '/api/product/remove_product_from_store/{storeId}/product/{productId}/category/{categoryId}';
 }
 

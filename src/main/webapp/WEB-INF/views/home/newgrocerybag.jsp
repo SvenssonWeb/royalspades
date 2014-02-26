@@ -32,33 +32,33 @@ Ny matkasse
 				Varunamn
 			</th>
 			<th>
-				Mängd
+				Mï¿½ngd
 			</th>
 			<th>
-				Mått
+				Mï¿½tt
 			</th>
 			<th>
-				Leverantör
+				Leverantï¿½r
 			</th>
 			<!--<th>
-				Leverantör Org.nr
+				Leverantï¿½r Org.nr
 			</th>
 			<th>
-				Leverantör address
+				Leverantï¿½r address
 			</th>
 			<th>
-				Leverantör telefonnummer
+				Leverantï¿½r telefonnummer
 			</th>-->
 			<th>
 				Kategori
 			</th>
 			<th>
-				Lägg till
+				Lï¿½gg till
 			</th>
 		</tr>	
 	</thead>
 </table>
-<input type="submit" value="Lägg till">
+<input type="submit" value="Lï¿½gg till">
 
 <script>
 $( document ).ready(function() {	
@@ -76,7 +76,7 @@ $( document ).ready(function() {
 	$.ajax({
 		type: "GET",
 		//url: "http://172.16.6.175:8080/royalspades/api/product/all/",
-		url: "/royalspades/api/product/all/",
+		url: baseUrl+"/api/product/all/",
 		dataType: "text",
 		success: function (data, textStatus, jqXHR) {
 		var arr = JSON.parse(data);
@@ -136,10 +136,10 @@ $( document ).ready(function() {
         "sScrollY": "300px",
 		"oLanguage": {
 			"sLengthMenu": "Visar _MENU_ produkter per sida",
-			"sZeroRecords": "Hittade inget - tyvärr",
+			"sZeroRecords": "Hittade inget - tyvï¿½rr",
 			"sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
 			"sInfoEmpty": "Visar 0 av 0 varor",
-			"sInfoFiltered": "(filtrerat från _MAX_ varor)",
+			"sInfoFiltered": "(filtrerat frï¿½n _MAX_ varor)",
 			"sSearch": "Filtrera: "
 		}		
 		});

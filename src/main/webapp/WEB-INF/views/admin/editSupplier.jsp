@@ -2,14 +2,14 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Ändra leverantör
+	ï¿½ndra leverantï¿½r
 </h2>
 
 <form id="editSupplierForm" method="POST">
 	<table>
 		<tr>
 			<td>
-				<label for="name">Namn på leverantör: </label>
+				<label for="name">Namn pï¿½ leverantï¿½r: </label>
 			</td>
 			<td>
 				<input name="name" id="name"><br />
@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">Administratör: </label>
+				<label for="user">Administratï¿½r: </label>
 			</td>
 			<td>
 				<select id="user"></select>
@@ -94,7 +94,7 @@ $(document).ready(function() {
 	};
 	
 	function getValues(){
-		$.getJSON("/royalspades/api/brand/" + "${id}")
+		$.getJSON(baseUrl+"/api/brand/" + "${id}")
 			.done(function(data) {
 				$("input[name='name']").val(data.name);
 				$("input[name='address']").val(data.address);
@@ -108,11 +108,11 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('.error').text("Nï¿½got gick fel: " + err);
 			});
 		
 		// fill the select box with users that can be a supplier administrator
-		$.getJSON("/royalspades/api/admin/user/brand_managers/")
+		$.getJSON(baseUrl+"/api/admin/user/brand_managers/")
 		    .done(function(data) {
 			    $("#user option").remove(); // Remove all <option> child tags.
 			    $.each(data, function(index, item) { // Iterates through a collection
@@ -126,7 +126,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('.error').text("Nï¿½got gick fel: " + err);
 			});
 	}
 	
@@ -145,7 +145,7 @@ $(document).ready(function() {
 	    	  var data = $(this).serializeObject();
 	    	  // will pass the form data and parse it to json string
 	    	  $.ajax({
-	    		  url:'/royalspades/api/brand/admin/edit_brand/' + userId,
+	    		  url:baseUrl+'/api/brand/admin/edit_brand/' + userId,
 	    		  data: JSON.stringify(data),
 	    		  contentType:'application/json',
 	    		  accept:'application/json',
@@ -184,7 +184,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-	  		  $('.error').text('Du måste välja en administratör!');
+	  		  $('.error').text('Du mï¿½ste vï¿½lja en administratï¿½r!');
 	  	  }
 
 	   

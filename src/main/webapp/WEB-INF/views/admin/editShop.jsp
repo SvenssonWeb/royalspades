@@ -2,14 +2,14 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Ändra butik
+	ï¿½ndra butik
 </h2>
 
 <form id="editShopForm" method="POST" name="editShopForm">
 	<table>	
 		<tr>
 			<td>
-				<label for="name">Namn på butik: </label>
+				<label for="name">Namn pï¿½ butik: </label>
 			</td>
 			<td>
 				<input name="name" type="text" id="name"><br />
@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">Administratör: </label>
+				<label for="user">Administratï¿½r: </label>
 			</td>
 			<td>
 				<select id="user"></select>
@@ -94,7 +94,7 @@ $(document).ready(function() {
 	var managerId;
 	
 	function getValues(){
-		$.getJSON("/royalspades/api/store/" + "${id}")
+		$.getJSON(baseUrl+"/api/store/" + "${id}")
 			.done(function(data) {
 				$("input[name='name']").val(data.name);
 				$("input[name='address']").val(data.address);
@@ -108,11 +108,11 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('.error').text("Nï¿½got gick fel: " + err);
 			});
 		
 		// fill the select box with users that can be a shop administrator
-		$.getJSON("/royalspades/api/admin/user/shop_managers/")
+		$.getJSON(baseUrl+"/api/admin/user/shop_managers/")
 		    .done(function(data) {
 			    $("#user option").remove(); // Remove all <option> child tags.
 			    $.each(data, function(index, item) { // Iterates through a collection
@@ -126,7 +126,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('.error').text("Nï¿½got gick fel: " + err);
 			});
 	}
 	
@@ -146,7 +146,7 @@ $(document).ready(function() {
 	    	  var data = $(this).serializeObject();
 	    	  // will pass the form data and parse it to json string
 	    	  $.ajax({
-	    		  url:'/royalspades/api/store/admin/edit_store/' + userId,
+	    		  url:baseUrl+'/api/store/admin/edit_store/' + userId,
 	    		  data: JSON.stringify(data),
 	    		  contentType:'application/json',
 	    		  accept:'application/json',
@@ -186,7 +186,7 @@ $(document).ready(function() {
 	    	  });
 		   
 	  	  } else {
-	  		  $('.error').text('Du måste välja en administratör!');
+	  		  $('.error').text('Du mï¿½ste vï¿½lja en administratï¿½r!');
 	  	  }
 
 	  e.preventDefault(); // prevent actual form submit and page reload

@@ -2,9 +2,9 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Leverantör
+	Leverantï¿½r
 </h2>
-<a class="link" href="newSupplier">Ny leverantör</a>
+<a class="link" href="newSupplier">Ny leverantï¿½r</a>
 <br />
 <table id="dataTable" class="supplierTable listtable">
 	<thead>
@@ -45,10 +45,10 @@ var oTable;
 function deleteSupplier(event, id){
 	$('.error').text("");
 	
-	if (confirm('är du säker på att du vill ta bort leverantören?')) {
+	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort leverantï¿½ren?')) {
    
 		$.ajax({
-			url:'/royalspades/api/brand/admin/remove_brand/' + id, 
+			url:baseUrl+'/api/brand/admin/remove_brand/' + id,
 			type:'DELETE',
   		  	contentType:'application/json',
 		  	accept:'application/json',
@@ -91,7 +91,7 @@ $( document ).ready(function() {
 	
 	$.ajax({
 		type: "GET",
-		url: "/royalspades/api/brand/all/",
+		url: baseUrl+"/api/brand/all/",
 		headers: {
 			'Accept':"application/json",
 			'Content-Type':"application/json"
@@ -146,10 +146,10 @@ $( document ).ready(function() {
 		        "sScrollY": "300px",
 				"oLanguage": {
 					"sLengthMenu": "Visar _MENU_ produkter per sida",
-					"sZeroRecords": "Hittade inget - tyvärr",
+					"sZeroRecords": "Hittade inget - tyvï¿½rr",
 					"sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
 					"sInfoEmpty": "Visar 0 av 0 varor",
-					"sInfoFiltered": "(filtrerat från _MAX_ varor)",
+					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ varor)",
 					"sSearch": "Filtrera: "
 				}		
 			});

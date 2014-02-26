@@ -2,16 +2,16 @@
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-	Inställningar
+	Instï¿½llningar
 </h2>
 
 <fieldset class="accountSettings">
-	<legend>Kontoinställningar</legend>
+	<legend>Kontoinstï¿½llningar</legend>
 	<form name="account" id="account" method="POST">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="firstName">Förnamn: </label>
+					<label for="firstName">Fï¿½rnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="firstName" name="firstName">
@@ -29,7 +29,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="username">Användarnamn: </label>
+					<label for="username">Anvï¿½ndarnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="username" name="username">
@@ -64,12 +64,12 @@
 <br />
 <br />
 <fieldset class="passwordSettings">
-	<legend>Ändra Lösenord</legend>
+	<legend>ï¿½ndra Lï¿½senord</legend>
 	<form name="passwordForm" id="passwordForm">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="oldPassword">Ditt nuvarande lösenord: </label>
+					<label for="oldPassword">Ditt nuvarande lï¿½senord: </label>
 				</td>
 				<td>
 					<input type="password" id="oldPassword" name="oldPassword">
@@ -78,7 +78,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="password">Nytt lösenord: </label>
+					<label for="password">Nytt lï¿½senord: </label>
 				</td>
 				<td>
 					<input type="password" id="password" name="password">
@@ -87,7 +87,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="passwordConfirm">Bekräfta nytt lösenord: </label>
+					<label for="passwordConfirm">Bekrï¿½fta nytt lï¿½senord: </label>
 				</td>
 				<td>
 					<input type="password" id="passwordConfirm" name="passwordConfirm">
@@ -134,7 +134,7 @@ $(document).ready(function() {
 	};
 	
 	function getValues(){
-		$.getJSON("/royalspades/api/user/${username}")
+		$.getJSON(baseUrl+"/api/user/${username}")
 			.done(function(data) {
 				$($("input[name='id']")[0]).val(data.id);
 				$($("input[name='id']")[1]).val(data.id);
@@ -145,7 +145,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('#accountError').text("Något gick fel: " + err);
+		        $('#accountError').text("Nï¿½got gick fel: " + err);
 			});
 	}
 	
@@ -161,7 +161,7 @@ $(document).ready(function() {
     	  var data = $('#account').serializeObject();
     	  // will pass the form data and parse it to json string
     	  $.ajax({
-    		  url:'/royalspades/api/user/edit_account',
+    		  url:baseUrl+'/api/user/edit_account',
     		  data: JSON.stringify(data),
     		  contentType:'application/json',
     		  accept:'application/json',
@@ -211,7 +211,7 @@ $(document).ready(function() {
     	  var data = $('#passwordForm').serializeObject();
     	  // will pass the form data and parse it to json string
     	  $.ajax({
-    		  url:'/royalspades/api/user/edit_password',
+    		  url:baseUrl+'/api/user/edit_password',
     		  data: JSON.stringify(data),
     		  contentType:'application/json',
     		  accept:'application/json',

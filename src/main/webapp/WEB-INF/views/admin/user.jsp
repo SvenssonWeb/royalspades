@@ -2,7 +2,7 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Användare
+	Anvï¿½ndare
 </h2>
 
 <br />
@@ -10,13 +10,13 @@
 	<thead>
 		<tr>
 			<th>
-				Användarnamn
+				Anvï¿½ndarnamn
 			</th>
 			<th>
 				Email
 			</th>
 			<th>
-				Förnamn
+				Fï¿½rnamn
 			</th>
 			<th>
 				Efternamn
@@ -25,7 +25,7 @@
 				Roll
 			</th>
 			<th>
-				Begärd behörighet
+				Begï¿½rd behï¿½righet
 			</th>
 			<th>
 				
@@ -42,10 +42,10 @@ var oTable;
 function deleteUser(event, id){
 	$('.error').text("");
 	
-	if (confirm('är du säker på att du vill ta bort denna användare?')) {
+	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort denna anvï¿½ndare?')) {
    
 		$.ajax({
-			url:'/royalspades/api/brand/admin/remove_brand/' + id, 
+			url:baseUrl+'/api/brand/admin/remove_brand/' + id,
 			type:'DELETE',
   		  	contentType:'application/json',
 		  	accept:'application/json',
@@ -88,7 +88,7 @@ $( document ).ready(function() {
 	
 	$.ajax({
 		type: "GET",
-		url: "/royalspades/api/admin/user/all/",
+		url: baseUrl+"/api/admin/user/all/",
 		headers: {
 			'Accept':"application/json",
 			'Content-Type':"application/json"
@@ -130,11 +130,11 @@ $( document ).ready(function() {
 		        "bScrollCollapse": false,
 		        "sScrollY": "300px",
 				"oLanguage": {
-					"sLengthMenu": "Visar _MENU_ användare per sida",
-					"sZeroRecords": "Hittade inget - tyvärr",
-					"sInfo": "Visar _START_ till _END_ av _TOTAL_ användare",
-					"sInfoEmpty": "Visar 0 av 0 användare",
-					"sInfoFiltered": "(filtrerat från _MAX_ användare)",
+					"sLengthMenu": "Visar _MENU_ anvï¿½ndare per sida",
+					"sZeroRecords": "Hittade inget - tyvï¿½rr",
+					"sInfo": "Visar _START_ till _END_ av _TOTAL_ anvï¿½ndare",
+					"sInfoEmpty": "Visar 0 av 0 anvï¿½ndare",
+					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ anvï¿½ndare)",
 					"sSearch": "Filtrera: "
 				}		
 			});

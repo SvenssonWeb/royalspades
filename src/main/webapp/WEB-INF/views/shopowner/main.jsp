@@ -99,6 +99,7 @@
 </fieldset>
 <script>
     $( document ).ready(function() {
+
         function preZero(s){
             s += "";
             if(s.length < 2){
