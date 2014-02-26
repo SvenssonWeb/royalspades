@@ -23,6 +23,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public void edit(Category category) {
+        getCurrentSession().clear();
 		getCurrentSession().update(category);
 	}
 

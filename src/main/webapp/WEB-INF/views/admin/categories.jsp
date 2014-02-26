@@ -16,44 +16,17 @@
 	</table>
 </div>
 <form id="newCatForm" style="display: none">
-	<input type="text" type="text" name="name" placeholder = "Skriv in din nya varukategori." >
-	<button submit="" id="toggleCatBtn">Spara</button>
+	<input type="text" name="name" placeholder = "Skriv in din nya varukategori." >
+	<button id="toggleCatBtn">Spara</button>
 </form>
 <button id="addCatBtn">Lägg till ny kategori</button><br>
 
 <form id="editCatForm" style="display: none">
-	<input type="text" type="text" name="name" placeholder = "Skriv in din nya varukategori." >
-	<button submit="" id="toggleeditCatBtn">Spara</button>
+	<input type="text" name="name" placeholder = "Skriv in din nya varukategori." >
+	<button id="toggleeditCatBtn">Spara</button>
 </form>
 	
 <script>
-function deleteCategory(event, id){
-	event.preventDefault();
-	  
-	if (confirm(' Är du säker på att du vill ta bort kategorin?')) {		
-		
-		$.ajax({
-		url:baseUrl+'/api/category/admin/remove_category/' + id,
-		type:'DELETE',
-		 	contentType:'application/json',
-	    accept:'application/json',
-	    processData:false,
-	    complete: function(response) {
-    		
-    		if(response.status == 200) {
-    			$('#' + id).remove();
-    		} else {
-    			$('.error').text(response.responseText);
-    		}
-		},
-		error: function (response, data, textStatus, jqXHR) {
-			if(response.status != 200){
-				$('error').text("Error: " + textStatus + ", " + jqXHR);
-			}
-		}
-    });
-	}
-}
 
 
 $( document ).ready(function() {	
@@ -65,16 +38,7 @@ $( document ).ready(function() {
 		}
 		return s;
 	}
-	$(document).on("click","#addCatBtn",function(){
-		$("#newCatForm").show();
-		$("#addCatBtn").hide();
-	});
 
-	$(document).on("click","#toggleCatBtn",function(event){
-		$("#newCatForm").hide();
-		
-		$("#addCatBtn").show();
-	});
 	
 
     // Save category AJAX Form Submit
@@ -108,32 +72,5 @@ $( document ).ready(function() {
 	
 
 });
-function refreshTable (){
-	$.ajax({
-		type: "GET",
-		url: baseUrl+"/api/category/all/",
-		dataType: "text",
-		success: function (data, textStatus, jqXHR) {
-			var arr = JSON.parse(data);
-			
-			$("#categoryTable tbody").empty();
-			for(var i = 0; i < arr.length; i++){
-				var row = "<tr id=\"" + arr[i].id + "\"><td>";
-				row += arr[i].name;
-				row += '</td><td style="text-align:center;">';
-				row += '<a class="link black" href="" onclick="editCategory(event, ' + arr[i].id + ')"><i class="fa fa-pencil black"></i></a>';
-				row += '</td><td style="text-align:center;">';
-				row += '<a class="link red" href="" onclick="deleteCategory(event, ' + arr[i].id + ')"><i class="fa fa-times red"></i></a>';	
-				row += "</td></tr>";
-				
-				$("#categoryTable tbody").append(row);
-			}
-		},
-		error: function (data, textStatus, jqXHR) {
-			alert("Error: " + textStatus + ", " + jqXHR);
-		}
-	});
-	
-	
-} 
+
 </script>
