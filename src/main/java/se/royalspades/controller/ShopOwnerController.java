@@ -32,11 +32,14 @@ public class ShopOwnerController {
 	
 	
 	@RequestMapping("/main")
-	public String main(Locale locale, Model model){
+	public String main(Locale locale, Model model, Principal principal){
 		//Producer - Main page
+        final String currentUser = principal.getName();
+        model.addAttribute("username", currentUser);
 		model.addAttribute("pageUid", "7ada6860-8d79-11e3-baa8-0800200c9a66" );
-		
-		return "shopowner/main";
+
+
+        return "shopowner/main";
 	}
 	
 	@RequestMapping("/help")

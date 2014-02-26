@@ -98,8 +98,8 @@
 	</table>
 </fieldset>
 <script>
+    var currentStore;
     $( document ).ready(function() {
-
         function preZero(s){
             s += "";
             if(s.length < 2){
@@ -110,13 +110,38 @@
         var d = new Date();
         $("input[name$='date']").val(d.getFullYear() + "-" + preZero(d.getMonth()+1) + "-" + preZero(d.getDate()) + " " + preZero(d.getHours()) + ":" + preZero(d.getMinutes())).prop('disabled', true);
 
-        setStoreAllProducts();
 
-        setStoreProductTable(2);
+        $.ajax({
+            type: "GET",
+            url: '/api/store/all/',
+            headers: {
+                'Accept':"application/json",
+                'Content-Type':"application/json"
+            },
+            dataType: "text",
+            success: function (data) {
+                var stores = parseJSON(data);
+                for(var i = 0; i < stores.length; i++){
+                    var store = stores[i];
+                    var user = store['user'];
+                    if('${username}' == user['username']){
+                            currentStore = store;
+                    }
+                }
+                setStoreAllProducts();
 
-        setStoreNewProductBrandSelect();
+                setStoreProductTable(currentStore.id);
 
-        setStoreCategoriesTable();
+                setStoreNewProductBrandSelect();
+
+                setStoreCategoriesTable();
+            },
+            error: function (data, textStatus, jqXHR) {
+                alert("Error: " + textStatus + ", " + jqXHR);
+            }
+        });
+
+
     });
 
 </script>

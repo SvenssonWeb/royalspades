@@ -17,6 +17,7 @@ $( document).on("click", "#shopProductCreateNew", function(){
     $("#shopProductShow").removeClass('active');
 });
 $( document).on("click", "#shopProductShow", function(){
+    setStoreProductTable(currentStore.id);
     $(".shopProductPage").slideDown();
     $("#shopSelectNewContainer").slideUp();
 
@@ -150,9 +151,8 @@ function setStoreProductTable(id){
             var fullHTML = "";
             for(var i = 0; i < arr.length; i++){
                 var rowData = arr[i];
-                console.log(rowData);
                 var productInfo = rowData["product"]["name"] + ' ' + rowData["product"]["volume"] + rowData["product"]["unit"]
-                var rowID = 2 + '-'
+                var rowID = currentStore.id + '-'
                     + rowData['product']['id'] + '-'
                     + rowData['category']['id'];
 
@@ -281,7 +281,7 @@ function setStoreCategoriesTable() {
 }
 
 function addStoreProduct(storeProduct){
-    var storeID = 2;
+    var storeID = currentStore.id;
     var productID = storeProduct.store;
     var categoryID = storeProduct.category;
     var price = storeProduct.price;
