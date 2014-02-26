@@ -48,7 +48,7 @@ $( document ).ready(function() {
   	  $("#response").text("");
   	  
       // will pass the form data using the jQuery serialize function
-      $.post(baseUrl+'/api/category/admin/add_category', $(this).serialize(), function(response) {
+      $.post(baseUrl+'/api/category/admin/add_category', JSON.stringify($(this).serializeObject()), function(response) {
 		  console.log(response);
         // clear values
         $(':input','#newCatForm')
