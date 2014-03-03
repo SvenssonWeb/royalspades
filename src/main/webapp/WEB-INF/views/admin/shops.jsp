@@ -128,8 +128,8 @@ $( document ).ready(function() {
 				   }
 
 				row += '</td><td style="text-align:center;">';
-				row += '<a class="link" href="editShop/?id=' + arr[i].id + '"><i class="fa fa-pencil"></i></a>';
-				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteShop(event, ' + arr[i].id + ')"><i class="fa fa-times"></i></a>';
+				row += '<a class="link" href="editShop/?id=' + arr[i].id + '"><i class="fa fa-pencil black"></i></a>';
+				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteShop(event, ' + arr[i].id + ')"><i class="fa fa-times red"></i></a>';
 				row += "</td></tr>";
 				$(".shopTable").append(row);
 			}
@@ -147,9 +147,9 @@ $( document ).ready(function() {
 				"oLanguage": {
 					"sLengthMenu": "Visar _MENU_ butiker per sida",
 					"sZeroRecords": "Hittade inget - tyv�rr",
-					"sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
+					"sInfo": "Visar _START_ till _END_ av _TOTAL_ butiker",
 					"sInfoEmpty": "Visar 0 av 0 butiker",
-					"sInfoFiltered": "(filtrerat fr�n _MAX_ varor)",
+					"sInfoFiltered": "(filtrerat fr�n _MAX_ butiker)",
 					"sSearch": "Filtrera: "
 				}		
 			});

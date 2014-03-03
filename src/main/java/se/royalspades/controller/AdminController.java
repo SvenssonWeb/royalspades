@@ -151,4 +151,14 @@ public class AdminController {
 
 		return "admin/editCategory";
 	}
+	
+	@RequestMapping("/editUser")
+	public String editUser(Locale locale, Model model, @RequestParam(value = "id", required = true) int id){
+		// Admin edit user page
+		model.addAttribute("pageUid", "cccd1e3b-d2dd-1321-1486-u96cbc26bb3c" );
+
+		model.addAttribute("id", id);
+		return "admin/editUser";
+	}
+	
 }

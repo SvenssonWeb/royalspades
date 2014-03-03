@@ -11,6 +11,9 @@ public class App {
 }
 
 // server user: fs  pass: pw
+// don't include libraries in deploy!
+
+// using hibernate a bit wrong? clear() could be avoided by getting user object with id and merge it with user send in on edit??
 
 //pagination
 

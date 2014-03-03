@@ -51,6 +51,14 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
+	// return single user with id
+	@Secured("ROLE_ADMIN")
+	@RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody User getSingleUserWithId(@PathVariable int id){
+		User user = userService.getUser(id);
+		return user;
+	}
+	
 	// return single user
 	@Secured({"ROLE_USER","ROLE_ADMIN","ROLE_MODERATOR","ROLE_SUPERVISOR"})
 	@RequestMapping(value = "/user/{userName}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -116,15 +124,15 @@ public class UserController {
 		List<User> usersWaitingForAuthority = new ArrayList<User>();
 		
 		for(User user : users){
-			if(user.getRequestedAuthority() != null || !user.getRequestedAuthority().isEmpty()){
+			if(user.getRequestedAuthority().length() > 1 && user.getRequestedAuthority() != null){
 				// the user is awaiting some kind of new authority
 				usersWaitingForAuthority.add(user);
 			}
 		}
 	
-		return users;
+		return usersWaitingForAuthority;
 	}
-	
+
 	// add a new user
 	@RequestMapping(value ="/admin/user/new_user", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
 	ResponseEntity <String> createUser(@RequestBody @Valid User user) {		
@@ -154,7 +162,16 @@ public class UserController {
 	@SuppressWarnings("unchecked")
 	@Secured("ROLE_ADMIN") 
 	@RequestMapping(value="/admin/user/edit_user", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
-	ResponseEntity <String> editUser(@RequestBody @Valid User user){	
+	ResponseEntity <String> editUser(@RequestBody @Valid UserValidation userValidation){	
+		// after all values are validated, then set all values to User object.
+		User user = new User();
+		user.setId(userValidation.getId());
+		user.setUsername(userValidation.getUsername());
+		user.setFirstName(userValidation.getFirstName());
+		user.setLastName(userValidation.getLastName());
+		user.setEmail(userValidation.getEmail());
+		userValidation = null;
+		
 		
 		List<User> users = userService.getAllUsers();
 		
@@ -165,15 +182,16 @@ public class UserController {
 			}
 		}
 		
-		// get old password
+		// get current password
 		User oldUser = userService.getUser(user.getId());
-		String password = oldUser.getPassword();
-			
-		// set same password the current user
-		user.setPassword(password);
-		userService.edit(user);
 		
-		return new ResponseEntity<String>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
+		// set same password and role
+		user.setPassword(oldUser.getPassword());
+		user.setRole(oldUser.getRole());
+		user.setRequestedAuthority(oldUser.getRequestedAuthority());
+		
+		userService.edit(user);		
+    	return new ResponseEntity<String>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
 	}
 	
 
@@ -202,6 +220,7 @@ public class UserController {
 			// set same password and role
 			user.setPassword(oldUser.getPassword());
 			user.setRole(oldUser.getRole());
+			user.setRequestedAuthority(oldUser.getRequestedAuthority());
 			
 			userService.edit(user);		
 	    	return new ResponseEntity<String>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
@@ -282,15 +301,21 @@ public class UserController {
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/admin/set_new_password/user/{userId}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
 	ResponseEntity <String> setNewPassword(@RequestBody String password, @PathVariable int userId){
+		
+		if(password.length() > 45){
+			return new ResponseEntity<String>("Lösenord måste vara mellan 5-45 tecken!", HttpStatus.BAD_REQUEST);
+		} else if(password.length() < 5){
+			return new ResponseEntity<String>("Lösenord måste vara mellan 5-45 tecken!", HttpStatus.BAD_REQUEST);	
+		}
+		
 		User user = userService.getUser(userId);
-		// matches, update user
 		
 		// password
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(password));
 		
 		userService.edit(user);
 		
-		return new ResponseEntity<String>("Password for " + user.getUsername() +" changed", HttpStatus.OK);
+		return new ResponseEntity<String>("Lösenord för " + user.getUsername() +" ändrat!", HttpStatus.OK);
 	}
 	
 	
@@ -324,10 +349,15 @@ public class UserController {
 	// as admin, authorize a higher authority
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/admin/authorize/user/{userId}", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-	ResponseEntity <String> authorizeRequestedAuthority(@PathVariable int userId){
+	ResponseEntity <String> authorizeRequestedAuthority(@PathVariable int userId, @RequestBody String authority){
+
+		if(!authority.equals("shopowner") && !authority.equals("producer") && !authority.equals("admin") && !authority.equals("user")){
+			return new ResponseEntity<String>("Behörighet finns inte i systemt!", HttpStatus.BAD_REQUEST);
+		}
+		
 		// get user
 		User user = userService.getUser(userId);
-		user.setRole(user.getRequestedAuthority());
+		user.setRole(authority);
 		user.setRequestedAuthority(" ");
 		userService.edit(user);
 		
@@ -336,5 +366,3 @@ public class UserController {
 
 }
 
-
-//TODO get single user (for settings...)
