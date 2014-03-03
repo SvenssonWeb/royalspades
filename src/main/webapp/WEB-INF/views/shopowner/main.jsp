@@ -108,7 +108,14 @@
             return s;
         }
         var d = new Date();
-        $("input[name$='date']").val(d.getFullYear() + "-" + preZero(d.getMonth()+1) + "-" + preZero(d.getDate()) + " " + preZero(d.getHours()) + ":" + preZero(d.getMinutes())).prop('disabled', true);
+        $("input[name$='date']")
+                .val(
+                        d.getFullYear() + "-" +
+                        preZero(d.getMonth()+1) + "-" +
+                        preZero(d.getDate()) + " " +
+                        preZero(d.getHours()) + ":" +
+                        preZero(d.getMinutes()))
+                .prop('disabled', true);
 
 
         $.ajax({

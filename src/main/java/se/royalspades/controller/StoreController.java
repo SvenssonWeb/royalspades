@@ -54,7 +54,7 @@ public class StoreController {
 	
 	
 	// return store/stores for owner
-	@Secured("ROLE_SUPERVISOR")
+	@Secured("ROLE_MODERATOR")
 	@RequestMapping(value = "/owner/{ownerId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody List<Store> getOwnerStores(@PathVariable int ownerId){
 		@SuppressWarnings("unchecked")
