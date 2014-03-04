@@ -71,7 +71,7 @@ $( document ).ready(function() {
 		success: function (data, textStatus, jqXHR) {
 		var arr = JSON.parse(data);
 		
-		$(".groceryTable").append("<tbody>");
+		var html = "<tbody>";
 		for(var i = 0; i < arr.length; i++){
 			var row = "<tr><td>";
 			row += arr[i].name;
@@ -105,10 +105,10 @@ $( document ).ready(function() {
 			row += '</td><td style="text-align:center;">';
 			row += '<input type="checkbox">';
 			row += "</td></tr>";
-			$(".groceryTable").append(row);
+			html += row;
 		}
-		
-		$(".groceryTable").append("</tbody>");
+		html += "</tbody>";
+		$(".groceryTable").append(html);
 		
 		$('.groceryTable').dataTable({
 		"aLengthMenu": [

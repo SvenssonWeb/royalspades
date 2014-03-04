@@ -82,7 +82,7 @@ public class UserController {
 	@RequestMapping(value ="/admin/user/shop_managers", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody List<User> getAllShopManagersResponse(){
 		List<User> users = userService.getAllUsers();
-		List<User> shopManagers = new ArrayList<User>();
+		List<User> shopManagers = new ArrayList<>();
 		
 		for(User user : users){
 			if(user.getRole().equals("shopowner")){
@@ -101,7 +101,7 @@ public class UserController {
 	@RequestMapping(value ="/admin/user/brand_managers", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody List<User> getAllBrandManagersResponse(){
 		List<User> users = userService.getAllUsers();
-		List<User> brandManagers = new ArrayList<User>();
+		List<User> brandManagers = new ArrayList<>();
 		
 		for(User user : users){
 			if(user.getRole().equals("producer")){
@@ -121,7 +121,7 @@ public class UserController {
 	@RequestMapping(value = "/admin/get_users_requesting_higher_authority", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody List<User> getAllUsersRequestingHigherAuthority(){
 		List<User> users = userService.getAllUsers();
-		List<User> usersWaitingForAuthority = new ArrayList<User>();
+		List<User> usersWaitingForAuthority = new ArrayList<>();
 		
 		for(User user : users){
 			if(user.getRequestedAuthority().length() > 1 && user.getRequestedAuthority() != null){
@@ -138,12 +138,12 @@ public class UserController {
 	ResponseEntity <String> createUser(@RequestBody @Valid User user) {		
 		if(userService.checkIfUserExists(user.getUsername())){
 			// if the user exists
-			return new ResponseEntity<String>("Användarnamnet är upptaget! Välj ett annat.", HttpStatus.BAD_REQUEST);	
+			return new ResponseEntity<>("Användarnamnet är upptaget! Välj ett annat.", HttpStatus.BAD_REQUEST);
 		} 
 		
 		if(!user.getPassword().equals(user.getPasswordConfirm())){
 			// if the passwords don't match
-			return new ResponseEntity<String>("Lösenorden matchar inte!", HttpStatus.BAD_REQUEST);	
+			return new ResponseEntity<>("Lösenorden matchar inte!", HttpStatus.BAD_REQUEST);
 		}
 			
 		// role for everyone, update at request
@@ -154,7 +154,7 @@ public class UserController {
 			
 		userService.add(user);						
 			
-		return new ResponseEntity<String>("Användarkonto för " + user.getUsername() + " skapat!", HttpStatus.OK);			
+		return new ResponseEntity<>("Användarkonto för " + user.getUsername() + " skapat!", HttpStatus.OK);
 	}
 	
 	
@@ -178,7 +178,7 @@ public class UserController {
 		// if the username is taken
 		for(User u : users){
 			if(u.getUsername().equals(user.getUsername()) && u.getId() != user.getId()){
-				return new ResponseEntity<String>("Användarnamnet är upptaget, Välj ett annat.", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("Användarnamnet är upptaget, Välj ett annat.", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
@@ -191,7 +191,7 @@ public class UserController {
 		user.setRequestedAuthority(oldUser.getRequestedAuthority());
 		
 		userService.edit(user);		
-    	return new ResponseEntity<String>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
+    	return new ResponseEntity<>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
 	}
 	
 
@@ -223,10 +223,10 @@ public class UserController {
 			user.setRequestedAuthority(oldUser.getRequestedAuthority());
 			
 			userService.edit(user);		
-	    	return new ResponseEntity<String>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
+	    	return new ResponseEntity<>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
 			
     	} else {
-    		return new ResponseEntity<String>("Du kan inte ändra ett användarkonto som inte tillhör dig!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan inte ändra ett användarkonto som inte tillhör dig!", HttpStatus.UNAUTHORIZED);
     	}
 	}
 	
@@ -255,17 +255,17 @@ public class UserController {
 					user.setPassword(passwordEncoder.encode(passwordValidation.getPassword()));
 	    			userService.edit(user);
 	    			
-	    			return new ResponseEntity<String>("Lösenord ändrat!", HttpStatus.OK);
+	    			return new ResponseEntity<>("Lösenord ändrat!", HttpStatus.OK);
 				} else {
-					return new ResponseEntity<String>("Lösenorden matchar inte varandra!", HttpStatus.BAD_REQUEST);
+					return new ResponseEntity<>("Lösenorden matchar inte varandra!", HttpStatus.BAD_REQUEST);
 				}
 
 			} else {
-				return new ResponseEntity<String>("Du angav fel lösenord!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("Du angav fel lösenord!", HttpStatus.BAD_REQUEST);
 			}
 			
     	} else {
-    		return new ResponseEntity<String>("Du kan inte ändra ett användarkonto som inte tillhör dig!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan inte ändra ett användarkonto som inte tillhör dig!", HttpStatus.UNAUTHORIZED);
     	}
 	}
 
@@ -281,19 +281,19 @@ public class UserController {
 		// check if the user is a shop owner
 		for(Brand brand : brands){
 			if(brand.getUser().getId() == userId){
-				return new ResponseEntity<String>("Kan inte ta bort en användare som är en leverantörägare!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("Kan inte ta bort en användare som är en leverantörägare!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
 		// check if the user is a brand owner
 		for(Store store : stores){
 			if(store.getUser().getId() == userId){
-				return new ResponseEntity<String>("Kan inte ta bort en användare som är en butiksägare!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("Kan inte ta bort en användare som är en butiksägare!", HttpStatus.BAD_REQUEST);
 			}
 		}
 				
 		userService.delete(userId);
-		return new ResponseEntity<String>("Användare raderad!", HttpStatus.OK);
+		return new ResponseEntity<>("Användare raderad!", HttpStatus.OK);
 	}
 	
 	
@@ -303,9 +303,9 @@ public class UserController {
 	ResponseEntity <String> setNewPassword(@RequestBody String password, @PathVariable int userId){
 		
 		if(password.length() > 45){
-			return new ResponseEntity<String>("Lösenord måste vara mellan 5-45 tecken!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Lösenord måste vara mellan 5-45 tecken!", HttpStatus.BAD_REQUEST);
 		} else if(password.length() < 5){
-			return new ResponseEntity<String>("Lösenord måste vara mellan 5-45 tecken!", HttpStatus.BAD_REQUEST);	
+			return new ResponseEntity<>("Lösenord måste vara mellan 5-45 tecken!", HttpStatus.BAD_REQUEST);
 		}
 		
 		User user = userService.getUser(userId);
@@ -315,7 +315,7 @@ public class UserController {
 		
 		userService.edit(user);
 		
-		return new ResponseEntity<String>("Lösenord för " + user.getUsername() +" ändrat!", HttpStatus.OK);
+		return new ResponseEntity<>("Lösenord för " + user.getUsername() +" ändrat!", HttpStatus.OK);
 	}
 	
 	
@@ -327,21 +327,21 @@ public class UserController {
 		User user = userService.getUser(userId);
 				
 		if(authority.length() > 40){
-			return new ResponseEntity<String>("Max 40 tecken!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Max 40 tecken!", HttpStatus.BAD_REQUEST);
 		} else if(authority.length() < 1){
-			return new ResponseEntity<String>("Minst 1 tecken!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Minst 1 tecken!", HttpStatus.BAD_REQUEST);
 		}
 		
 		// check so we don't already have that authority or already have requested it
 		if(user.getRole().equals(authority)){
-			return new ResponseEntity<String>("Du har redan denna behörigheten!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Du har redan denna behörigheten!", HttpStatus.BAD_REQUEST);
 		} else if(user.getRequestedAuthority() != null && user.getRequestedAuthority().equals(authority)){
-			return new ResponseEntity<String>("Du har redan begärt denna behörighet!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Du har redan begärt denna behörighet!", HttpStatus.BAD_REQUEST);
 		} else {
 			// set requested authority
 			user.setRequestedAuthority(authority);
 			userService.edit(user);
-			return new ResponseEntity<String>("Högre behörighet begärd!", HttpStatus.OK);
+			return new ResponseEntity<>("Högre behörighet begärd!", HttpStatus.OK);
 		}
 	}
 	
@@ -352,7 +352,7 @@ public class UserController {
 	ResponseEntity <String> authorizeRequestedAuthority(@PathVariable int userId, @RequestBody String authority){
 
 		if(!authority.equals("shopowner") && !authority.equals("producer") && !authority.equals("admin") && !authority.equals("user")){
-			return new ResponseEntity<String>("Behörighet finns inte i systemt!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Behörighet finns inte i systemt!", HttpStatus.BAD_REQUEST);
 		}
 		
 		// get user
@@ -361,7 +361,7 @@ public class UserController {
 		user.setRequestedAuthority(" ");
 		userService.edit(user);
 		
-		return new ResponseEntity<String>(user.getUsername() + " har nu behörighet: " + user.getRole() + "!", HttpStatus.OK);
+		return new ResponseEntity<>(user.getUsername() + " har nu behörighet: " + user.getRole() + "!", HttpStatus.OK);
 	}
 
 }

@@ -65,7 +65,7 @@ public class GroceryListController {
 	public List<GroceryList> getUserGroceryListsResponse(@PathVariable int id){
 		@SuppressWarnings("unchecked")
 		List<GroceryList> groceryLists = groceryListService.getAllGroceryLists();
-		List<GroceryList> groceryListsToReturn = new ArrayList<GroceryList>();
+		List<GroceryList> groceryListsToReturn = new ArrayList<>();
 		
 		for(GroceryList groceryList : groceryLists){
 			if(groceryList.getListOwner().getId() == id){
@@ -96,9 +96,9 @@ public class GroceryListController {
 			
 			groceryListService.add(groceryList);
 			
-			return new ResponseEntity<String>("Lista " + groceryList.getName() + " skapad!", HttpStatus.OK);
+			return new ResponseEntity<>("Lista " + groceryList.getName() + " skapad!", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("Du kan bara lägga till listor till din egen användare!", HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>("Du kan bara lägga till listor till din egen användare!", HttpStatus.UNAUTHORIZED);
 		}
 	}
 	
@@ -121,9 +121,9 @@ public class GroceryListController {
     		
     		groceryListService.edit(groceryList);
     		
-    		return new ResponseEntity<String>("Lista " + groceryList.getName() + " ändrad!", HttpStatus.OK);	
+    		return new ResponseEntity<>("Lista " + groceryList.getName() + " ändrad!", HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Du kan bara ändra dina egna listor!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan bara ändra dina egna listor!", HttpStatus.UNAUTHORIZED);
     	}
 
 	}
@@ -143,9 +143,9 @@ public class GroceryListController {
     	// check so the user trying to remove the grocery list is the list owner
     	if(groceryList.getListOwner().getUsername().equals(user)){
     		groceryListService.delete(listId);
-    		return new ResponseEntity<String>("Lista raderad!", HttpStatus.OK);
+    		return new ResponseEntity<>("Lista raderad!", HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Du kan bara ta bort dina egna shoppinglistor!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan bara ta bort dina egna shoppinglistor!", HttpStatus.UNAUTHORIZED);
     	}
 	}
 	
@@ -186,18 +186,18 @@ public class GroceryListController {
     		// add the new product
     		if(!productsInList.add(groceryListProduct)){
     			groceryListProduct = null;
-        		return new ResponseEntity<String>(productToAdd.getName() + " finns redan i " + groceryList.getName(), HttpStatus.BAD_REQUEST);
+        		return new ResponseEntity<>(productToAdd.getName() + " finns redan i " + groceryList.getName(), HttpStatus.BAD_REQUEST);
     		}
-    		
+
     		// set the new products list
     		groceryList.setGroceryListProducts(productsInList);
     		
     		// edit
     		groceryListService.edit(groceryList);
 
-    		return new ResponseEntity<String>(productToAdd.getName() + " tillagd i " + groceryList.getName(), HttpStatus.OK);
+    		return new ResponseEntity<>(productToAdd.getName() + " tillagd i " + groceryList.getName(), HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Du kan inte lägga till produkter i listor som inte är dina!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan inte lägga till produkter i listor som inte är dina!", HttpStatus.UNAUTHORIZED);
     	}	
 	}
 	
@@ -239,7 +239,7 @@ public class GroceryListController {
     		// remove the new product
     		if(!productsInList.remove(groceryListProduct)){
     			groceryListProduct = null;
-        		return new ResponseEntity<String>(productToRemove.getName() + " finns inte i " + groceryList.getName(), HttpStatus.BAD_REQUEST);
+        		return new ResponseEntity<>(productToRemove.getName() + " finns inte i " + groceryList.getName(), HttpStatus.BAD_REQUEST);
     		}
     		
     		// set new products list
@@ -248,10 +248,10 @@ public class GroceryListController {
     		// edit
     		groceryListService.edit(groceryList);
     		
-    		return new ResponseEntity<String>(productToRemove.getName() + " raderad ur " + groceryList.getName(), HttpStatus.OK);
+    		return new ResponseEntity<>(productToRemove.getName() + " raderad ur " + groceryList.getName(), HttpStatus.OK);
     		
     	} else {
-    		return new ResponseEntity<String>("Du kan inte ta bort produkter ur listor som inte är dina!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan inte ta bort produkter ur listor som inte är dina!", HttpStatus.UNAUTHORIZED);
     	}	
 	}
 	

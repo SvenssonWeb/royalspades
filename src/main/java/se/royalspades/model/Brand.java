@@ -49,7 +49,7 @@ public class Brand implements Serializable{
 	@Size(min = 2, max = 6)
 	private String postalCode;
 	private User user;
-    private Set<Product> brandProducts = new HashSet<Product>(0);
+    private Set<Product> brandProducts = new HashSet<>(0);
 
 	public Brand(){
 	}

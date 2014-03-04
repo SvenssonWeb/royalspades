@@ -50,7 +50,7 @@ public class Store implements Serializable{
 	@Size(min = 2, max = 6)
 	private String postalCode;
 	private User user;
-    private Set<StoreProduct> storeProducts = new HashSet<StoreProduct>(0);
+    private Set<StoreProduct> storeProducts = new HashSet<>(0);
     
 	public Store(){
 	}

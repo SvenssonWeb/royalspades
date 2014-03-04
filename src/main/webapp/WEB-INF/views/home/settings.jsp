@@ -2,16 +2,16 @@
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-	Inställningar
+	Instï¿½llningar
 </h2>
 
 <fieldset class="accountSettings">
-	<legend>Kontoinställningar</legend>
+	<legend>Kontoinstï¿½llningar</legend>
 	<form name="account" id="account" method="POST">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="firstName">Förnamn: </label>
+					<label for="firstName">Fï¿½rnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="firstName" name="firstName">
@@ -29,7 +29,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="username">Användarnamn: </label>
+					<label for="username">Anvï¿½ndarnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="username" name="username">
@@ -64,15 +64,15 @@
 <br />
 <br />
 <fieldset class="authoritySettings">
-	<legend>Ansök om högre behörighet</legend>
+	<legend>Ansï¿½k om hï¿½gre behï¿½righet</legend>
 	<form name="authorityForm" id="authorityForm">
 		<select id="authority">
-			<option value="0">Välj</option> 
-			<option value="shopowner">Butiksägare</option>
-			<option value="producer">Leverantör</option>
-			<option value="admin">Administratör</option>
+			<option value="0">Vï¿½lj</option> 
+			<option value="shopowner">Butiksï¿½gare</option>
+			<option value="producer">Leverantï¿½r</option>
+			<option value="admin">Administratï¿½r</option>
 		</select>
-		<input type="Submit" value="Ansök">
+		<input type="Submit" value="Ansï¿½k">
 		
 	</form>
 </fieldset>
@@ -82,12 +82,12 @@
 <br />
 <br />
 <fieldset class="passwordSettings">
-	<legend>Ändra Lösenord</legend>
+	<legend>ï¿½ndra Lï¿½senord</legend>
 	<form name="passwordForm" id="passwordForm">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="oldPassword">Ditt nuvarande lösenord: </label>
+					<label for="oldPassword">Ditt nuvarande lï¿½senord: </label>
 				</td>
 				<td>
 					<input type="password" id="oldPassword" name="oldPassword">
@@ -96,7 +96,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="password">Nytt lösenord: </label>
+					<label for="password">Nytt lï¿½senord: </label>
 				</td>
 				<td>
 					<input type="password" id="password" name="password">
@@ -105,7 +105,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="passwordConfirm">Bekräfta nytt lösenord: </label>
+					<label for="passwordConfirm">Bekrï¿½fta nytt lï¿½senord: </label>
 				</td>
 				<td>
 					<input type="password" id="passwordConfirm" name="passwordConfirm">
@@ -277,7 +277,7 @@ $(document).ready(function() {
 		  $("#authorityResponse").text("");
 	  	  $('#authorityError').text("");
 
-	  	  var data = $("#authority option:selected").val();
+	  	  var data = $("#authority").find("option:selected").val();
 	  	  
 	  	  if(data != '0'){
 	    	  // will pass the form data and parse it to json string
@@ -321,7 +321,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-  	  	   	$('#authorityError').text("Du måste välja en behörighetsgrad för att kunna ansöka"); 
+  	  	   	$('#authorityError').text("Du mï¿½ste vï¿½lja en behï¿½righetsgrad fï¿½r att kunna ansï¿½ka"); 
 	  	  }
 
 	   

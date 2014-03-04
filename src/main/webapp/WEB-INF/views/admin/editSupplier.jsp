@@ -96,7 +96,7 @@ $(document).ready(function() {
 		// fill the select box with users that can be a supplier administrator
 		$.getJSON(baseUrl+"/api/admin/user/brand_managers/")
 		    .done(function(data) {
-			    $("#user option").remove(); // Remove all <option> child tags.
+			    $("#user").find("option").remove(); // Remove all <option> child tags.
 			    $.each(data, function(index, item) { // Iterates through a collection
 			        $("#user").append( // Append an object to the inside of the select box
 			            $("<option></option>")
@@ -121,7 +121,7 @@ $(document).ready(function() {
 		  $(".response").text("");
 	  	  $('.error').text("");
 	  	  // get userId from selected option
-	  	  var userId = $("#user option:selected").val();
+	  	  var userId = $("#user").find("option:selected").val();
 
 	  	  if(typeof userId != 'undefined'){
 	    	  var data = $(this).serializeObject();

@@ -34,7 +34,7 @@ public class GroceryList implements Serializable{
 	@Size(min = 2, max = 45)
 	private String name;
 	private User listOwner;
-	private Set<GroceryListProduct> groceryListProducts = new HashSet<GroceryListProduct>(0);
+	private Set<GroceryListProduct> groceryListProducts = new HashSet<>(0);
 	
 	public GroceryList(){
 		

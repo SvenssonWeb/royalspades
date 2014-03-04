@@ -56,12 +56,12 @@ public class CategoryController {
 		// check if a category with that name exists
 		for(Category cat : categories){
 			if(cat.getName().equals(category.getName())){
-				return new ResponseEntity<String>("En kategori vid namn" + category.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("En kategori vid namn" + category.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
 		categoryService.add(category);
-		return new ResponseEntity<String>("Kategori " + category.getName() + " skapad!", HttpStatus.OK);	
+		return new ResponseEntity<>("Kategori " + category.getName() + " skapad!", HttpStatus.OK);
 	} 
 	
 	
@@ -75,11 +75,11 @@ public class CategoryController {
 		// check if a category with that name exists
 		for(Category cat : categories){
 			if(cat.getName().equals(category.getName()) && cat.getId() != category.getId()){
-				return new ResponseEntity<String>("En kategori vid namn " + category.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("En kategori vid namn " + category.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		categoryService.edit(category);
-		return new ResponseEntity<String>("Kategori ändrad!", HttpStatus.OK);
+		return new ResponseEntity<>("Kategori ändrad!", HttpStatus.OK);
 	}
 	
 	
@@ -92,18 +92,18 @@ public class CategoryController {
 		
 		// check if category is used by a product
 		if(category.getProducts().size() > 0){
-			return new ResponseEntity<String>("Kan inte ta bort kategori. Den används av produkter!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Kan inte ta bort kategori. Den används av produkter!", HttpStatus.BAD_REQUEST);
 		}
 		
 		// check if a store uses the category
 		if(category.getStoreProducts().size() > 0){
-			return new ResponseEntity<String>("Kan inte ta bort kategori. Den används av butiker!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Kan inte ta bort kategori. Den används av butiker!", HttpStatus.BAD_REQUEST);
 		}
 
 		// delete category
 		categoryService.delete(categoryId);
 
-		return new ResponseEntity<String>("Kategori raderad!", HttpStatus.OK);		
+		return new ResponseEntity<>("Kategori raderad!", HttpStatus.OK);
 	}
 	
 		// TODO change category listings for store.

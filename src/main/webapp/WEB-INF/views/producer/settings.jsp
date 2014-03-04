@@ -277,7 +277,7 @@ $(document).ready(function() {
 		  $("#authorityResponse").text("");
 	  	  $('#authorityError').text("");
 
-	  	  var data = $("#authority option:selected").val();
+	  	  var data = $("#authority").find("option:selected").val();
 	  	  
 	  	  if(data != '0'){
 	    	  // will pass the form data and parse it to json string

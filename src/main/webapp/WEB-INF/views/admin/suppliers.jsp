@@ -58,9 +58,10 @@ function deleteSupplier(event, id){
 	    		if(response.status == 200){
 	    			// shop was removed
 		    		// remove from table
-	    			var pos = oTable.fnGetPosition( $('#' + id)[0]);
+                    var temp = $('#' + id);
+	    			var pos = oTable.fnGetPosition( temp[0]);
 	    	        oTable.fnDeleteRow(pos);
-	    			$('#' + id).remove();
+	    			temp.remove();
 	    		} else {
 	    			// can't remove that shop
 	    			$('.error').text(response.responseText);
