@@ -114,6 +114,8 @@
 	<p>Begär högre behörighet på ditt konto. Skicka behörigheten som ex: "producer", Säkerhet: Alla användare.</p>
 	<h4>/api/admin/authorize/user/{userId}</h4>
 	<p>Bekräfta ansökning om högre behörighet.Skicka behörigheten som ex: "producer", Säkerhet: Admin.</p>
+	<h4>/api/product/edit_store_product/{storeId}/product/{productId}/old_store_category/{oldStoreCategory}/new_store_category/{newStoreCategory}</h4>
+	<p>Ändra pris/kategori för produkt i butik, pris skickas som JSON ex: 144. Säkerhet: Butiksägare för butiken i fråga.</p>
 </div>
 <br />
 <br />

@@ -72,7 +72,7 @@
 			<option value="producer">Leverantör</option>
 			<option value="admin">Administratör</option>
 		</select>
-		<input type="Submit" value="Ansï¿½k">
+		<input type="Submit" value="Ansök">
 		
 	</form>
 </fieldset>

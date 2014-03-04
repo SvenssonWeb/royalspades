@@ -193,6 +193,72 @@ public class ProductController {
 	}
 	
 	
+	// edit store product, (price is sent in data as ex. 144)
+	//@Secured("ROLE_MODERATOR")
+	@RequestMapping(value = "/edit_store_product/{storeId}/product/{productId}/old_store_category/{oldStoreCategory}/new_store_category/{newStoreCategory}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
+	ResponseEntity<String> editStoreProduct(@PathVariable int storeId, @PathVariable int productId, @PathVariable int oldStoreCategory, @PathVariable int newStoreCategory, @RequestBody String storePrice){
+		int price;
+		// convert to integer
+		try{
+			price = Integer.parseInt(storePrice);
+		} catch (NumberFormatException ex) {
+			return new ResponseEntity<String>("Pris måste vara i siffror!", HttpStatus.BAD_REQUEST);
+		}
+		
+		if(price > 9000 || price < 1){
+			return new ResponseEntity<String>("Pris kan sättas mellan 1-9000", HttpStatus.BAD_REQUEST);
+		}
+		
+		// get store, product and category
+		Store store = storeService.getStore(storeId);
+		Product product = productService.getProduct(productId);
+		Category oldCategory = categoryService.getCategory(oldStoreCategory);
+		Category newCategory = categoryService.getCategory(newStoreCategory);
+		
+		// get the user calling the method
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String username = authentication.getName();
+    	
+    	// check if the user calling the method is in fact the store owner
+    	if(store.getUser().getUsername().equals(username)){
+    		
+    		// set storeProduct
+    		StoreProduct storeProduct = new StoreProduct();
+    		storeProduct.Store(store);
+    		storeProduct.setProduct(product);
+    		storeProduct.setCategory(oldCategory);
+
+    		
+    		// get all store products
+    		Set<StoreProduct> storeProducts = product.getStoreProducts();
+
+    		// check if the product is not present in that store
+    		if(!storeProducts.contains(storeProduct)){
+    			storeProduct = null;
+    			return new ResponseEntity<String>("Produkten kunde inte editeras!", HttpStatus.BAD_REQUEST);
+    		} else {
+    			
+    			// remove old product
+    			storeProducts.remove(storeProduct);
+    			
+    			// add edited product
+        		storeProduct.setCategory(newCategory);
+        		storeProduct.setPrice(price);
+    			storeProducts.add(storeProduct);
+    			
+        		// set store products
+        		product.setStoreProducts(storeProducts);
+
+        		productService.edit(product);
+
+        		return new ResponseEntity<String>("Produkt " + product.getName() + " editerad i " + store.getName(), HttpStatus.OK);
+    		}    		
+    		    		
+    	} else {
+    		return new ResponseEntity<String>("Du kan bara editera produkter i din egen butik!", HttpStatus.UNAUTHORIZED);
+    	}
+	}
+	
 
 	// remove product from store as shop owner
 	@Secured("ROLE_MODERATOR")
@@ -260,25 +326,7 @@ public class ProductController {
 	}
 
 
-	// TODO Edit store product!
 	
 	// TODO return products for store and brand (if needed)
-
-	
-	
-	// test
-	@RequestMapping(value = "/add_test", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	@ResponseBody
-	public String getTest(){
-		 
-		 Category category = categoryService.getCategory(1);
-		 //User user = userService.getUser(1);	 
-		 Brand brand = brandService.getBrand(1);
-
-		 Product product = new Product("Milk", 1, "Liter", brand, category);
-		 productService.add(product);
-		 return "Done";
-	}
-	
 	
 }
