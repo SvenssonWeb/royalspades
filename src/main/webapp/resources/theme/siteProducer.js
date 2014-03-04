@@ -17,7 +17,7 @@
 					event.preventDefault();
 					$(".menulink").removeClass("active");
 					$(this).addClass("active");
-					openPageUrlAndUpdateHash(this.href, this.id.replace("topMenuLink",""));
+					openPageUrl(this.href);
 				});
 		});
 	}

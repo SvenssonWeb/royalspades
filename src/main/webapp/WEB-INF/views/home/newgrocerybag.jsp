@@ -32,33 +32,24 @@ Ny matkasse
 				Varunamn
 			</th>
 			<th>
-				Mï¿½ngd
+				Mängd
 			</th>
 			<th>
-				Mï¿½tt
+				Mått
 			</th>
 			<th>
-				Leverantï¿½r
+				Leverantör
 			</th>
-			<!--<th>
-				Leverantï¿½r Org.nr
-			</th>
-			<th>
-				Leverantï¿½r address
-			</th>
-			<th>
-				Leverantï¿½r telefonnummer
-			</th>-->
 			<th>
 				Kategori
 			</th>
 			<th>
-				Lï¿½gg till
+				Lägg till
 			</th>
 		</tr>	
 	</thead>
 </table>
-<input type="submit" value="Lï¿½gg till">
+<input type="submit" value="Skapa matkasse">
 
 <script>
 $( document ).ready(function() {	
@@ -101,12 +92,6 @@ $( document ).ready(function() {
 				row += arr[i].brand.name;
 			}
 			row += "</td><td>";
-			/*row += arr[i].company.orgNumber;
-			row += "</td><td>";
-			row += arr[i].company.address;
-			row += "</td><td>";
-			row += arr[i].company.phone;
-			row += "</td><td>";*/
 			if($.isNumeric(arr[i].category)){
 				for(var j = 0; j < arr.length; j++){
 					if(arr[j].category['@id'] == arr[i].category){
@@ -135,10 +120,10 @@ $( document ).ready(function() {
         "sScrollY": "300px",
 		"oLanguage": {
 			"sLengthMenu": "Visar _MENU_ produkter per sida",
-			"sZeroRecords": "Hittade inget - tyvï¿½rr",
+			"sZeroRecords": "Hittade inget - tyvärr",
 			"sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
 			"sInfoEmpty": "Visar 0 av 0 varor",
-			"sInfoFiltered": "(filtrerat frï¿½n _MAX_ varor)",
+			"sInfoFiltered": "(filtrerat från _MAX_ varor)",
 			"sSearch": "Filtrera: "
 		}		
 		});

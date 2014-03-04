@@ -118,7 +118,7 @@ $(document).ready(function() {
 	  	  // get userId from selected option
 	  	  var userId = $("#user option:selected").val();
 		
-	  	  if(userId != 'Vï¿½lj'){
+	  	  if(userId != 'Välj'){
 	    	  var data = $(this).serializeObject();
 	    	  // will pass the form data and parse it to json string
 	    	  $.ajax({

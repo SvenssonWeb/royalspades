@@ -29,8 +29,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/home/main")
-	public String main(Locale locale, Model model){
+	public String main(Locale locale, Model model, Principal principal){
 		// user - Main page
+        final String currentUser = principal.getName();
+        model.addAttribute("username", currentUser);
 		model.addAttribute("pageUid", "1a6d5630-8d75-11e3-baa8-0800200c9a66" );
 		
 		return "home/main";

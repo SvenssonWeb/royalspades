@@ -102,7 +102,7 @@ public class ProductController {
 			product.setBrand(brand);
 			
 			productService.add(product);
-			return new ResponseEntity<String>("Product " + product.getName() + " skapad.", HttpStatus.OK);	
+			return new ResponseEntity<String>("Produkt " + product.getName() + " med id " +  product.getId() + " skapad.", HttpStatus.OK);	
 		} else {
 			return new ResponseEntity<String>("Du kan bara lägga till produkter med er som leverantör", HttpStatus.UNAUTHORIZED);
 		}
