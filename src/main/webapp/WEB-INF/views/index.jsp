@@ -42,7 +42,7 @@
 				<div class="maincontent">
                 
 					<p>
-						Aktivera Javascript fÃ¶r att kunna anvÃ¤nda denna sida!
+						Aktivera Javascript för att kunna använda denna sida!
 					</p>
 				</div>
 			</div>

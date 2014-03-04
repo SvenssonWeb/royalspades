@@ -11,7 +11,7 @@ public class App {
 }
 
 // server user: fs  pass: pw
-// don't include libraries in deploy!
+// don't include libraries in deploy!   http://stackoverflow.com/questions/19269961/how-to-unpackage-and-repackage-a-war-file
 
 // using hibernate a bit wrong? clear() could be avoided by getting user object with id and merge it with user send in on edit??
 

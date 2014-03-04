@@ -2,7 +2,7 @@
     window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2>
-    ï¿½ndra varukategori
+    Ändra varukategori
 </h2>
 
 <form id="editCategoryForm">
@@ -36,7 +36,7 @@
                 })
                 .fail(function (jqxhr, textStatus, error) {
                     var err = textStatus + ", " + error;
-                    $('#error').text("NÃ¥got gick fel: " + err);
+                    $('#error').text("Något gick fel: " + err);
                 });
 
 

@@ -1,10 +1,10 @@
 <fieldset class="passwordSettings">
-	<legend>ï¿½ndra Lï¿½senord fï¿½r: <b><span class="username"></span></b></legend>
+	<legend>Ändra Lösenord för: <b><span class="username"></span></b></legend>
 	<form name="passwordForm" id="passwordForm">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="password">Nytt lï¿½senord: </label>
+					<label for="password">Nytt lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="password" name="password">
@@ -25,16 +25,16 @@
 <br />
 <br />
 <fieldset class="authoritySettings">
-	<legend>ï¿½ndra behï¿½righet fï¿½r: <span class="username"></span></legend>
+	<legend>Ändra behörighet för: <span class="username"></span></legend>
 	<form name="authorityForm" id="authorityForm">
-	    <div><b><span class="username"></span></b> Ansï¿½ker om behï¿½righet: <b><span class="requestedAuthority"></span></b></div>
+	    <div><b><span class="username"></span></b> Ansöker om behörighet: <b><span class="requestedAuthority"></span></b></div>
 		<select id="authority">
-			<option value="user">Anvï¿½ndare</option>
-			<option value="shopowner">Butiksï¿½gare</option>
-			<option value="producer">Leverantï¿½r</option>
-			<option value="admin">Administratï¿½r</option>
+			<option value="user">Användare</option>
+			<option value="shopowner">Butiksägare</option>
+			<option value="producer">Leverantör</option>
+			<option value="admin">Administratör</option>
 		</select>
-		<input type="Submit" value="Bevilja">
+		<input type="Submit" value="Ändra">
 		
 	</form>
 </fieldset>
@@ -58,7 +58,7 @@ function grantAuthority(){
 	$('#authorityError').text("");
 
 	
-	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ge denna anvï¿½ndaren ny behï¿½righet?')) {
+	if (confirm('Är du säker på att du vill ge denna användaren ny behörighet?')) {
 
 		$.ajax({
 			url:baseUrl + '/api/admin/authorize/user/${id}',
@@ -96,7 +96,7 @@ function changePassword(){
 	$('#authorityResponse').text("");
 	$('#authorityError').text("");
 	
-	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ï¿½ndra lï¿½senordet?')) {
+	if (confirm('Är du säker på att du vill ändra lösenordet?')) {
 
 		$.ajax({
 			url:baseUrl + '/api/admin/set_new_password/user/${id}',
@@ -142,8 +142,8 @@ $(document).ready(function() {
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
-	        $('#authorityError').text("Nï¿½got gick fel: " + err);
-	        $('#passwordError').text("Nï¿½got gick fel: " + err);
+	        $('#authorityError').text("Något gick fel: " + err);
+	        $('#passwordError').text("Något gick fel: " + err);
 		});
 	
 	// grant authority

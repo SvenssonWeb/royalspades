@@ -4,7 +4,7 @@
 				<table>
 					<tr>
 						<td>
-							<label for="firstName" data-icon="u">Fï¿½rnamn</label>
+							<label for="firstName" data-icon="u">Förnamn</label>
 						</td><td>
 							<input id="firstName" name="firstName" required="required" type="text"  maxlength="45" placeholder="Olle" />
 						</td>
@@ -20,7 +20,7 @@
 
 					<tr>
 						<td>
-							<label for="username" data-icon="u">Anv&auml;ndarnamn</label>
+							<label for="username" data-icon="u">Användarnamn</label>
 						</td><td>
 							<input id="username" name="username" required="required" type="text" maxlength="45" placeholder="mysuperusername690" />
 						</td>

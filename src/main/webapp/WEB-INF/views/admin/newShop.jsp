@@ -11,7 +11,7 @@
 	<table>
 		<tr>
 			<td>
-				<label for="name">Namn pï¿½ butik: </label>
+				<label for="name">Namn på butik: </label>
 			</td>
 			<td>
 				<input name="name" id="name"><br />
@@ -59,7 +59,7 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">Administratï¿½r: </label>
+				<label for="user">Administratör: </label>
 			</td>
 			<td>
 				<select id="user"></select>
@@ -108,7 +108,7 @@ $(document).ready(function() {
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
-	        $('.error').text("Nï¿½got gick fel: " + err);
+	        $('.error').text("Något gick fel: " + err);
 		});
 	
 	
@@ -160,7 +160,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-	  		  $('.error').text('Du mï¿½ste vï¿½lja en administratï¿½r!');
+	  		  $('.error').text('Du måste välja en administratpr!');
 	  	  }
 
 	   

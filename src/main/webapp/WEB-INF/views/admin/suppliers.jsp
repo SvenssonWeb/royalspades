@@ -2,9 +2,9 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Leverantï¿½r
+	Leverantör
 </h2>
-<a class="link" href="newSupplier">Ny leverantï¿½r</a>
+<a class="link" href="newSupplier">Ny leverantör</a>
 <br />
 <table id="dataTable" class="supplierTable listtable">
 	<thead>
@@ -45,7 +45,7 @@ var oTable;
 function deleteSupplier(event, id){
 	$('.error').text("");
 	
-	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort leverantï¿½ren?')) {
+	if (confirm('Är du säker på att du vill ta bort leverantören?')) {
    
 		$.ajax({
 			url:baseUrl+'/api/brand/admin/remove_brand/' + id,
@@ -145,11 +145,11 @@ $( document ).ready(function() {
 		        "bScrollCollapse": false,
 		        "sScrollY": "300px",
 				"oLanguage": {
-					"sLengthMenu": "Visar _MENU_ leverantï¿½rer per sida",
-					"sZeroRecords": "Hittade inget - tyvï¿½rr",
-					"sInfo": "Visar _START_ till _END_ av _TOTAL_ leverantï¿½rer",
-					"sInfoEmpty": "Visar 0 av 0 leverantï¿½rer",
-					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ leverantï¿½rer)",
+					"sLengthMenu": "Visar _MENU_ leverantörer per sida",
+					"sZeroRecords": "Hittade inget - tyvärr",
+					"sInfo": "Visar _START_ till _END_ av _TOTAL_ leverantörer",
+					"sInfoEmpty": "Visar 0 av 0 leverantörer",
+					"sInfoFiltered": "(filtrerat från _MAX_ leverantörer)",
 					"sSearch": "Filtrera: "
 				}		
 			});

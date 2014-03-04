@@ -7,18 +7,17 @@
 </h2>
 <br />
 <h3 id="shopName">
-	Ica Kvantum Norremark
 </h3>
 <p id="shopAddress">
-	Norremarksvï¿½gen 5<br />
-	35245 Vï¿½xjï¿½<br />
+Du är inte satt som administratör för någon butik?
+<br />
 </p>
 <a href="#"><i class="fa fa-edit"></i></a>
 <br />
 <fieldset class="allWares">
 	<legend>
         <span id="shopProductShow" class="active"><a href="#">Varor</a></span>
-        <span id="shopProductCreateNew"><a href="#">Lï¿½gg till Varor</a></span>
+        <span id="shopProductCreateNew"><a href="#">Lägg till Varor</a></span>
     </legend>
     <div class="shopProductPage">
         <table style="float: left" class="listtable productTable">
@@ -46,13 +45,13 @@
             <select size="6" multiple style="width: 200px" id="selectNewProductsBrand">
 
             </select>
-            <button id="shopNewProductsAdd">Lï¿½gg till</button>
+            <button id="shopNewProductsAdd">Lägg till</button>
             <button>Klart</button>
         </div>
         <div>
             <label for="selectNewProducts">Producter</label>
             <select size="6" multiple style="width: 200px" id="selectNewProducts">
-                <option>Vï¿½lj ett Brand</option>
+                <option>Välj ett Brand</option>
             </select>
         </div>
         <div>
@@ -71,7 +70,7 @@
                     <tr>
                         <td>Spendrups</td>
                         <td>Mineralvatten</td>
-                        <td>Lï¿½sk</td>
+                        <td>Läsk</td>
                         <td>9.98</td>
                         <td><i class="fa fa-times shopRemoveRow"></i></td>
                     </tr>

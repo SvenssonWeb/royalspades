@@ -45,7 +45,7 @@ var oTable;
 function deleteShop(event, id){
 	$('.error').text("");
 	
-	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort affï¿½ren?')) {
+	if (confirm('Är du säker på att du vill ta bort affären?')) {
    
 		$.ajax({
 			url:baseUrl+'/api/store/admin/remove_store/' + id,
@@ -146,10 +146,10 @@ $( document ).ready(function() {
 		        "sScrollY": "300px",
 				"oLanguage": {
 					"sLengthMenu": "Visar _MENU_ butiker per sida",
-					"sZeroRecords": "Hittade inget - tyvï¿½rr",
+					"sZeroRecords": "Hittade inget - tyvärr",
 					"sInfo": "Visar _START_ till _END_ av _TOTAL_ butiker",
 					"sInfoEmpty": "Visar 0 av 0 butiker",
-					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ butiker)",
+					"sInfoFiltered": "(filtrerat från _MAX_ butiker)",
 					"sSearch": "Filtrera: "
 				}		
 			});
