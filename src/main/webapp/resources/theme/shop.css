@@ -21,3 +21,6 @@ table tbody tr:last-child i.fa-sort-down {
 .shopRemoveRow {
     cursor: pointer;
 }
+#shopTableNewProducts{
+    min-width: 350px;
+}

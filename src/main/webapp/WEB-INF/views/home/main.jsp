@@ -6,7 +6,7 @@
 </h2>
 
 <p>
-<a href="/royalspades/home/newgrocerybag" class="link">Ny matkasse</a>
+<a href="${pageContext.request.contextPath}/home/newgrocerybag" class="link">Ny matkasse</a>
 </p>
 
 <fieldset class="allGrocerybags">

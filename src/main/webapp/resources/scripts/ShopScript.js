@@ -71,6 +71,7 @@ $( document).on("click", "#shopFormNewProducts button", function(event){
         };
         console.log(data);
         addStoreProduct(data);
+        $("#shopFormNewProducts").find('tbody').empty();
     });
 });
 $( document).on("click", '.shopProductPage .shopRemoveRow', function(event){
@@ -97,6 +98,7 @@ $( document).on("click", '.shopProductPage .shopRemoveRow', function(event){
             alert("Error: " + textStatus + ", " + jqXHR);
         }
     });
+    $(this).closest('tr').remove();
 
 });
 
@@ -151,7 +153,7 @@ function setStoreProductTable(id){
             var fullHTML = "";
             for(var i = 0; i < arr.length; i++){
                 var rowData = arr[i];
-                var productInfo = rowData["product"]["name"] + ' ' + rowData["product"]["volume"] + rowData["product"]["unit"]
+                var productInfo = rowData["product"]["name"] + ' ' + rowData["product"]["volume"] + rowData["product"]["unit"];
                 var rowID = currentStore.id + '-'
                     + rowData['product']['id'] + '-'
                     + rowData['category']['id'];
@@ -162,7 +164,7 @@ function setStoreProductTable(id){
                             '<td>'+productInfo+'</td>' +
                             '<td>'+rowData["category"]["name"]+'</td>' +
                             '<td>'+rowData["price"]+'</td>' +
-                            '<td><a href="editShop/?id=' + rowID + '"><i class="fa fa-edit"></i></a></td>' +
+                            '<td><a href="editShop/?id=' + rowID + '"><i class="fa fa-pencil"></i></a></td>' +
                             '<td><i data-product-id="'+rowID+'" class="fa fa-times shopRemoveRow"></i></td>';
                 row += '</tr>';
                 fullHTML += row;

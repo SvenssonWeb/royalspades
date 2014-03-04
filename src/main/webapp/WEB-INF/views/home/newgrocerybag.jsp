@@ -8,18 +8,18 @@ Ny matkasse
 <table>
 	<tr>
 		<td>
-			<label for="name">Namn:</label>
+			<label for="groceryName">Namn:</label>
 		</td>
 		<td>
-			<input name="name" type="text" />
+			<input id="groceryName"  name="name" type="text" />
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<label for="date">Skapad:</label>
+			<label for="groceryDate">Skapad:</label>
 		</td>
 		<td>
-			<input name="date" type="text" />
+			<input id="groceryDate" name="date" type="text" />
 		</td>
 	</tr>
 </table>
@@ -75,7 +75,6 @@ $( document ).ready(function() {
 	
 	$.ajax({
 		type: "GET",
-		//url: "http://172.16.6.175:8080/royalspades/api/product/all/",
 		url: baseUrl+"/api/product/all/",
 		dataType: "text",
 		success: function (data, textStatus, jqXHR) {
