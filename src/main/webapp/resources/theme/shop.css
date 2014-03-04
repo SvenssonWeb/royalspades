@@ -24,3 +24,6 @@ table tbody tr:last-child i.fa-sort-down {
 #shopTableNewProducts{
     min-width: 350px;
 }
+.point{
+    cursor: pointer;
+}

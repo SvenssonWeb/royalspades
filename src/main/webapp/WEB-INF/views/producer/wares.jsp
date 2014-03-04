@@ -5,67 +5,112 @@
 	Varor
 </h2>
 <p>
-	Här kan du uppdatera dina varor.
+	Hï¿½r kan du uppdatera dina varor.
 </p>
-<fieldset class="newWare">
-	<legend>Ny vara</legend>
-	<form name="addWare" action="#" method="post">
-		<table class="formtable">
-			<tr>
-				<td>
-					<label for="name">Namn: </label>
-				</td>
-				<td>
-					<input type="text" id="name">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="category">Kategori: </label>
-				</td>
-				<td>
-					<select>
-						<option value="mej">Mejeri</option>
-						<option value="fog">Frukt o Grönt</option>
-						<option value="kot">Kött</option>
-						<option value="las">Läskeblask</option>
-					</select>
-				</td>		
-			</tr>
-			<tr>
-				<td>
-					<input type="Submit" value="Lägg till">
-				</td>
-				<td>
-				</td>
-			</tr>
-		</table>
-	</form>
-</fieldset>
-<fieldset class="allWares">
+<fieldset class="allWares brandContainer">
 	<legend>Alla varor</legend>
-	<table class="listtable">
+	<table class="listtable brandAllProductsTable">
+        <thead>
 		<tr>
 			<th>
-				Namn &darr;
+				Namn
 			</th>
 			<th>
-				Kategori &darr;
+				Kategori
 			</th>
 			<th>
-				&nbsp;
+
 			</th>
 		</tr>
-		<tr>
-			<td>
-				Fanta
-			</td>
-			<td>
-				Läskeblask
-			</td>
-			<td>
-				<a href="#"><img src="http://i.imgur.com/vwJIAvn.png" width="20"></a>
-			</td>
-		</tr>
+        </thead>
+        <tbody>
+        </tbody>
 	</table>
 </fieldset>
+<fieldset class="newWare brandContainer">
+    <legend>Ny vara</legend>
+    <form id="brandAddNewProduct" name="addWare" action="#" method="post">
+        <input type="hidden" name="id">
+        <table class="formtable">
+            <tr>
+                <td>
+                    <label for="name">Namn: </label>
+                </td>
+                <td>
+                    <input type="text" name="name" id="name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="volume">Volym: </label>
+                </td>
+                <td>
+                    <input type="text" name="volume" id="volume">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="unit">Enhet: </label>
+                </td>
+                <td>
+                    <input type="text" name="unit" id="unit">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="category">Kategori: </label>
+                </td>
+                <td>
+                    <select id="category" name="category">
+                        <option value="mej">Mejeri</option>
+                        <option value="fog">Frukt o Grï¿½nt</option>
+                        <option value="kot">Kï¿½tt</option>
+                        <option value="las">Lï¿½skeblask</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="brandSubmit" type="Submit" value="LÃ¤gg till">
+                </td>
+                <td>
+                    <input id="clearEdit" type="submit" value="Rensa" style="display: none">
+                </td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: '/api/brand/all/',
+            headers: {
+                'Accept':"application/json",
+                'Content-Type':"application/json"
+            },
+            dataType: "text",
+            success: function (data) {
+                var stores = parseJSON(data);
+                for(var i = 0; i < stores.length; i++){
+                    var store = stores[i];
+                    var user = store['user'];
+                    if('${username}' == user['username']){
+                        currentBrand = store;
+                    }
+                }
+                getBrandAllProducts();
+                getAllCategories();
+               // $(createCategorySelect()).replaceAll('#category');
+
+                setBrandProductTable(currentBrand.id);
+
+
+            },
+            error: function (data, textStatus, jqXHR) {
+                alert("Error: " + textStatus + ", " + jqXHR);
+            }
+        });
+    });
+
+</script>

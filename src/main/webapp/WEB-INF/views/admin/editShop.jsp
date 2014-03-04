@@ -140,7 +140,7 @@ $(document).ready(function() {
 		  $(".response").text("");
 	  	  $('.error').text("");
 	  	  // get userId from selected option
-	  	  var userId = $("#user option:selected").val();
+	  	  var userId = $("#user").find("option:selected").val();
 	  	  
 	  	  if(typeof userId != 'undefined'){
 	    	  var data = $(this).serializeObject();

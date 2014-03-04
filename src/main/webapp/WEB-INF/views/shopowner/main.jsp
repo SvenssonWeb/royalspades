@@ -9,7 +9,7 @@
 <h3 id="shopName">
 </h3>
 <p id="shopAddress">
-Du är inte satt som administratör för någon butik?
+Du ï¿½r inte satt som administratï¿½r fï¿½r nï¿½gon butik?
 <br />
 </p>
 <a href="#"><i class="fa fa-edit"></i></a>
@@ -17,7 +17,7 @@ Du är inte satt som administratör för någon butik?
 <fieldset class="allWares">
 	<legend>
         <span id="shopProductShow" class="active"><a href="#">Varor</a></span>
-        <span id="shopProductCreateNew"><a href="#">Lägg till Varor</a></span>
+        <span id="shopProductCreateNew"><a href="#">Lï¿½gg till Varor</a></span>
     </legend>
     <div class="shopProductPage">
         <table style="float: left" class="listtable productTable">
@@ -38,6 +38,15 @@ Du är inte satt som administratör för någon butik?
             </tr></thead>
             <tbody></tbody>
         </table>
+        <div id="shopEditContainer" style="float: right; display: none">
+            <form>
+                <p>Product:<span>Here</span></p>
+                <div id="categorySelect"></div>
+                <input type="text" name="price">
+                <button>Spara</button>
+
+            </form>
+        </div>
     </div>
     <div id="shopSelectNewContainer" style="display: none">
         <div>
@@ -45,13 +54,13 @@ Du är inte satt som administratör för någon butik?
             <select size="6" multiple style="width: 200px" id="selectNewProductsBrand">
 
             </select>
-            <button id="shopNewProductsAdd">Lägg till</button>
+            <button id="shopNewProductsAdd">Lï¿½gg till</button>
             <button>Klart</button>
         </div>
         <div>
             <label for="selectNewProducts">Producter</label>
             <select size="6" multiple style="width: 200px" id="selectNewProducts">
-                <option>Välj ett Brand</option>
+                <option>Vï¿½lj ett Brand</option>
             </select>
         </div>
         <div>
@@ -70,7 +79,7 @@ Du är inte satt som administratör för någon butik?
                     <tr>
                         <td>Spendrups</td>
                         <td>Mineralvatten</td>
-                        <td>Läsk</td>
+                        <td>Lï¿½sk</td>
                         <td>9.98</td>
                         <td><i class="fa fa-times shopRemoveRow"></i></td>
                     </tr>
@@ -99,23 +108,6 @@ Du är inte satt som administratör för någon butik?
 <script>
     var currentStore;
     $( document ).ready(function() {
-        function preZero(s){
-            s += "";
-            if(s.length < 2){
-                s = "0" + s;
-            }
-            return s;
-        }
-        var d = new Date();
-        $("input[name$='date']")
-                .val(
-                        d.getFullYear() + "-" +
-                        preZero(d.getMonth()+1) + "-" +
-                        preZero(d.getDate()) + " " +
-                        preZero(d.getHours()) + ":" +
-                        preZero(d.getMinutes()))
-                .prop('disabled', true);
-
 
         $.ajax({
             type: "GET",
