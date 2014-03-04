@@ -236,7 +236,7 @@ $( document ).ready(function() {
 			volumes.push(($(this).find("option:selected").val()));
 			productIds.push(($(this).find("input").attr('id')));
 			
-			//validate volume here
+			//VALIDATE VOLUME
 		});
 		
 		
