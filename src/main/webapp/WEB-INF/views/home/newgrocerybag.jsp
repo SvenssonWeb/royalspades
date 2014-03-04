@@ -33,10 +33,10 @@ Ny matkasse
 				Varunamn
 			</th>
 			<th>
-				Mï¿½ngd
+				Mängd
 			</th>
 			<th>
-				Mï¿½tt
+				Mått
 			</th>
 			<th>
 				Leverantör
