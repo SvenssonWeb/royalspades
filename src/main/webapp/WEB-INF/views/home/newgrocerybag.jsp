@@ -12,6 +12,7 @@ Ny matkasse
 		</td>
 		<td>
 			<input id="groceryName"  name="name" type="text" />
+			<input id="userId"  name="userId" type="hidden" />
 		</td>
 	</tr>
 	<tr>
@@ -44,15 +45,25 @@ Ny matkasse
 				Kategori
 			</th>
 			<th>
+				Antal
+			</th>
+			<th>
 				Lägg till
 			</th>
 		</tr>	
 	</thead>
 </table>
-<input type="submit" value="Skapa matkasse">
-
+<input type="submit" id="save" value="Skapa matkasse">
+<br />
+<br />
+<div class="error"></div>
+<div class="response"></div>
 <script>
 $( document ).ready(function() {	
+	var timesToGo = 0;
+	var volumes = [];
+	var productIds = [];
+	
 	function preZero(s){
 		s += "";
 		if(s.length < 2){
@@ -62,6 +73,16 @@ $( document ).ready(function() {
 	}
 	var d = new Date();
 	$("input[name$='date']").val(d.getFullYear() + "-" + preZero(d.getMonth()+1) + "-" + preZero(d.getDate()) + " " + preZero(d.getHours()) + ":" + preZero(d.getMinutes())).prop('disabled', true);
+	
+
+	$.getJSON(baseUrl+"/api/user/${username}")
+		.done(function(data) {
+			$($("input[name='userId']")).val(data.id);	
+		})
+		.fail(function(jqxhr, textStatus, error) {
+		    var err = textStatus + ", " + error;
+	        $('#accountError').text("Något gick fel: " + err);
+		});
 	
 	
 	$.ajax({
@@ -74,6 +95,7 @@ $( document ).ready(function() {
 		$(".groceryTable").append("<tbody>");
 		for(var i = 0; i < arr.length; i++){
 			var row = "<tr><td>";
+			row += '<input type="hidden" class="productId" id="' + arr[i].id + '">';
 			row += arr[i].name;
 			row += '</td><td style="text-align:right;">';
 			row += arr[i].volume;
@@ -102,11 +124,23 @@ $( document ).ready(function() {
 			} else {
 				row += arr[i].category.name;
 			}
+			row += '<td style="text-align:center;"><select class="quantity"><option val="-">Välj</option></select></td>';
 			row += '</td><td style="text-align:center;">';
 			row += '<input type="checkbox">';
 			row += "</td></tr>";
-			$(".groceryTable").append(row);
+			$(".groceryTable").append(row);	
+		}	
+		
+		for(var i = 1; i < 11; i++){
+	        $(".quantity").append( // Append an object to the inside of the select box
+		            $("<option></option>")
+		                .text(i)
+		                .val(i)
+		        );
 		}
+		
+		
+	    $(".quantity").val("-");
 		
 		$(".groceryTable").append("</tbody>");
 		
@@ -129,8 +163,139 @@ $( document ).ready(function() {
 		});
 		},
 		error: function (data, textStatus, jqXHR) {
-			alert("Error: " + textStatus + ", " + jqXHR);
+			$('.error').text("Error: " + textStatus + ", " + jqXHR);
 		}
 	});
+	
+	// add each product to the list
+	function addProductToBag(productId, volume, listId){
+  	  // will pass the form data and parse it to json string
+  	  $.ajax({
+  		  url:baseUrl+'/api/grocerylist/add_product_to_grocery_list/' + listId + '/product/' + productId,
+  		  data: volume,
+  		  contentType:'application/json',
+  		  accept:'application/json',
+  		  processData:false,
+  		  type: 'PUT',
+  		  complete: function(response) {
+				if(response.status == 200){
+								
+					if(timesToGo > 1){
+						// reduce timesToGo and remove from array
+						timesToGo--;
+						productIds.splice(0,1);
+						volumes.splice(0,1);
+						
+						// run ajax method again
+						addProductToBag(productIds[0], volumes[0], listId);
+					} else {
+			   			// clear values
+	  				    $(':input')
+	  						.not(':button, :submit, :reset, :hidden')
+	  						.val('')
+	  						.removeAttr('checked');
+	  		    	    $('.response').text("Handlarlistan skapad!");
+					}
+					
+				}
+				
+  		  }, error: function(response){
+  			if(response.status != 200){
+      			var responseJSON = response.responseJSON;
+      			
+      	  	   	if(typeof responseJSON != 'undefined'){
+      	  	   		var errors = '';
+      	  	   		
+          	  	   	for(var i = 0; i < responseJSON.fieldErrors.length; i ++){
+              	  	   	errors += (responseJSON.fieldErrors[i].message); 
+              	  	   	errors += '<br>';
+          	  	   	}
+          	  	  	
+          	  	   	$('.error').append(errors);
+
+      	  	   	} else {
+          	  	   	$('.error').text(response.responseText); 
+      	  	   	}
+  			}
+  	  	   	
+  		  }
+  	  });
+	}
+	
+	 
+	
+	// run for every product
+	function addProductsToBags(listId){
+		// get all selected values from checked checkboxes
+		$('#dataTable > tbody > tr').filter(':has(:checkbox:checked)').each(function() {
+		   
+			// add to the number of times we need to run this
+			timesToGo++;
+			volumes.push(($(this).find("option:selected").val()));
+			productIds.push(($(this).find("input").attr('id')));
+			
+			//validate volume here
+		});
+		
+		
+		// add each product to list
+		addProductToBag(productIds[0], volumes[0], listId);
+	}
+	
+	
+	function createGroceryBag(userId, name){
+    	  $.ajax({
+    		  url:baseUrl+'/api/grocerylist/add_grocery_list/' + userId,
+    		  data: '{"name":"' + name + '"}',
+    		  contentType:'application/json',
+    		  accept:'application/json',
+    		  processData:false,
+    		  type: 'POST',
+    		  complete: function(response) {
+  				if(response.status == 200){
+  					// if the list was created then add products
+  					$('.response').text("Lägger till...");
+  					addProductsToBags(response.responseText);
+  				}
+				
+    		  }, error: function(response){
+    			if(response.status != 200){
+        			var responseJSON = response.responseJSON;
+        			
+        	  	   	if(typeof responseJSON != 'undefined'){
+        	  	   		var errors = '';
+        	  	   		
+            	  	   	for(var i = 0; i < responseJSON.fieldErrors.length; i ++){
+                	  	   	errors += (responseJSON.fieldErrors[i].message); 
+                	  	   	errors += '<br>';
+            	  	   	}
+            	  	  	
+            	  	   	$('.error').append(errors);
+
+        	  	   	} else {
+            	  	   	$('.error').text(response.responseText); 
+        	  	   	}
+    			}
+    	  	   	
+    		  }
+    	  });
+	}
+	
+	
+	// Save grocery bag
+	$('#save').click(function() {
+		$(".response").text("");
+	  	$('.error').text("");
+
+	  	var groceryBagName = ($('#groceryName').val());
+		var userId = ($('#userId').val());
+		
+		// VALIDATE NAME
+		
+		// create the grocery bag
+		createGroceryBag(userId, groceryBagName);
+	});
+	
+	
 });
 </script>

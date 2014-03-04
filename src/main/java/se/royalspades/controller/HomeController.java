@@ -47,8 +47,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/home/newgrocerybag")
-	public String newgrocerybag(Locale locale, Model model){
+	public String newgrocerybag(Locale locale, Model model, Principal principal){
 		// user - New grocery bag page
+        final String currentUser = principal.getName();
+        model.addAttribute("username", currentUser);
 		model.addAttribute("pageUid", "f5cb8520-8d76-11e3-baa8-0800200c9a66" );
 		
 		return "home/newgrocerybag";

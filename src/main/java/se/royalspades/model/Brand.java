@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OrderBy;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -138,6 +139,7 @@ public class Brand implements Serializable{
 		this.user = user;
 	}
 	
+	@OrderBy(clause = "name")
 	@JsonIgnoreProperties(value = "storeProducts")
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")
 	public Set<Product> getBrandProducts() {

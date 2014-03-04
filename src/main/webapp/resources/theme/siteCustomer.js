@@ -97,4 +97,5 @@
 		openMainPage();
 	}
 	getMenu();
+
 });

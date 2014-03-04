@@ -101,7 +101,7 @@
 	<h4>/api/grocerylist/edit_grocery_list/{listId}</h4>
 	<p>Ändra shoppinglista, Säkerhet: Du kan bara ändra din egen lista.</p>
 	<h4>/api/product/edit_brand_product/category/{categoryId}/brand/{brandId}</h4>
-	<p>Ändra ditt varumärke, Säkerhet: Du kan bara ändra det varumärket du är ägare för.</p>
+	<p>Ändra din varumärkes produkt, Säkerhet: Du kan bara ändra det varumärket du är ägare för.</p>
 	<h4>/api/admin/user/edit_user</h4>
 	<p>Ändra användarkonto, Säkerhet: Admin</p>
 	<h4>/api/user/edit_account</h4>

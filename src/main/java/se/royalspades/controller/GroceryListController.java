@@ -96,7 +96,7 @@ public class GroceryListController {
 			
 			groceryListService.add(groceryList);
 			
-			return new ResponseEntity<String>("Lista " + groceryList.getName() + " skapad!", HttpStatus.OK);
+			return new ResponseEntity<String>(Integer.toString(groceryList.getId()), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<String>("Du kan bara lägga till listor till din egen användare!", HttpStatus.UNAUTHORIZED);
 		}
@@ -164,9 +164,6 @@ public class GroceryListController {
     	
     	// get the list owner 
     	User owner = groceryList.getListOwner();
-    	
-    	// debug ( method tested but not with security in place)
-    	System.out.println(owner.getUsername() + " " + user);
 
     	// check if the user is in fact the list owner
     	if(owner.getUsername().equals(user)){

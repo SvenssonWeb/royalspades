@@ -95,39 +95,3 @@ $( document ).ready(function() {
 	getMenu();
 	
 });
-
-
-
-/*
-function openLoginPage(){
-	$.ajax({
-		url: "/login/",
-		context: document.body
-		}).done(function(data) {
-			//document.getElementById('popupbox').style.visibility="hidden";
-			$("body").append(data);
-			$(".loginLink").click(function() {
-				temp = document.getElementById('popupbox').getAttribute("style");
-				console.log(temp);
-				if(temp == "visibility: visible;"){
-					console.log("if");
-					document.getElementById('popupbox').style.visibility="hidden";
-				}else{
-					console.log("else");
-					document.getElementById('popupbox').style.visibility="visible";
-				}
-			});
-		});
-  	$("div.modal-bg").fadeTo("slow", .5);
-	
-	$(".loginLink").click(function() {
-		if($("#popupbox").is(':visible')){
-			console.log("if");
-			$('#popupbox').show();
-		}else{
-			console.log("else");
-			$('#popupbox').hide();
-		}
-	});
-}
-   */

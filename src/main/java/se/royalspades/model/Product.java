@@ -154,7 +154,7 @@ public class Product implements Serializable{
 		this.groceryListProducts = groceryListProducts;
 	}
 	
-	@JsonIgnoreProperties(value = { "storeProduct", "storeProducts", "user" })
+	@JsonIgnoreProperties(value = { "storeProduct", "storeProducts", "user", "category" })
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.product", cascade = CascadeType.ALL, orphanRemoval=true)
 	public Set<StoreProduct> getStoreProducts() {
 		return storeProducts;
