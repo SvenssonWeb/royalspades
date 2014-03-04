@@ -66,7 +66,7 @@ public class StoreController {
     	String user = authentication.getName();
 
 		// list with stores to be returned
-		List<Store> storesToReturn = new ArrayList<Store>();
+		List<Store> storesToReturn = new ArrayList<>();
 		
     	// check if the user requesting this is the same as the store owner
     	if(user.equals(userService.getUser(ownerId).getUsername())){
@@ -91,7 +91,7 @@ public class StoreController {
 		store.setUser(user);
 		
 		storeService.add(store);
-		return new ResponseEntity<String>("Butik " + store.getName() + " skapad!", HttpStatus.OK);	
+		return new ResponseEntity<>("Butik " + store.getName() + " skapad!", HttpStatus.OK);
 	} 
 	
 	// edit store
@@ -103,7 +103,7 @@ public class StoreController {
 		store.setUser(user);
 		
 		storeService.edit(store);
-		return new ResponseEntity<String>("Butik " + store.getName() + " ändrad!", HttpStatus.OK);	
+		return new ResponseEntity<>("Butik " + store.getName() + " ändrad!", HttpStatus.OK);
 	}
 	
 	
@@ -118,9 +118,9 @@ public class StoreController {
 		// check if the user calling the method is the owner of the brand
     	if(user.equals(store.getUser().getUsername())){
     		storeService.edit(store);
-    		return new ResponseEntity<String>("Butik " + store.getName() + " ändrad!", HttpStatus.OK);	
+    		return new ResponseEntity<>("Butik " + store.getName() + " ändrad!", HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Du kan inte ändra en butik du inte är satt som ägare på", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan inte ändra en butik du inte är satt som ägare på", HttpStatus.UNAUTHORIZED);
     	}
 	}
 	
@@ -134,9 +134,9 @@ public class StoreController {
 		
 		if(store.getStoreProduct().size() == 0){
 			storeService.delete(storeId);
-			return new ResponseEntity<String>("Butik raderad!", HttpStatus.OK);	
+			return new ResponseEntity<>("Butik raderad!", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("Butik har produkter och kan inte raderas innan de tagits bort!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Butik har produkter och kan inte raderas innan de tagits bort!", HttpStatus.BAD_REQUEST);
 		}
 
 	}    

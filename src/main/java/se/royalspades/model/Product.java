@@ -43,8 +43,8 @@ public class Product implements Serializable{
 	private String unit;
 	private Brand brand;
 	private Category category;
-	private Set<GroceryListProduct> groceryListProducts = new HashSet<GroceryListProduct>(0);
-	private Set<StoreProduct> storeProducts = new HashSet<StoreProduct>(0);
+	private Set<GroceryListProduct> groceryListProducts = new HashSet<>(0);
+	private Set<StoreProduct> storeProducts = new HashSet<>(0);
 	
 	public Product(){
 		

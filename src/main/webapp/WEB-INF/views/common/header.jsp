@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 		<link href="<c:url value="/resources/theme/standard.css" />" rel="stylesheet">
 		<link href="<c:url value="/resources/theme/shop.css" />" rel="stylesheet">
+		<link href="<c:url value="/resources/theme/brand.css" />" rel="stylesheet">
         <%--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">--%>
         <link href="<c:url value="/resources/theme/font-awesome-4.0.3/css/font-awesome.css" />" rel="stylesheet">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -21,6 +22,7 @@
 		</sec:authorize>
 		<sec:authorize access="hasRole('ROLE_SUPERVISOR')">
 		    <!-- producer -->
+            <script src="<c:url value="/resources/scripts/BrandScript.js" />"></script>
 			<script src="<c:url value="/resources/theme/siteProducer.js" />"></script>
 		</sec:authorize>
 		<sec:authorize access="hasRole('ROLE_MODERATOR')">

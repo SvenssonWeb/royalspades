@@ -30,26 +30,28 @@
 	}
 	
 	function openPageUrl(pageUrl){
-		$.ajax({
+        var temp = $(".maincontent");
+        $.ajax({
 			url: pageUrl,
 			context: document.body
 			}).done(function(data) {
-				$(".maincontent").fadeOut(fadeOutTime);
+				temp.fadeOut(fadeOutTime);
 				newData = data;
 				setTimeout(switchData, fadeOutTime);
-				$(".maincontent").fadeIn(fadeInTime);
+				temp.fadeIn(fadeInTime);
 		});
 	}
 	
 	function openPageUrlAndUpdateHash(pageUrl, page){
-		$.ajax({
+        var temp = $(".maincontent");
+        $.ajax({
 			url: pageUrl,
 			context: document.body
 			}).done(function(data) {
-				$(".maincontent").fadeOut(fadeOutTime);
+				temp.fadeOut(fadeOutTime);
 				newData = data;
 				setTimeout(switchData, fadeOutTime);
-				$(".maincontent").fadeIn(fadeInTime);
+				temp.fadeIn(fadeInTime);
 				window.location.hash = "p=" + page;
 		});
 	}
@@ -81,7 +83,7 @@
 		if(p == '8f93bc70-8d79-11e3-baa8-0800200c9a66'){
 			return baseUrl + "shopowner/settings";
 		}
-		
+        return "";
 	}
 	
 	var hashArray = window.location.hash.replace("#", "").split('&');

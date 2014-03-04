@@ -27,26 +27,28 @@
 	}
 	
 	function openPageUrl(pageUrl){
+        var temp = $(".maincontent");
 		$.ajax({
 			url: pageUrl,
 			context: document.body
 			}).done(function(data) {
-				$(".maincontent").fadeOut(fadeOutTime);
+				temp.fadeOut(fadeOutTime);
 				newData = data;
 				setTimeout(switchData, fadeOutTime);
-				$(".maincontent").fadeIn(fadeInTime);
+				temp.fadeIn(fadeInTime);
 		});
 	}
 	
 	function openPageUrlAndUpdateHash(pageUrl, page){
-		$.ajax({
+        var temp = $(".maincontent");
+        $.ajax({
 			url: pageUrl,
 			context: document.body
 			}).done(function(data) {
-				$(".maincontent").fadeOut(fadeOutTime);
+				temp.fadeOut(fadeOutTime);
 				newData = data;
 				setTimeout(switchData, fadeOutTime);
-				$(".maincontent").fadeIn(fadeInTime);
+				temp.fadeIn(fadeInTime);
 				window.location.hash = "p=" + page;
 		});
 	}
@@ -96,6 +98,7 @@
 		if(p == 'decd0e0b-c2cd-4322-9486-b96cb026bb3c'){
 			return baseUrl + '/admin/editCategory';
 		}
+        return "";
 	}
 	
 	var hashArray = window.location.hash.replace("#", "").split('&');

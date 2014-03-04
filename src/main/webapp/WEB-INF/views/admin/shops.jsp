@@ -45,7 +45,7 @@ var oTable;
 function deleteShop(event, id){
 	$('.error').text("");
 	
-	if (confirm('Är du säker på att du vill ta bort affären?')) {
+	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort affï¿½ren?')) {
    
 		$.ajax({
 			url:baseUrl+'/api/store/admin/remove_store/' + id,
@@ -58,9 +58,10 @@ function deleteShop(event, id){
 	    		if(response.status == 200) {
 	    			// shop was removed
 		    		// remove from table
-	    			var pos = oTable.fnGetPosition( $('#' + id)[0]);
+                    var temp = $('#' + id);
+	    			var pos = oTable.fnGetPosition( temp[0]);
 	    	        oTable.fnDeleteRow(pos);
-	    			$('#' + id).remove();
+	    			temp.remove();
 	    		} else {
 	    			// can't remove that shop
 	    			$('.error').text(response.responseText);
@@ -98,38 +99,36 @@ $( document ).ready(function() {
 		},
 		dataType: "json",
 		success: function (data, textStatus, jqXHR) {
-			var arr = data;
-			
-			$(".shopTable").append("<tbody>");
-			for(var i = 0; i < arr.length; i++){
-				var row = "<tr id=" + arr[i].id + ">" + "<td>";
-				row += arr[i].name;
+            $(".shopTable").append("<tbody>");
+			for(var i = 0; i < data.length; i++){
+				var row = "<tr id=" + data[i].id + ">" + "<td>";
+				row += data[i].name;
 				row += '</td><td style="text-align:right;">';
-				row += arr[i].address;
+				row += data[i].address;
 				row += "</td><td>";
-				row += arr[i].postalCode;
+				row += data[i].postalCode;
 				row += "</td><td>";
-				row += arr[i].city;
+				row += data[i].city;
 				row += "</td><td>";
-				row += arr[i].orgNumber;
+				row += data[i].orgNumber;
 				row += "</td><td>";
-				row += arr[i].phone;
+				row += data[i].phone;
 				row += "</td><td>";
 				
-				if($.isNumeric(arr[i].user)){
-				    for(var j = 0; j < arr.length; j++){
-				     if(arr[j].user['@id'] == arr[i].user){
-				      arr[i].user = arr[j].user;
-						row += arr[i].user.firstName + " " + arr[i].user.lastName + " (" + arr[i].user.email + ")";
+				if($.isNumeric(data[i].user)){
+				    for(var j = 0; j < data.length; j++){
+				     if(data[j].user['@id'] == data[i].user){
+				      data[i].user = data[j].user;
+						row += data[i].user.firstName + " " + data[i].user.lastName + " (" + data[i].user.email + ")";
 				     }
 				    }
 				   } else {
-						row += arr[i].user.firstName + " " + arr[i].user.lastName + " (" + arr[i].user.email + ")";
+						row += data[i].user.firstName + " " + data[i].user.lastName + " (" + data[i].user.email + ")";
 				   }
 
 				row += '</td><td style="text-align:center;">';
-				row += '<a class="link" href="editShop/?id=' + arr[i].id + '"><i class="fa fa-pencil black"></i></a>';
-				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteShop(event, ' + arr[i].id + ')"><i class="fa fa-times red"></i></a>';
+				row += '<a class="link" href="editShop/?id=' + data[i].id + '"><i class="fa fa-pencil black"></i></a>';
+				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteShop(event, ' + data[i].id + ')"><i class="fa fa-times red"></i></a>';
 				row += "</td></tr>";
 				$(".shopTable").append(row);
 			}
@@ -146,10 +145,10 @@ $( document ).ready(function() {
 		        "sScrollY": "300px",
 				"oLanguage": {
 					"sLengthMenu": "Visar _MENU_ butiker per sida",
-					"sZeroRecords": "Hittade inget - tyvärr",
+					"sZeroRecords": "Hittade inget - tyvï¿½rr",
 					"sInfo": "Visar _START_ till _END_ av _TOTAL_ butiker",
 					"sInfoEmpty": "Visar 0 av 0 butiker",
-					"sInfoFiltered": "(filtrerat från _MAX_ butiker)",
+					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ butiker)",
 					"sSearch": "Filtrera: "
 				}		
 			});

@@ -1,3 +1,4 @@
+baseUrl = baseUrl;
 $( document ).ready(function() {
 	
 	var newData;
@@ -16,6 +17,7 @@ $( document ).ready(function() {
 		if(p == '2f5gdd560-8d75-11e3-cdd8-0220230c9a66'){
 			return  baseUrl + "/login/";
 		}
+        return "";
 	}
 
 	
@@ -40,26 +42,28 @@ $( document ).ready(function() {
 	}
 	
 	function openPageUrl(pageUrl){
-		$.ajax({
+        var temp = $(".maincontent");
+        $.ajax({
 			url: pageUrl,
 			context: document.body
 			}).done(function(data) {
-				$(".maincontent").fadeOut(fadeOutTime);
+				temp.fadeOut(fadeOutTime);
 				newData = data;
 				setTimeout(switchData, fadeOutTime);
-				$(".maincontent").fadeIn(fadeInTime);
+				temp.fadeIn(fadeInTime);
 		});
 	}
 	
 	function openPageUrlAndUpdateHash(pageUrl, page){
-		$.ajax({
+        var temp = $(".maincontent");
+        $.ajax({
 			url: pageUrl,
 			context: document.body
 			}).done(function(data) {
-				$(".maincontent").fadeOut(fadeOutTime);
+				temp.fadeOut(fadeOutTime);
 				newData = data;
 				setTimeout(switchData, fadeOutTime);
-				$(".maincontent").fadeIn(fadeInTime);
+				temp.fadeIn(fadeInTime);
 				window.location.hash = "p=" + page;
 		});
 	}

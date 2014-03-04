@@ -69,7 +69,7 @@ public class ProductController {
 	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody List<Product> getAllProductsForCategory(@PathVariable int categoryId){
 		List<Product> products = productService.getAllProducts();
-		List<Product> productsWithCategory = new ArrayList<Product>();
+		List<Product> productsWithCategory = new ArrayList<>();
 		
 		for(Product product : products){
 			if(product.getCategory().getId() == categoryId){
@@ -102,9 +102,9 @@ public class ProductController {
 			product.setBrand(brand);
 			
 			productService.add(product);
-			return new ResponseEntity<String>("Produkt " + product.getName() + " med id " +  product.getId() + " skapad.", HttpStatus.OK);	
+			return new ResponseEntity<>("Produkt " + product.getName() + " med id " +  product.getId() + " skapad.", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("Du kan bara lägga till produkter med er som leverantör", HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>("Du kan bara lägga till produkter med er som leverantör", HttpStatus.UNAUTHORIZED);
 		}
 
 	}
@@ -129,9 +129,9 @@ public class ProductController {
     		product.setBrand(brand);
     		
     		productService.edit(product);
-    		return new ResponseEntity<String>("Product " + product.getName() + " ändrad!", HttpStatus.OK);
+    		return new ResponseEntity<>("Product " + product.getName() + " ändrad!", HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Du kan bara ändra produkter som levereras av er", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan bara ändra produkter som levereras av er", HttpStatus.UNAUTHORIZED);
     	}
 
 	}
@@ -146,11 +146,11 @@ public class ProductController {
 		try{
 			price = Integer.parseInt(storePrice);
 		} catch (NumberFormatException ex) {
-			return new ResponseEntity<String>("Pris måste vara i siffror!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Pris måste vara i siffror!", HttpStatus.BAD_REQUEST);
 		}
 		
 		if(price > 9000 || price < 1){
-			return new ResponseEntity<String>("Pris kan sättas mellan 1-9000", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Pris kan sättas mellan 1-9000", HttpStatus.BAD_REQUEST);
 		}
 		
 		// get store, product and category
@@ -177,18 +177,18 @@ public class ProductController {
     		// add store product
     		if(!storeProducts.add(storeProduct)){
     			storeProduct = null;
-    			return new ResponseEntity<String>("Produkten finns redan i butikens soritment", HttpStatus.BAD_REQUEST);
+    			return new ResponseEntity<>("Produkten finns redan i butikens soritment", HttpStatus.BAD_REQUEST);
     		} else {
         		// set store products
         		product.setStoreProducts(storeProducts);
 
         		productService.edit(product);
 
-        		return new ResponseEntity<String>("Produkt " + product.getName() + " tillagd i " + store.getName(), HttpStatus.OK);
+        		return new ResponseEntity<>("Produkt " + product.getName() + " tillagd i " + store.getName(), HttpStatus.OK);
     		}
     		    		
     	} else {
-    		return new ResponseEntity<String>("Du kan bara lägga till produkter till din egen butik!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan bara lägga till produkter till din egen butik!", HttpStatus.UNAUTHORIZED);
     	}
 	}
 	
@@ -202,11 +202,11 @@ public class ProductController {
 		try{
 			price = Integer.parseInt(storePrice);
 		} catch (NumberFormatException ex) {
-			return new ResponseEntity<String>("Pris måste vara i siffror!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Pris måste vara i siffror!", HttpStatus.BAD_REQUEST);
 		}
 		
 		if(price > 9000 || price < 1){
-			return new ResponseEntity<String>("Pris kan sättas mellan 1-9000", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Pris kan sättas mellan 1-9000", HttpStatus.BAD_REQUEST);
 		}
 		
 		// get store, product and category
@@ -235,7 +235,7 @@ public class ProductController {
     		// check if the product is not present in that store
     		if(!storeProducts.contains(storeProduct)){
     			storeProduct = null;
-    			return new ResponseEntity<String>("Produkten kunde inte editeras!", HttpStatus.BAD_REQUEST);
+    			return new ResponseEntity<>("Produkten kunde inte editeras!", HttpStatus.BAD_REQUEST);
     		} else {
     			
     			// remove old product
@@ -251,11 +251,11 @@ public class ProductController {
 
         		productService.edit(product);
 
-        		return new ResponseEntity<String>("Produkt " + product.getName() + " editerad i " + store.getName(), HttpStatus.OK);
+        		return new ResponseEntity<>("Produkt " + product.getName() + " editerad i " + store.getName(), HttpStatus.OK);
     		}    		
     		    		
     	} else {
-    		return new ResponseEntity<String>("Du kan bara editera produkter i din egen butik!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan bara editera produkter i din egen butik!", HttpStatus.UNAUTHORIZED);
     	}
 	}
 	
@@ -288,18 +288,18 @@ public class ProductController {
     		// add store product
     		if(!storeProducts.remove(storeProduct)){
     			storeProduct = null;
-    			return new ResponseEntity<String>("Produkten finns inte i butikens soritment", HttpStatus.BAD_REQUEST);
+    			return new ResponseEntity<>("Produkten finns inte i butikens soritment", HttpStatus.BAD_REQUEST);
     		} else {
         		// set store products
         		product.setStoreProducts(storeProducts);
 
         		productService.edit(product);
 
-        		return new ResponseEntity<String>("Produkt " + product.getName() + " raderad ifrån " + store.getName(), HttpStatus.OK);
+        		return new ResponseEntity<>("Produkt " + product.getName() + " raderad ifrån " + store.getName(), HttpStatus.OK);
     		}
     		    		
     	} else {
-    		return new ResponseEntity<String>("Du kan bara radera produkter ifrån din egen butik!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan bara radera produkter ifrån din egen butik!", HttpStatus.UNAUTHORIZED);
     	}
     	
     	
@@ -319,9 +319,9 @@ public class ProductController {
     	// check so the user trying to remove the product is the owner of the brand that the product belongs to
     	if(product.getBrand().getUser().getUsername().equals(username)){
     		productService.delete(productId);
-    		return new ResponseEntity<String>("Produkt raderad! (Ifrån alla butiken och handlarlistor)", HttpStatus.OK);
+    		return new ResponseEntity<>("Produkt raderad! (Ifrån alla butiken och handlarlistor)", HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Du kan inte ta bort produkter som inte levereras av er!", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan inte ta bort produkter som inte levereras av er!", HttpStatus.UNAUTHORIZED);
     	}
 	}
 

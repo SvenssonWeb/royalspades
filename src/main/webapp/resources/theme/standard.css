@@ -25,13 +25,13 @@ body {
 .mainwrapper {
 	background:#0C365B;
 	width:930px;
-	margin: 80px 0px 40px 190px;
+	margin: 80px auto;
 	border-left:1px solid black;
 	border-right:1px solid black;
 	overflow:hidden;
 	border-radius: 20px;
 }
-.headerwrapper 
+header 
 {
 	width:100%;
 	height: 30px;
@@ -41,8 +41,11 @@ body {
 	position: fixed; 
 	top: 0; 
 	padding:3px;
-	padding-left:50px;
 	z-index:9000;
+}
+.headerwrapper{
+	width:930px;
+	margin:0 auto;
 }
 .bodywrapper {
 	background:#18005E;
@@ -89,7 +92,6 @@ body {
 	margin-right:30px;
 	width: auto;
 	text-align: left;
-	padding: 0px 230px 0px 8px;
 }
 
 	div.headermenu ul
@@ -186,7 +188,6 @@ h1, h2:not(.royal){
 	}
 	.royal {
 		font-family: 'Exo 2', sans-serif;
-		padding-left:140px;
 		width:160px;
 	}
 

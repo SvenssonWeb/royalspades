@@ -11,7 +11,7 @@
 	<table>
 		<tr>
 			<td>
-				<label for="name">Namn på butik: </label>
+				<label for="name">Namn pï¿½ butik: </label>
 			</td>
 			<td>
 				<input name="name" id="name"><br />
@@ -59,7 +59,7 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">Administratör: </label>
+				<label for="user">Administratï¿½r: </label>
 			</td>
 			<td>
 				<select id="user"></select>
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	// fill the select box with users that can be a shop administrator
 	$.getJSON(baseUrl+"/api/admin/user/shop_managers/")
 	    .done(function(data) {
-		    $("#user option").remove(); // Remove all <option> child tags.
+		    $("#user").find("option").remove(); // Remove all <option> child tags.
 		    $("#user").append( $("<option></option>") .text("Vï¿½lj"));  
 		    $.each(data, function(index, item) { // Iterates through a collection
 		        $("#user").append( // Append an object to the inside of the select box
@@ -108,7 +108,7 @@ $(document).ready(function() {
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
-	        $('.error').text("Något gick fel: " + err);
+	        $('.error').text("Nï¿½got gick fel: " + err);
 		});
 	
 	
@@ -117,9 +117,9 @@ $(document).ready(function() {
 		  $(".response").text("");
 	  	  $('.error').text("");
 	  	  // get userId from selected option
-	  	  var userId = $("#user option:selected").val();
+	  	  var userId = $("#user").find("option:selected").val();
 	  	  
-	  	  if(userId != 'Välj'){
+	  	  if(userId != 'Vï¿½lj'){
 	    	  var data = $(this).serializeObject();
 	    	  // will pass the form data and parse it to json string
 	    	  $.ajax({
@@ -160,7 +160,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-	  		  $('.error').text('Du måste välja en administratpr!');
+	  		  $('.error').text('Du mï¿½ste vï¿½lja en administratpr!');
 	  	  }
 
 	   

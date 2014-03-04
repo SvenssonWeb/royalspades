@@ -65,7 +65,7 @@ public class BrandController {
     	String user = authentication.getName();
 
 		// list with brands to be returned
-		List<Brand> brandsToReturn = new ArrayList<Brand>();
+		List<Brand> brandsToReturn = new ArrayList<>();
 		
     	// check if the user requesting this is the same as the brand owner
     	if(user.equals(userService.getUser(ownerId).getUsername())){
@@ -91,7 +91,7 @@ public class BrandController {
 		// check if a brand with that name exists
 		for(Brand b : brands){
 			if(b.getName().equals(brand.getName())){
-				return new ResponseEntity<String>("En leverantör vid namn " + brand.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("En leverantör vid namn " + brand.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
@@ -100,7 +100,7 @@ public class BrandController {
 		brand.setUser(user);
 		
 		brandService.add(brand);
-		return new ResponseEntity<String>("Leverantör " + brand.getName() + " skapad!", HttpStatus.OK);	
+		return new ResponseEntity<>("Leverantör " + brand.getName() + " skapad!", HttpStatus.OK);
 	} 
 	
 	
@@ -115,7 +115,7 @@ public class BrandController {
 		// check if a brand with that name exists
 		for(Brand b : brands){
 			if(b.getName().equals(brand.getName()) && b.getId() != brand.getId()){
-				return new ResponseEntity<String>("En leverantör vid namn " + brand.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("En leverantör vid namn " + brand.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
@@ -124,7 +124,7 @@ public class BrandController {
 	    brand.setUser(user);
 			
 		brandService.edit(brand);
-		return new ResponseEntity<String>("Leverantör " + brand.getName() + " ändrad!", HttpStatus.OK);	
+		return new ResponseEntity<>("Leverantör " + brand.getName() + " ändrad!", HttpStatus.OK);
 		
 	}
 	
@@ -140,7 +140,7 @@ public class BrandController {
 		// check if a brand with that name exists
 		for(Brand b : brands){
 			if(b.getName().equals(brand.getName()) && b.getId() != brand.getId()){
-				return new ResponseEntity<String>("En leverantör vid namn " + brand.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("En leverantör vid namn " + brand.getName() + " finns redan!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
@@ -151,9 +151,9 @@ public class BrandController {
 		// check if the user calling the method is the owner of the brand
     	if(user.equals(brand.getUser().getUsername())){
     		brandService.edit(brand);
-    		return new ResponseEntity<String>("Leverantör " + brand.getName() + " ändrad!", HttpStatus.OK);	
+    		return new ResponseEntity<>("Leverantör " + brand.getName() + " ändrad!", HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Du kan inte ändra en leverantör du inte är satt som ägare på", HttpStatus.UNAUTHORIZED);
+    		return new ResponseEntity<>("Du kan inte ändra en leverantör du inte är satt som ägare på", HttpStatus.UNAUTHORIZED);
     	}
 	}
 	
@@ -167,9 +167,9 @@ public class BrandController {
 		
 		if(brand.getBrandProducts().size() == 0){	
 			brandService.delete(brandId);
-			return new ResponseEntity<String>("Leverantör raderad!", HttpStatus.OK);	
+			return new ResponseEntity<>("Leverantör raderad!", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("Leverantör har produkter och kan inte raderas innan de tagits bort!", HttpStatus.BAD_REQUEST);	
+			return new ResponseEntity<>("Leverantör har produkter och kan inte raderas innan de tagits bort!", HttpStatus.BAD_REQUEST);
 
 		}
 

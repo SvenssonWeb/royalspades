@@ -101,10 +101,30 @@ $( document).on("click", '.shopProductPage .shopRemoveRow', function(event){
     $(this).closest('tr').remove();
 
 });
+$( document).on("click", '.shopProductPage .fa-pencil', function(){
+    var editContainer = $("#shopEditContainer");
+    editContainer.show();
+    var editedRow = $(this).parents('tr');
+    var price = $(editedRow.children('td')[4]).text();
+    var productName = $(editedRow.children('td')[2]).text();
+    var storeProduct = $(this).data().productId.split('-');
+     console.log(price);
+    editContainer.find('#categorySelect').empty().append(createCategorySelect(storeProduct[2]));
+    var categEle = editContainer.find('[name="category"]');
+    var priceEle = editContainer.find('[name="price"]').val(price);
+    var spid = storeProduct[0] +'-'+ storeProduct[1] +'-'+ categEle.find(':selected').val();
 
+    editContainer.on('click', 'button', function(e){
+        e.preventDefault();
+        var row = createStoreProductRow(productName,categEle.find(':selected').text(), priceEle.val(), spid);
+        $(row).replaceAll(editedRow);
+        editContainer.hide();
+    });
+});
 function createCategorySelect(selected){
     //console.log("createCategorySelect");
     var html = '<select name="category">';
+    html+= '<option>Välj en kategori</option>';
     for (var i = 0; i < allCategories.length; i++) {
         var d = allCategories[i];
         var select = (selected == d['id']) ? "selected" : "";
@@ -164,10 +184,11 @@ function setStoreProductTable(id){
                             '<td>'+productInfo+'</td>' +
                             '<td>'+rowData["category"]["name"]+'</td>' +
                             '<td>'+rowData["price"]+'</td>' +
-                            '<td><a href="editShop/?id=' + rowID + '"><i class="fa fa-pencil"></i></a></td>' +
+                            '<td><i data-product-id="'+rowID+'" class="fa fa-pencil point"></i></td>' +
                             '<td><i data-product-id="'+rowID+'" class="fa fa-times shopRemoveRow"></i></td>';
                 row += '</tr>';
-                fullHTML += row;
+                //fullHTML += row;
+                fullHTML += createStoreProductRow(productInfo, rowData['category']['name'], rowData['price'], rowID);
                 //tableBody.append(row);
             }
             tableBody.append(fullHTML);
@@ -176,6 +197,18 @@ function setStoreProductTable(id){
             alert("Error: " + textStatus + ", " + jqXHR);
         }
     });
+}
+function createStoreProductRow(productText, categoryName, price, id){
+    var row = '<tr>' +
+                '<td><a href="#"><i class="fa fa-sort-down"></i></a></td>' +
+                '<td><a href="#"><i class="fa fa-sort-up"></i></a></td>' +
+                '<td>'+productText+'</td>' +
+                '<td>'+categoryName+'</td>' +
+                '<td>'+price+'</td>' +
+                '<td><i data-product-id="'+id+'" class="fa fa-pencil point"></i></td>' +
+                '<td><i data-product-id="'+id+'" class="fa fa-times shopRemoveRow"></i></td>';
+    row += '</tr>';
+    return row;
 }
 function setStoreNewProductBrandSelect(){
     $.ajax({
@@ -298,6 +331,11 @@ function addStoreProduct(storeProduct){
 }
 
 function changeStoreProduct(){
+    var storeId;
+    var productId;
+    var oldCatId;
+    var newCatId;
+    var price;
     var url = '/api/product/remove_product_from_store/{storeId}/product/{productId}/category/{categoryId}';
 }
 

@@ -41,7 +41,7 @@ public class ShopOwnerController {
 
         return "shopowner/main";
 	}
-	
+
 	@RequestMapping("/help")
 	public String help(Locale locale, Model model){
 		//ShopOwner - help page
