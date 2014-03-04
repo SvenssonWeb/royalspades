@@ -191,7 +191,7 @@ function setBrandProductTable(id){
             for(var i = 0; i < arr.length; i++){
                 var rowData = arr[i];
                 var productInfo = rowData["name"] + ' ' + rowData["volume"] + rowData["unit"];
-                var rowID = rowData['id']
+                var rowID = rowData['id'];
 
                 fullHTML += createBrandProductRow(productInfo, rowData['category']['name'], rowID);
             }

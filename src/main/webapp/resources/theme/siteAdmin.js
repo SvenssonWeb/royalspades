@@ -96,6 +96,7 @@
 		if(p == 'decd0e0b-c2cd-4322-9486-b96cb026bb3c'){
 			return baseUrl + '/admin/editCategory';
 		}
+        return "";
 	}
 	
 	var hashArray = window.location.hash.replace("#", "").split('&');

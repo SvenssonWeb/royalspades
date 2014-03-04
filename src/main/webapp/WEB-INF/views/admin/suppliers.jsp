@@ -2,9 +2,9 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Leverantör
+	Leverantï¿½r
 </h2>
-<a class="link" href="newSupplier">Ny leverantör</a>
+<a class="link" href="newSupplier">Ny leverantï¿½r</a>
 <br />
 <table id="dataTable" class="supplierTable listtable">
 	<thead>
@@ -45,7 +45,7 @@ var oTable;
 function deleteSupplier(event, id){
 	$('.error').text("");
 	
-	if (confirm('Är du säker på att du vill ta bort leverantören?')) {
+	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort leverantï¿½ren?')) {
    
 		$.ajax({
 			url:baseUrl+'/api/brand/admin/remove_brand/' + id,
@@ -98,43 +98,41 @@ $( document ).ready(function() {
 		},
 		dataType: "json",
 		success: function (data, textStatus, jqXHR) {
-			var arr = data;
-			
-			$(".supplierTable").append("<tbody>");
-			for(var i = 0; i < arr.length; i++){
-				var row = "<tr id=" + arr[i].id + ">" + "<td>";
-				row += arr[i].name;
+            var html = "<tbody>";
+			for(var i = 0; i < data.length; i++){
+				var row = "<tr id=" + data[i].id + ">" + "<td>";
+				row += data[i].name;
 				row += '</td><td style="text-align:right;">';
-				row += arr[i].address;
+				row += data[i].address;
 				row += "</td><td>";
-				row += arr[i].postalCode;
+				row += data[i].postalCode;
 				row += "</td><td>";
-				row += arr[i].city;
+				row += data[i].city;
 				row += "</td><td>";
-				row += arr[i].orgNumber;
+				row += data[i].orgNumber;
 				row += "</td><td>";
-				row += arr[i].phone;
+				row += data[i].phone;
 				row += "</td><td>";
 				
-				if($.isNumeric(arr[i].user)){
-				    for(var j = 0; j < arr.length; j++){
-				     if(arr[j].user['@id'] == arr[i].user){
-				      arr[i].user = arr[j].user;
-						row += arr[i].user.firstName + " " + arr[i].user.lastName + " (" + arr[i].user.email + ")";
+				if($.isNumeric(data[i].user)){
+				    for(var j = 0; j < data.length; j++){
+				     if(data[j].user['@id'] == data[i].user){
+				      data[i].user = data[j].user;
+						row += data[i].user.firstName + " " + data[i].user.lastName + " (" + data[i].user.email + ")";
 				     }
 				    }
 				   } else {
-						row += arr[i].user.firstName + " " + arr[i].user.lastName + " (" + arr[i].user.email + ")";
+						row += data[i].user.firstName + " " + data[i].user.lastName + " (" + data[i].user.email + ")";
 				   }
 				
 				row += '</td><td style="text-align:center;">';
-				row += '<a class="link" href="editSupplier/?id=' + arr[i].id + '"><i class="fa fa-pencil black"></i></a>';
-				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteSupplier(event, ' + arr[i].id + ')"><i class="fa fa-times red"></i></a>';
+				row += '<a class="link" href="editSupplier/?id=' + data[i].id + '"><i class="fa fa-pencil black"></i></a>';
+				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteSupplier(event, ' + data[i].id + ')"><i class="fa fa-times red"></i></a>';
 				row += "</td></tr>";
-				$(".supplierTable").append(row);
+				html += row;
 			}
-			
-			$(".supplierTable").append("</tbody>");
+			html += "</tbody>";
+			$(".supplierTable").append(html);
 			
 			oTable = $('.supplierTable').dataTable({
 				"aLengthMenu": [
@@ -145,11 +143,11 @@ $( document ).ready(function() {
 		        "bScrollCollapse": false,
 		        "sScrollY": "300px",
 				"oLanguage": {
-					"sLengthMenu": "Visar _MENU_ leverantörer per sida",
-					"sZeroRecords": "Hittade inget - tyvärr",
-					"sInfo": "Visar _START_ till _END_ av _TOTAL_ leverantörer",
-					"sInfoEmpty": "Visar 0 av 0 leverantörer",
-					"sInfoFiltered": "(filtrerat från _MAX_ leverantörer)",
+					"sLengthMenu": "Visar _MENU_ leverantï¿½rer per sida",
+					"sZeroRecords": "Hittade inget - tyvï¿½rr",
+					"sInfo": "Visar _START_ till _END_ av _TOTAL_ leverantï¿½rer",
+					"sInfoEmpty": "Visar 0 av 0 leverantï¿½rer",
+					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ leverantï¿½rer)",
 					"sSearch": "Filtrera: "
 				}		
 			});

@@ -2,14 +2,14 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Ändra leverantör
+	ï¿½ndra leverantï¿½r
 </h2>
 
 <form id="editSupplierForm" method="POST">
 	<table>
 		<tr>
 			<td>
-				<label for="name">Namn på leverantör: </label>
+				<label for="name">Namn pï¿½ leverantï¿½r: </label>
 			</td>
 			<td>
 				<input name="name" id="name"><br />
@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">Administratör: </label>
+				<label for="user">Administratï¿½r: </label>
 			</td>
 			<td>
 				<select id="user"></select>
@@ -74,25 +74,7 @@
 <script>
 $(document).ready(function() {
 	var managerId;
-	
-	$.fn.serializeObject = function()
-	{
-	   var o = {};
-	   var a = this.serializeArray();
-	   a.re
-	   $.each(a, function() {
-	       if (o[this.name]) {
-	           if (!o[this.name].push) {
-	               o[this.name] = [o[this.name]];
-	           }
-	           o[this.name].push(this.value || '');
-	       } else {
-	           o[this.name] = this.value || '';
-	       }
-	   });
-	   return o;
-	};
-	
+
 	function getValues(){
 		$.getJSON(baseUrl+"/api/brand/" + "${id}")
 			.done(function(data) {
@@ -108,7 +90,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("NÅgot gick fel: " + err);
+		        $('.error').text("Nï¿½got gick fel: " + err);
 			});
 		
 		// fill the select box with users that can be a supplier administrator
@@ -126,7 +108,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('.error').text("Nï¿½got gick fel: " + err);
 			});
 	}
 	
@@ -184,7 +166,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-	  		  $('.error').text('Du måste välja en administratör!');
+	  		  $('.error').text('Du mï¿½ste vï¿½lja en administratï¿½r!');
 	  	  }
 
 	   

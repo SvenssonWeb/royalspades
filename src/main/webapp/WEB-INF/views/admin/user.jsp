@@ -2,29 +2,29 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Användare
+	Anvï¿½ndare
 </h2>
 <br />
 <table id="dataTable" class="userTable listtable">
 	<thead>
 		<tr>
 			<th>
-				Användarnamn
+				Anvï¿½ndarnamn
 			</th>
 			<th>
-				Behörighet
+				Behï¿½righet
 			</th>
 			<th>
 				Email
 			</th>
 			<th>
-				Förnamn
+				Fï¿½rnamn
 			</th>
 			<th>
 				Efternamn
 			</th>
 			<th>
-				Begärd behörighet
+				Begï¿½rd behï¿½righet
 			</th>
 			<th>
 				
@@ -49,31 +49,29 @@ function getData(url){
 		},
 		dataType: "json",
 		success: function (data, textStatus, jqXHR) {
-			
-			var arr = data;
-			
-			$(".userTable").append("<tbody>");
-			for(var i = 0; i < arr.length; i++){
-				var row = "<tr id=" + arr[i].id + ">" + "<td>";
-				row += arr[i].username;
+			var element = $(".userTable");
+            var html = "<tbody>";
+			for(var i = 0; i < data.length; i++){
+				var row = "<tr id=" + data[i].id + ">" + "<td>";
+				row += data[i].username;
 				row += '</td><td style="text-align:right;">';
-				row += arr[i].role;
+				row += data[i].role;
 				row += "</td><td>";
-				row += arr[i].email;
+				row += data[i].email;
 				row += "</td><td>";
-				row += arr[i].firstName;
+				row += data[i].firstName;
 				row += "</td><td>";
-				row += arr[i].lastName;
+				row += data[i].lastName;
 				row += "</td><td>";
-				row += arr[i].requestedAuthority;
+				row += data[i].requestedAuthority;
 				row += '</td><td style="text-align:center;">';
-				row += '<a class="link" href="editUser/?id=' + arr[i].id + '"><i class="fa fa-pencil black"></i></a>';
-				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteUser(event, ' + arr[i].id + ')"><i class="fa fa-times red"></i></a>';
+				row += '<a class="link" href="editUser/?id=' + data[i].id + '"><i class="fa fa-pencil black"></i></a>';
+				row += '&nbsp;<a class="no_refresh" href="#" onclick="deleteUser(event, ' + data[i].id + ')"><i class="fa fa-times red"></i></a>';
 				row += "</td></tr>";
-				$(".userTable").append(row);
+                html += row;
 			}
-			
-			$(".userTable").append("</tbody>");
+            html += "</tbody>";
+            element.append(html);
 			
 			oTable = $('.userTable').dataTable({
 				"aLengthMenu": [
@@ -84,11 +82,11 @@ function getData(url){
 		        "bScrollCollapse": false,
 		        "sScrollY": "300px",
 				"oLanguage": {
-					"sLengthMenu": "Visar _MENU_ användare per sida",
-					"sZeroRecords": "Hittade inget - tyvärr",
-					"sInfo": "Visar _START_ till _END_ av _TOTAL_ användare",
-					"sInfoEmpty": "Visar 0 av 0 användare",
-					"sInfoFiltered": "(filtrerat från _MAX_ användare)",
+					"sLengthMenu": "Visar _MENU_ anvï¿½ndare per sida",
+					"sZeroRecords": "Hittade inget - tyvï¿½rr",
+					"sInfo": "Visar _START_ till _END_ av _TOTAL_ anvï¿½ndare",
+					"sInfoEmpty": "Visar 0 av 0 anvï¿½ndare",
+					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ anvï¿½ndare)",
 					"sSearch": "Filtrera: "
 				}		
 			});
@@ -104,7 +102,7 @@ function getData(url){
 function deleteUser(event, id){
 	$('.error').text("");
 	
-	if (confirm('Är du säker på att du vill ta bort denna användare?')) {
+	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort denna anvï¿½ndare?')) {
    
 		$.ajax({
 			url:baseUrl + '/api/admin/remove_user/' + id,

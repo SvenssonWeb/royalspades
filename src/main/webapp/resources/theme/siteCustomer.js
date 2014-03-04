@@ -1,4 +1,5 @@
-﻿$( document ).ready(function() {
+﻿baseUrl = baseUrl;
+$( document ).ready(function() {
 	var newData;
 	var fadeOutTime = 200;
 	var fadeInTime = 200;
@@ -81,6 +82,7 @@
 		if(p == 'f5cb8520-8d76-11e3-baa8-0800200c9a66'){
 			return  baseUrl + "home/newgrocerybag";
 		}
+        return "";
 
 	}
 	

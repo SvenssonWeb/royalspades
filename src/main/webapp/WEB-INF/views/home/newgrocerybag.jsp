@@ -32,19 +32,19 @@ Ny matkasse
 				Varunamn
 			</th>
 			<th>
-				Mängd
+				Mï¿½ngd
 			</th>
 			<th>
-				Mått
+				Mï¿½tt
 			</th>
 			<th>
-				Leverantör
+				Leverantï¿½r
 			</th>
 			<th>
 				Kategori
 			</th>
 			<th>
-				Lägg till
+				Lï¿½gg till
 			</th>
 		</tr>	
 	</thead>
@@ -93,9 +93,9 @@ $( document ).ready(function() {
 			}
 			row += "</td><td>";
 			if($.isNumeric(arr[i].category)){
-				for(var j = 0; j < arr.length; j++){
-					if(arr[j].category['@id'] == arr[i].category){
-						arr[i].category = arr[j].category;
+				for(var k = 0; k < arr.length; k++){
+					if(arr[k].category['@id'] == arr[i].category){
+						arr[i].category = arr[k].category;
 						row += arr[i].category.name;
 					}
 				}
@@ -120,10 +120,10 @@ $( document ).ready(function() {
         "sScrollY": "300px",
 		"oLanguage": {
 			"sLengthMenu": "Visar _MENU_ produkter per sida",
-			"sZeroRecords": "Hittade inget - tyvärr",
+			"sZeroRecords": "Hittade inget - tyvï¿½rr",
 			"sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
 			"sInfoEmpty": "Visar 0 av 0 varor",
-			"sInfoFiltered": "(filtrerat från _MAX_ varor)",
+			"sInfoFiltered": "(filtrerat frï¿½n _MAX_ varor)",
 			"sSearch": "Filtrera: "
 		}		
 		});

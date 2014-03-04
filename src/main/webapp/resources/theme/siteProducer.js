@@ -78,6 +78,7 @@
 		if(p == 'a1d6aec0-8d78-11e3-baa8-0800200c9a66'){
 			return  baseUrl + "producer/wares";
 		}
+        return "";
 	}
 	
 	var hashArray = window.location.hash.replace("#", "").split('&');

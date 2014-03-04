@@ -4,7 +4,7 @@
 				<table>
 					<tr>
 						<td>
-							<label for="firstName" data-icon="u">Förnamn</label>
+							<label for="firstName" data-icon="u">Fï¿½rnamn</label>
 						</td><td>
 							<input id="firstName" name="firstName" required="required" type="text"  maxlength="45" placeholder="Olle" />
 						</td>
@@ -20,7 +20,7 @@
 
 					<tr>
 						<td>
-							<label for="username" data-icon="u">Användarnamn</label>
+							<label for="username" data-icon="u">Anvï¿½ndarnamn</label>
 						</td><td>
 							<input id="username" name="username" required="required" type="text" maxlength="45" placeholder="mysuperusername690" />
 						</td>
@@ -66,23 +66,6 @@
         
 <script>
 $(document).ready(function() {
-	$.fn.serializeObject = function()
-	{
-	   var o = {};
-	   var a = this.serializeArray();
-	   a.re
-	   $.each(a, function() {
-	       if (o[this.name]) {
-	           if (!o[this.name].push) {
-	               o[this.name] = [o[this.name]];
-	           }
-	           o[this.name].push(this.value || '');
-	       } else {
-	           o[this.name] = this.value || '';
-	       }
-	   });
-	   return o;
-	};
 	
 	// AJAX Signup Form Submit
 	$('#signup').submit(function(e) {

@@ -1,3 +1,4 @@
+baseUrl = baseUrl;
 $( document ).ready(function() {
 	
 	var newData;
@@ -16,6 +17,7 @@ $( document ).ready(function() {
 		if(p == '2f5gdd560-8d75-11e3-cdd8-0220230c9a66'){
 			return  baseUrl + "/login/";
 		}
+        return "";
 	}
 
 	
