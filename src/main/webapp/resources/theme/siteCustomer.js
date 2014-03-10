@@ -1,5 +1,4 @@
-﻿baseUrl = baseUrl;
-$( document ).ready(function() {
+﻿$( document ).ready(function() {
 	var newData;
 	var fadeOutTime = 200;
 	var fadeInTime = 200;
