@@ -82,35 +82,7 @@
 </fieldset>
 <script>
     $(document).ready(function(){
-        $.ajax({
-            type: "GET",
-            url: '/api/brand/all/',
-            headers: {
-                'Accept':"application/json",
-                'Content-Type':"application/json"
-            },
-            dataType: "text",
-            success: function (data) {
-                var stores = parseJSON(data);
-                for(var i = 0; i < stores.length; i++){
-                    var store = stores[i];
-                    var user = store['user'];
-                    if('${username}' == user['username']){
-                        currentBrand = store;
-                    }
-                }
-                getBrandAllProducts();
-                getAllCategories();
-               // $(createCategorySelect()).replaceAll('#category');
+        start('${username}');
 
-                setBrandProductTable(currentBrand.id);
-
-
-            },
-            error: function (data, textStatus, jqXHR) {
-                alert("Error: " + textStatus + ", " + jqXHR);
-            }
-        });
     });
-
 </script>

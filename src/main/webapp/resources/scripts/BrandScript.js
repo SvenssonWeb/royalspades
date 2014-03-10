@@ -99,6 +99,37 @@ $( document).on("click", '.brandAllProductsTable .fa-pencil', function(){
     ele.category.val(product.category.id);
 
 });
+function start(userName){
+    $.ajax({
+        type: "GET",
+        url: '/api/brand/all/',
+        headers: {
+            'Accept':"application/json",
+            'Content-Type':"application/json"
+        },
+        dataType: "text",
+        success: function (data) {
+            var stores = parseJSON(data);
+            for(var i = 0; i < stores.length; i++){
+                var store = stores[i];
+                var user = store['user'];
+                if(userName == user['username']){
+                    currentBrand = store;
+                }
+            }
+            getBrandAllProducts();
+            getAllCategories();
+            // $(createCategorySelect()).replaceAll('#category');
+
+            setBrandProductTable(currentBrand.id);
+
+
+        },
+        error: function (data, textStatus, jqXHR) {
+            alert("Error: " + textStatus + ", " + jqXHR);
+        }
+    });
+}
 function updateProduct(product, success) {
     var url = '/api/product/edit_brand_product/category/'+product.category+'/brand/'+currentBrand.id;
     var data = {id:product.id,name:product.name,volume:product.volume,unit:product.unit};

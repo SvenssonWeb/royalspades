@@ -1,3 +1,4 @@
+<div id="shopScriptLoader">
 <script>
 
 	window.location.hash = "p=" + "${pageUid}";
@@ -105,41 +106,9 @@ Du �r inte satt som administrat�r f�r n�gon butik?
 		<tbody></tbody>
 	</table>
 </fieldset>
+</div>
 <script>
-    var currentStore;
     $( document ).ready(function() {
-
-        $.ajax({
-            type: "GET",
-            url: '/api/store/all/',
-            headers: {
-                'Accept':"application/json",
-                'Content-Type':"application/json"
-            },
-            dataType: "text",
-            success: function (data) {
-                var stores = parseJSON(data);
-                for(var i = 0; i < stores.length; i++){
-                    var store = stores[i];
-                    var user = store['user'];
-                    if('${username}' == user['username']){
-                            currentStore = store;
-                    }
-                }
-                setStoreAllProducts();
-
-                setStoreProductTable(currentStore.id);
-
-                setStoreNewProductBrandSelect();
-
-                setStoreCategoriesTable();
-            },
-            error: function (data, textStatus, jqXHR) {
-                alert("Error: " + textStatus + ", " + jqXHR);
-            }
-        });
-
-
+        start('${username}');
     });
-
 </script>

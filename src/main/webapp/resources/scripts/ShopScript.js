@@ -1,6 +1,7 @@
 /**
  * Created by Artwar on 2014-02-19.
  */
+var currentStore;
 $.ajaxSetup({
     Accept:"application/json",
     contentType: "application/json; charset=utf-8",
@@ -9,6 +10,7 @@ $.ajaxSetup({
 var allProducts;
 var allCategories;
 var storeProducts;
+
 $( document).on("click", "#shopProductCreateNew", function(){
     $(".shopProductPage").slideUp();
     $("#shopSelectNewContainer").slideDown();
@@ -121,6 +123,37 @@ $( document).on("click", '.shopProductPage .fa-pencil', function(){
         editContainer.hide();
     });
 });
+function start(userName){
+    $.ajax({
+        type: "GET",
+        url: '/api/store/all/',
+        headers: {
+            'Accept':"application/json",
+            'Content-Type':"application/json"
+        },
+        dataType: "text",
+        success: function (data) {
+            var stores = parseJSON(data);
+            for(var i = 0; i < stores.length; i++){
+                var store = stores[i];
+                var user = store['user'];
+                if(userName == user['username']){
+                    currentStore = store;
+                }
+            }
+            setStoreAllProducts();
+
+            setStoreProductTable(currentStore.id);
+
+            setStoreNewProductBrandSelect();
+
+            setStoreCategoriesTable();
+        },
+        error: function (data, textStatus, jqXHR) {
+            alert("Error: " + textStatus + ", " + jqXHR);
+        }
+    });
+}
 function createCategorySelect(selected){
     //console.log("createCategorySelect");
     var html = '<select name="category">';

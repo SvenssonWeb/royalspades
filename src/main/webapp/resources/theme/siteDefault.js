@@ -1,4 +1,3 @@
-baseUrl = baseUrl;
 $( document ).ready(function() {
 	
 	var newData;
