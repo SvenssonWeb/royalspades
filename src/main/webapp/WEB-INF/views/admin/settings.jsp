@@ -20,7 +20,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="lastName">Eftername: </label>
+					<label for="lastName">Efternamn: </label>
 				</td>
 				<td>
 					<input type="text" id="lastName" name="lastName">
