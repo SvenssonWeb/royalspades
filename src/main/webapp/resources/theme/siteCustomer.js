@@ -75,13 +75,13 @@
 			return  baseUrl + "/home/main";
 		}
 		if(p == 'fd2e63a0-8d76-11e3-baa8-0800200c9a66'){
-			return  baseUrl + "home/settings";
+			return  baseUrl + "/home/settings";
 		}
 		if(p == 'ecae7380-8d76-11e3-baa8-0800200c9a66'){
-			return  baseUrl + "home/help";
+			return  baseUrl + "/home/help";
 		}
 		if(p == 'f5cb8520-8d76-11e3-baa8-0800200c9a66'){
-			return  baseUrl + "home/newgrocerybag";
+			return  baseUrl + "/home/newgrocerybag";
 		}
         return "";
 
