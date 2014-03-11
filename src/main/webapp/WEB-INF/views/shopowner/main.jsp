@@ -1,4 +1,4 @@
-﻿<div id="shopScriptLoader">
+<div id="shopScriptLoader">
 <script>
 
 	window.location.hash = "p=" + "${pageUid}";
@@ -10,14 +10,14 @@
 <h3 id="shopName">
 </h3>
 <p id="shopAddress">
-Du är inte satt som administratör för någon butik?
+Du �r inte har inte r�ttigheter till detta.
 <br />
 </p>
 <br />
 <fieldset class="allWares">
 	<legend>
         <span id="shopProductShow" class="active"><a href="#">Varor</a></span>
-        <span id="shopProductCreateNew"><a href="#">Lägg till Varor</a></span>
+        <span id="shopProductCreateNew"><a href="#">L�gg till Varor</a></span>
     </legend>
     <div class="shopProductPage">
         <table style="float: left" class="listtable productTable">
@@ -40,7 +40,7 @@ Du är inte satt som administratör för någon butik?
         </table>
         <div id="shopEditContainer" style="float: right; display: none">
             <form>
-                <p>Product:<span>Here</span></p>
+                <p>Produkt:<span></span></p>
                 <div id="categorySelect"></div>
                 <input type="text" name="price">
                 <button>Spara</button>
@@ -50,17 +50,17 @@ Du är inte satt som administratör för någon butik?
     </div>
     <div id="shopSelectNewContainer" style="display: none">
         <div>
-            <label for="selectNewProductsBrand">Brands</label>
+            <label for="selectNewProductsBrand">Varum�rken</label>
             <select size="6" multiple style="width: 200px" id="selectNewProductsBrand">
 
             </select>
-            <button id="shopNewProductsAdd">Lägg till</button>
+            <button id="shopNewProductsAdd">L�gg till</button>
             <button>Klart</button>
         </div>
         <div>
-            <label for="selectNewProducts">Producter</label>
+            <label for="selectNewProducts">Produkter</label>
             <select size="6" multiple style="width: 200px" id="selectNewProducts">
-                <option>Välj ett Brand</option>
+                <option>V�lj ett varum�rke</option>
             </select>
         </div>
         <div>
@@ -68,9 +68,9 @@ Du är inte satt som administratör för någon butik?
                 <table id="shopTableNewProducts" class="listtable shopTableNewProducts">
                     <thead>
                     <tr>
-                        <th>Brand</th>
+                        <th>Leverant�r</th>
                         <th>Produkt</th>
-                        <th>Categori</th>
+                        <th>Kategori</th>
                         <th>Pris</th>
                         <th></th>
                     </tr>
@@ -79,13 +79,13 @@ Du är inte satt som administratör för någon butik?
                     <tr>
                         <td>Spendrups</td>
                         <td>Mineralvatten</td>
-                        <td>Läsk</td>
+                        <td>L�sk</td>
                         <td>9.98</td>
                         <td><i class="fa fa-times shopRemoveRow"></i></td>
                     </tr>
                     </tbody>
                 </table>
-                <button type="submit">Submit</button>
+                <button type="submit">Spara</button>
             </form>
         </div>
     </div>
