@@ -28,7 +28,7 @@ function groceryStart(username){
             // create the grocery bag
             createGroceryBag(userId, groceryBagName);
         } else {
-            $('.error').text("Namnet p� handlarlistan m�ste vara 2-45 tecken!");
+            $('.error').text("Namnet på handlarlistan måste vara 2-45 tecken!");
         }
 
     });
@@ -105,10 +105,10 @@ function enhanceGroceryTable(){
         "sScrollY": "300px",
         "oLanguage": {
             "sLengthMenu": "Visar _MENU_ produkter per sida",
-            "sZeroRecords": "Hittade inget - tyv�rr",
+            "sZeroRecords": "Hittade inget - tyvärr",
             "sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
             "sInfoEmpty": "Visar 0 av 0 varor",
-            "sInfoFiltered": "(filtrerat fr�n _MAX_ varor)",
+            "sInfoFiltered": "(filtrerat från _MAX_ varor)",
             "sSearch": "Filtrera: "
         }
     });
@@ -192,7 +192,7 @@ function createGroceryBag(userId, name){
         complete: function(response) {
             if(response.status == 200){
                 // if the list was created then add products
-                $('.response').text("L�gger till...");
+                $('.response').text("Lägger till...");
                 addProductsToBags(response.responseText);
             }
 
@@ -227,13 +227,13 @@ function getUserFromUsername(username, successFunction){
         })
         .fail(function(jqxhr, textStatus, error) {
             var err = textStatus + ", " + error;
-            $('#accountError').text("N�got gick fel: " + err);
+            $('#accountError').text("Något gick fel: " + err);
         });
 }
 
 function homeStart(username){
     getUserFromUsername(username, function(id){
-        getAllGroceryLists(id)
+        getAllGroceryLists(id);
     });
 }
 
