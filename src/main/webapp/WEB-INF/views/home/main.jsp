@@ -39,7 +39,7 @@
 <script>
     $( document ).ready(function() {
 
-        //homeStart("${username}");
+        homeStart("${username}");
 
     });
 </script>

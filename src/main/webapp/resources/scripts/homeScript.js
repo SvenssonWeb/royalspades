@@ -7,6 +7,7 @@ var volumes = [];
 var productIds = [];
 // Save grocery bag
 $('#save').click(function() {
+    console.log("save");
     $(".response").text("");
     $('.error').text("");
 
@@ -229,7 +230,7 @@ function getUserFromUsername(username, successFunction){
         });
 }
 function homeStart(username){
-    var id = getUserFromUsername(username, function(id){
+    getUserFromUsername(username, function(id){
         getAllGroceryLists(id)
     });
 }

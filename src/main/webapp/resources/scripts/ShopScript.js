@@ -123,7 +123,7 @@ $( document).on("click", '.shopProductPage .fa-pencil', function(){
         editContainer.hide();
     });
 });
-function start(userName){
+function shopStart(userName){
     $.ajax({
         type: "GET",
         url: baseUrl+'/api/store/all/',

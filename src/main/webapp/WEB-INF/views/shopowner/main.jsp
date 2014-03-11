@@ -108,6 +108,6 @@ Du är inte satt som administratör för någon butik?
 </div>
 <script>
     $( document ).ready(function() {
-        groceryStart('${username}');
+        shopStart('${username}');
     });
 </script>
