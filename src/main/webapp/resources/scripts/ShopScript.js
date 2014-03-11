@@ -139,6 +139,7 @@ function shopStart(userName){
                 var user = store['user'];
                 if(userName == user['username']){
                     currentStore = store;
+                    break;
                 }
             }
             setStoreAllProducts();

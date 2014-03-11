@@ -2,7 +2,7 @@
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-Ny matkasse
+Redigera matkasse
 </h2>
 <br />
 <table>
@@ -59,9 +59,9 @@ Ny matkasse
 <div class="error"></div>
 <div class="response"></div>
 <script>
-$( document ).ready(function() {	
+$( document ).ready(function() {
 
-	groceryStart("${username}");
+    startEditGroceryList("${username}");
 
 });
 </script>
