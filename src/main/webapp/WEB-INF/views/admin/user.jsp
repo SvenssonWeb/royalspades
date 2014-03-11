@@ -2,29 +2,29 @@
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Anvï¿½ndare
+	Användare
 </h2>
 <br />
 <table id="dataTable" class="userTable listtable">
 	<thead>
 		<tr>
 			<th>
-				Anvï¿½ndarnamn
+				Användarnamn
 			</th>
 			<th>
-				Behï¿½righet
+				Behörighet
 			</th>
 			<th>
 				Email
 			</th>
 			<th>
-				Fï¿½rnamn
+				Förnamn
 			</th>
 			<th>
 				Efternamn
 			</th>
 			<th>
-				Begï¿½rd behï¿½righet
+				Begärd behörighet
 			</th>
 			<th>
 				
@@ -82,11 +82,11 @@ function getData(url){
 		        "bScrollCollapse": false,
 		        "sScrollY": "300px",
 				"oLanguage": {
-					"sLengthMenu": "Visar _MENU_ anvï¿½ndare per sida",
-					"sZeroRecords": "Hittade inget - tyvï¿½rr",
-					"sInfo": "Visar _START_ till _END_ av _TOTAL_ anvï¿½ndare",
-					"sInfoEmpty": "Visar 0 av 0 anvï¿½ndare",
-					"sInfoFiltered": "(filtrerat frï¿½n _MAX_ anvï¿½ndare)",
+					"sLengthMenu": "Visar _MENU_ användare per sida",
+					"sZeroRecords": "Hittade inget - tyvärr",
+					"sInfo": "Visar _START_ till _END_ av _TOTAL_ användare",
+					"sInfoEmpty": "Visar 0 av 0 användare",
+					"sInfoFiltered": "(filtrerat från _MAX_ användare)",
 					"sSearch": "Filtrera: "
 				}		
 			});
@@ -102,7 +102,7 @@ function getData(url){
 function deleteUser(event, id){
 	$('.error').text("");
 	
-	if (confirm('ï¿½r du sï¿½ker pï¿½ att du vill ta bort denna anvï¿½ndare?')) {
+	if (confirm('Är du säker på att du vill ta bort denna användare?')) {
    
 		$.ajax({
 			url:baseUrl + '/api/admin/remove_user/' + id,
