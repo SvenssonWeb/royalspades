@@ -113,6 +113,7 @@ $( document ).ready(function() {
 			} else {
 				row += arr[i].brand.name;
 			}
+			
 			row += "</td><td>";
 			if($.isNumeric(arr[i].category)){
 				for(var k = 0; k < arr.length; k++){
@@ -124,9 +125,9 @@ $( document ).ready(function() {
 			} else {
 				row += arr[i].category.name;
 			}
-			row += '<td style="text-align:center;"><select class="quantity"><option val="-">Välj</option></select></td>';
+			row += '<td style="text-align:center;"><select class="quantity"></select></td>';
 			row += '</td><td style="text-align:center;">';
-			row += '<input type="checkbox">';
+			row += '<input type="checkbox" class="product_check">';
 			row += "</td></tr>";
 			$(".groceryTable").append(row);	
 		}	
@@ -156,10 +157,10 @@ $( document ).ready(function() {
         "sScrollY": "300px",
 		"oLanguage": {
 			"sLengthMenu": "Visar _MENU_ produkter per sida",
-			"sZeroRecords": "Hittade inget - tyvï¿½rr",
+			"sZeroRecords": "Hittade inget - tyvärr",
 			"sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
 			"sInfoEmpty": "Visar 0 av 0 varor",
-			"sInfoFiltered": "(filtrerat frï¿½n _MAX_ varor)",
+			"sInfoFiltered": "(filtrerat från _MAX_ varor)",
 			"sSearch": "Filtrera: "
 		}		
 		});
@@ -234,11 +235,8 @@ $( document ).ready(function() {
 			// add to the number of times we need to run this
 			timesToGo++;
 			volumes.push(($(this).find("option:selected").val()));
-			productIds.push(($(this).find("input").attr('id')));
-			
-			//VALIDATE VOLUME
-		});
-		
+			productIds.push(($(this).find("input").attr('id')));			
+		});		
 		
 		// add each product to list
 		addProductToBag(productIds[0], volumes[0], listId);
@@ -282,7 +280,7 @@ $( document ).ready(function() {
     		  }
     	  });
 	}
-	
+		
 	
 	// Save grocery bag
 	$('#save').click(function() {
@@ -291,11 +289,15 @@ $( document ).ready(function() {
 
 	  	var groceryBagName = ($('#groceryName').val());
 		var userId = ($('#userId').val());
+	
 		
-		// VALIDATE NAME
+		if(groceryBagName.length > 2 && groceryBagName.length < 45){
+			// create the grocery bag
+			createGroceryBag(userId, groceryBagName);
+		} else {
+		  	$('.error').text("Namnet på handlarlistan måste vara 2-45 tecken!");
+		}
 		
-		// create the grocery bag
-		createGroceryBag(userId, groceryBagName);
 	});
 	
 	
