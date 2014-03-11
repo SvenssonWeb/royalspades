@@ -82,7 +82,7 @@
 <br />
 <br />
 <fieldset class="passwordSettings">
-	<legend>�ndra Lösenord</legend>
+	<legend>Ändra Lösenord</legend>
 	<form name="passwordForm" id="passwordForm">
 		<table class="formtable">
 			<tr>
