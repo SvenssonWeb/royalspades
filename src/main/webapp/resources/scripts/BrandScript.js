@@ -102,7 +102,7 @@ $( document).on("click", '.brandAllProductsTable .fa-pencil', function(){
 function start(userName){
     $.ajax({
         type: "GET",
-        url: '/api/brand/all/',
+        url: baseUrl+'/api/brand/all/',
         headers: {
             'Accept':"application/json",
             'Content-Type':"application/json"
@@ -200,7 +200,7 @@ function getBrandAllProducts() {
 function setBrandProductTable(id){
     $.ajax({
         type: "GET",
-        url: '/api/brand/'+id+'/',
+        url: baseUrl+'/api/brand/'+id+'/',
         headers: {
             'Accept':"application/json",
             'Content-Type':"application/json"

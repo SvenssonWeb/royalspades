@@ -32,7 +32,8 @@
 		</sec:authorize>
 	    <sec:authorize access="hasRole('ROLE_USER')">
 	        <!-- user -->
-			<script src="<c:url value="/resources/theme/siteCustomer.js" />"></script>
+            <script src="<c:url value="/resources/scripts/homeScript.js" />"></script>
+            <script src="<c:url value="/resources/theme/siteCustomer.js" />"></script>
 		</sec:authorize>
 	    <sec:authorize access="isAnonymous()">
 	        <!-- at login,logout,signup -->

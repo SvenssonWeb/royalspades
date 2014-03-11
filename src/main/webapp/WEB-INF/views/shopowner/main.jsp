@@ -13,7 +13,6 @@
 Du �r inte satt som administrat�r f�r n�gon butik?
 <br />
 </p>
-<a href="#"><i class="fa fa-edit"></i></a>
 <br />
 <fieldset class="allWares">
 	<legend>
