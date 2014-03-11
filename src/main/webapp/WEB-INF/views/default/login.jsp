@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <c:if test="${not empty error}">
 		<div class="errorblock">
 			Your login attempt was not successful, try again.<br /> Caused :
@@ -12,21 +12,21 @@
 	    <table>
 	    	<tr>
 	    		<td>
-	        		<label for="username" class="uname" data-icon="u" > Användarnamn eller Email </label>
+	        		<label for="username" class="uname" data-icon="u" > AnvÃ¤ndarnamn eller Email </label>
 	        	</td><td>
 	        		<input type="text" id="username" name="j_username" required type="text" placeholder="myusername or mymail@mail.com"/>
 	       		</td>
 	     	</tr>
 	     	<tr>
 	     		<td>
-	        		<label for="password" class="youpasswd" data-icon="p"> Lösenord </label>
+	        		<label for="password" class="youpasswd" data-icon="p"> LÃ¶senord </label>
 	       		</td><td>
 	          		<input type="password" id="password" name="j_password" required type="password" placeholder="eg. X8df!90EO" />
 	       		</td>
 	     	</tr>
 	     	<tr>
 	     		<td>
-	        		<label for="loginkeeping">Håll mig inloggad</label>
+	        		<label for="loginkeeping">HÃ¥ll mig inloggad</label>
 	     		</td><td>
 	     			<input type="checkbox" name="_spring_security_remember_me" id="loginkeeping" />
 	     		</td>
@@ -53,7 +53,7 @@ $(document).ready(function() {
 		
 	if(url.indexOf('?login_error=1') != -1){
 		// if we tried logging in with the wrong credentials
-		temp.text("Fel användarnamn eller lösenord!");
+		temp.text("Fel anvÃ¤ndarnamn eller lÃ¶senord!");
 	}
 });
 </script>

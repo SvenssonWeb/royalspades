@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
