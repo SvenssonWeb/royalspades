@@ -199,7 +199,9 @@ $(document).ready(function() {
 				
     		  }, error: function(response){
     			if(response.status != 200){
-        			var responseJSON = response.responseJSON;
+       				var responseJSON = response.responseJSON;  // not working here
+        			
+     				responseJSON = JSON.parse(response.responseText);
         			
         	  	   	if(typeof responseJSON != 'undefined'){
         	  	   		var errors = '';
@@ -249,12 +251,14 @@ $(document).ready(function() {
 				
     		  }, error: function(response){
     			if(response.status != 200){
-        			var responseJSON = response.responseJSON;
-        			
-        	  	   	if(typeof responseJSON != 'undefined'){
+     				var responseJSON = response.responseJSON; // not working here
+     				
+     				responseJSON = JSON.parse(response.responseText);
+
+     				if(typeof responseJSON != 'undefined'){
         	  	   		var errors = '';
         	  	   		
-            	  	   	for(var i = 0; i < responseJSON.fieldErrors.length; i ++){
+            	  	   	for(var i = 0; i < responseJSON.fieldErrors.length; i++){
                 	  	   	errors += (responseJSON.fieldErrors[i].message); 
                 	  	   	errors += '<br>';
             	  	   	}

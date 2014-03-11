@@ -1,17 +1,17 @@
-ï»¿<script>
+<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-	InstÃ¤llningar
+	Inställningar
 </h2>
 
 <fieldset class="accountSettings">
-	<legend>KontoinstÃ¤llningar</legend>
+	<legend>Kontoinställningar</legend>
 	<form name="account" id="account" method="POST">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="firstName">FÃ¶rnamn: </label>
+					<label for="firstName">Förnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="firstName" name="firstName">
@@ -29,7 +29,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="username">AnvÃ¤ndarnamn: </label>
+					<label for="username">Användarnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="username" name="username">
@@ -64,12 +64,12 @@
 <br />
 <br />
 <fieldset class="passwordSettings">
-	<legend>Ã„ndra LÃ¶senord</legend>
+	<legend>Ändra Lösenord</legend>
 	<form name="passwordForm" id="passwordForm">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="oldPassword">Ditt nuvarande lÃ¶senord: </label>
+					<label for="oldPassword">Ditt nuvarande lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="oldPassword" name="oldPassword">
@@ -78,7 +78,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="password">Nytt lÃ¶senord: </label>
+					<label for="password">Nytt lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="password" name="password">
@@ -87,7 +87,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="passwordConfirm">BekrÃ¤fta nytt lÃ¶senord: </label>
+					<label for="passwordConfirm">Bekräfta nytt lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="passwordConfirm" name="passwordConfirm">
@@ -145,7 +145,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('#accountError').text("NÃ¥got gick fel: " + err);
+		        $('#accountError').text("Något gick fel: " + err);
 			});
 	}
 	
@@ -180,7 +180,9 @@ $(document).ready(function() {
 				
     		  }, error: function(response){
     			if(response.status != 200){
-        			var responseJSON = response.responseJSON;
+        			var responseJSON = response.responseJSON;  // not working here
+        			
+     				responseJSON = JSON.parse(response.responseText);
         			
         	  	   	if(typeof responseJSON != 'undefined'){
         	  	   		var errors = '';
@@ -230,12 +232,14 @@ $(document).ready(function() {
 				
     		  }, error: function(response){
     			if(response.status != 200){
-        			var responseJSON = response.responseJSON;
+        			var responseJSON = response.responseJSON;  // not working here
+        			
+     				responseJSON = JSON.parse(response.responseText);
         			
         	  	   	if(typeof responseJSON != 'undefined'){
         	  	   		var errors = '';
         	  	   		
-            	  	   	for(var i = 0; i < responseJSON.fieldErrors.length; i ++){
+            	  	   	for(var i = 0; i < responseJSON.fieldErrors.length; i++){
                 	  	   	errors += (responseJSON.fieldErrors[i].message); 
                 	  	   	errors += '<br>';
             	  	   	}
