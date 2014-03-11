@@ -1,4 +1,4 @@
-﻿<script>
+﻿<div id="newGroceryListView"><script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
@@ -65,3 +65,4 @@ $( document ).ready(function() {
 
 });
 </script>
+</div>

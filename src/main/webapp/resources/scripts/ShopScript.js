@@ -169,7 +169,7 @@ function createCategorySelect(selected){
 function setStoreAllProducts() {
     $.ajax({
         type: "GET",
-        url: "/api/product/all/",
+        url: baseUrl+"/api/product/all/",
         headers: {
             'Accept':"application/json",
             'Content-Type':"application/json"

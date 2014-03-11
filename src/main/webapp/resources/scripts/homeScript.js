@@ -6,23 +6,7 @@ var timesToGo = 0;
 var volumes = [];
 var productIds = [];
 // Save grocery bag
-$('#save').click(function() {
-    console.log("save");
-    $(".response").text("");
-    $('.error').text("");
 
-    var groceryBagName = ($('#groceryName').val());
-    var userId = ($('#userId').val());
-
-
-    if(groceryBagName.length > 2 && groceryBagName.length < 45){
-        // create the grocery bag
-        createGroceryBag(userId, groceryBagName);
-    } else {
-        $('.error').text("Namnet p� handlarlistan m�ste vara 2-45 tecken!");
-    }
-
-});
 function preZero(s){
     s += "";
     if(s.length < 2){
@@ -31,6 +15,23 @@ function preZero(s){
     return s;
 }
 function groceryStart(username){
+    $('#save').click(function() {
+        console.log("save");
+        $(".response").text("");
+        $('.error').text("");
+
+        var groceryBagName = ($('#groceryName').val());
+        var userId = ($('#userId').val());
+
+
+        if(groceryBagName.length > 2 && groceryBagName.length < 45){
+            // create the grocery bag
+            createGroceryBag(userId, groceryBagName);
+        } else {
+            $('.error').text("Namnet p� handlarlistan m�ste vara 2-45 tecken!");
+        }
+
+    });
     var d = new Date();
     $("input[name$='date']")
         .val(d.getFullYear() + "-" +
@@ -229,11 +230,13 @@ function getUserFromUsername(username, successFunction){
             $('#accountError').text("N�got gick fel: " + err);
         });
 }
+
 function homeStart(username){
     getUserFromUsername(username, function(id){
         getAllGroceryLists(id)
     });
 }
+
 function getAllGroceryLists(id){
     //api/grocerylist/user/{userId}
     $.ajax({
