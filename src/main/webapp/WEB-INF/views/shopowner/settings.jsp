@@ -164,7 +164,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('#accountError').text("N�got gick fel: " + err);
+		        $('#accountError').text("Något gick fel: " + err);
 			});
 	}
 	

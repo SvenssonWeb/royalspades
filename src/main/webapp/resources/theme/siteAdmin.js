@@ -102,6 +102,10 @@
 			//Kategorier
 			return baseUrl + "/admin/categories";
 		}
+		if(p == 'decd0e0b-c2cd-4322-9486-b96cb026bb3c'){
+			//Ändra Kategori - redirect till categories eftersom inget id
+			return baseUrl + "/admin/categories";
+		}
 		if(p == 'aa33de21-23cc-44e3-baa8-2230222c9a66'){
 			//Inställningar
 			return baseUrl + "/admin/settings";
