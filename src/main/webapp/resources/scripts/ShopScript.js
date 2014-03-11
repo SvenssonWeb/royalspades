@@ -246,7 +246,7 @@ function createStoreProductRow(productText, categoryName, price, id){
 function setStoreNewProductBrandSelect(){
     $.ajax({
         type: "GET",
-        url: "/api/brand/all/",
+        url: baseUrl+"/api/brand/all/",
         headers: {
             'Accept':"application/json",
             'Content-Type':"application/json"
@@ -317,7 +317,7 @@ function setStoreNewProductBrandSelect(){
 function setStoreCategoriesTable() {
     $.ajax({
         type: "GET",
-        url: "/api/category/all/",
+        url: baseUrl+"/api/category/all/",
         headers: {
             'Accept': "application/json",
             'Content-Type': "application/json"

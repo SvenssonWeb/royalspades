@@ -36,3 +36,10 @@
 		</tr>
 	</table>
 </fieldset>
+<script>
+    $( document ).ready(function() {
+
+        //homeStart("${username}");
+
+    });
+</script>

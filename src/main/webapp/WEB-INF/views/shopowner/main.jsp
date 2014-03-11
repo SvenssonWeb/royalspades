@@ -108,6 +108,6 @@ Du �r inte satt som administrat�r f�r n�gon butik?
 </div>
 <script>
     $( document ).ready(function() {
-        start('${username}');
+        groceryStart('${username}');
     });
 </script>

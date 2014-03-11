@@ -4,7 +4,23 @@
 var timesToGo = 0;
 var volumes = [];
 var productIds = [];
+// Save grocery bag
+$('#save').click(function() {
+    $(".response").text("");
+    $('.error').text("");
 
+    var groceryBagName = ($('#groceryName').val());
+    var userId = ($('#userId').val());
+
+
+    if(groceryBagName.length > 2 && groceryBagName.length < 45){
+        // create the grocery bag
+        createGroceryBag(userId, groceryBagName);
+    } else {
+        $('.error').text("Namnet p� handlarlistan m�ste vara 2-45 tecken!");
+    }
+
+});
 function preZero(s){
     s += "";
     if(s.length < 2){
@@ -12,7 +28,7 @@ function preZero(s){
     }
     return s;
 }
-function start(username){
+function groceryStart(username){
     var d = new Date();
     $("input[name$='date']")
         .val(d.getFullYear() + "-" +
@@ -39,39 +55,7 @@ function start(username){
         success: function (data) {
             var arr = parseJSON(data);
 
-            var html = "<tbody>";
-            for(var i = 0; i < arr.length; i++){
-                var product = arr[i];
-                var row = "<tr><td>";
-                row += '<input type="hidden" class="productId" id="' + product.id + '">';
-                row += product.name;
-                row += '</td><td style="text-align:right;">';
-                row += product.volume;
-                row += "</td><td>";
-                row += product.unit;
-                row += "</td><td>";
-                row += product.brand.name;
-                row += "</td><td>";
-                row += product.category.name;
-
-                row += '<td style="text-align:center;"><select class="quantity"></select></td>';
-                row += '</td><td style="text-align:center;">';
-                row += '<input type="checkbox" class="product_check">';
-                row += "</td></tr>";
-                html += row;
-            }
-
-            html += "</tbody>";
-
-            $(".groceryTable").append(html);
-            for(var l = 1; l < 11; l++){
-                $(".quantity").append( // Append an object to the inside of the select box
-                    $("<option value='"+(l+1)+"'></option>")
-                        .text(l)
-                        .val(l)
-                );
-            }
-            $(".quantity").val("-");
+            createGroceryTable(arr);
 
             enhanceGroceryTable();
         },
@@ -104,6 +88,16 @@ function createGroceryTable(arr){
     }
 
     html += "</tbody>";
+    $(".groceryTable").append(html);
+    for(var l = 1; l < 11; l++){
+        $(".quantity").append( // Append an object to the inside of the select box
+            $("<option value='"+(l+1)+"'></option>")
+                .text(l)
+                .val(l)
+        );
+    }
+
+    $(".quantity").val("-");
 }
 function enhanceGroceryTable(){
     $('.groceryTable').dataTable({
@@ -229,20 +223,30 @@ function createGroceryBag(userId, name){
         }
     });
 }
-// Save grocery bag
-$('#save').click(function() {
-    $(".response").text("");
-    $('.error').text("");
+function getUserFromUsername(username){
 
-    var groceryBagName = ($('#groceryName').val());
-    var userId = ($('#userId').val());
+}
+function homeStart(username){
 
+}
+function getAllGroceryLists(){
+    //api/grocerylist/user/{userId}
+    $.ajax({
+        type: "GET",
+        url: baseUrl+"/api/grocerylist/user/",
+        dataType: "text",
+        success: function (data) {
+            var arr = parseJSON(data);
+            for(var i = 0; i < arr.size; i++){
+                var groceryList = arr[i];
+                console.log(groceryList);
+            }
+            createGroceryTable(arr);
 
-    if(groceryBagName.length > 2 && groceryBagName.length < 45){
-        // create the grocery bag
-        createGroceryBag(userId, groceryBagName);
-    } else {
-        $('.error').text("Namnet p� handlarlistan m�ste vara 2-45 tecken!");
-    }
-
-});
+            enhanceGroceryTable();
+        },
+        error: function (data, textStatus, jqXHR) {
+            $('.error').text("Error: " + textStatus + ", " + jqXHR);
+        }
+    });
+}

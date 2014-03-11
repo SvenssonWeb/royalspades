@@ -38,7 +38,7 @@ $( document).on("click", "#brandSubmit", function(e){
 $( document).on("click", '.brandAllProductsTable .shopRemoveRow', function(event){
     console.log($(this).data());
     var dataString = $(this).data().productId;
-    var url = '/api/product/remove_product/'+dataString;
+    var url = baseUrl+'/api/product/remove_product/'+dataString;
     if(!confirm('Du kommer nu ta bort produkten?')){
         return;
     }
@@ -131,7 +131,7 @@ function start(userName){
     });
 }
 function updateProduct(product, success) {
-    var url = '/api/product/edit_brand_product/category/'+product.category+'/brand/'+currentBrand.id;
+    var url = baseUrl+'/api/product/edit_brand_product/category/'+product.category+'/brand/'+currentBrand.id;
     var data = {id:product.id,name:product.name,volume:product.volume,unit:product.unit};
     $.ajax({
         type: "PUT",
@@ -183,7 +183,7 @@ function createCategorySelect(selected){
 function getBrandAllProducts() {
     $.ajax({
         type: "GET",
-        url: "/api/product/all/",
+        url: baseUrl+"/api/product/all/",
         headers: {
             'Accept':"application/json",
             'Content-Type':"application/json"
@@ -245,7 +245,7 @@ function createBrandProductRow(productText, categoryName, id){
 function getAllCategories() {
     $.ajax({
         type: "GET",
-        url: "/api/category/all/",
+        url: baseUrl+"/api/category/all/",
         headers: {
             'Accept': "application/json",
             'Content-Type': "application/json"
@@ -267,7 +267,7 @@ function addBrandProduct(storeProduct){
     var categoryID = storeProduct.category;
     var price = storeProduct.price;
     // /api/product/add_product_to_store/{storeId}/product/{productId}/store_category/{storeCategory}
-    var url = '/api/product/add_product_to_store/'+storeID+'/product/'+productID+'/store_category/'+categoryID;
+    var url = baseUrl+'/api/product/add_product_to_store/'+storeID+'/product/'+productID+'/store_category/'+categoryID;
 
     $.post(url, price, function Success(data, textStatus){
         console.log(data);
@@ -276,6 +276,6 @@ function addBrandProduct(storeProduct){
 }
 
 function changeStoreProduct(){
-    var url = '/api/product/remove_product_from_store/{storeId}/product/{productId}/category/{categoryId}';
+    var url = baseUrl+'/api/product/remove_product_from_store/{storeId}/product/{productId}/category/{categoryId}';
 }
 
