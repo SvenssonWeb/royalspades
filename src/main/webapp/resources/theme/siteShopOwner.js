@@ -81,7 +81,7 @@
 			return baseUrl + "/shopowner/help";
 		}
 		if(p == '8f93bc70-8d79-11e3-baa8-0800200c9a66'){
-			return baseUrl + "shopowner/settings";
+			return baseUrl + "/shopowner/settings";
 		}
         return "";
 	}
