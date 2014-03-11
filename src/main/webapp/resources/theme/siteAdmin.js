@@ -124,7 +124,8 @@
 		  }*/
 
 		return "";
-	}
+		
+		}
 	
 	var hashArray = window.location.hash.replace("#", "").split('&');
 	var page = "";

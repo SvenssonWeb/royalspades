@@ -71,14 +71,14 @@
 	}
 	
 	function getUrl(p){
-		if(p == '933c95a0-8d78-11e3-baa8-0800200c9a66'){
-			return  baseUrl + "producer/main";
+		if(p == 'c1d6dec0-8d78-99e3-baa8-0230246c9a66'){
+			return  baseUrl + "/producer/help";
 		}
-		if(p == '9a3b3410-8d78-11e3-baa8-0800200c9a666'){
-			return  baseUrl + "producer/categories";
+		if(p == 'd2d3dec0-9d78-99e3-bda8-1230246c9a66'){
+			return  baseUrl + "/producer/settings";
 		}
 		if(p == 'a1d6aec0-8d78-11e3-baa8-0800200c9a66'){
-			return  baseUrl + "producer/wares";
+			return  baseUrl + "/producer/wares";
 		}
         return "";
 	}
