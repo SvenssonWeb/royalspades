@@ -5,7 +5,7 @@
 	Varor
 </h2>
 <p>
-	H�r kan du uppdatera dina varor.
+	Här kan du uppdatera dina varor.
 </p>
 <fieldset class="allWares brandContainer">
 	<legend>Alla varor</legend>
@@ -63,9 +63,9 @@
                 <td>
                     <select id="category" name="category">
                         <option value="mej">Mejeri</option>
-                        <option value="fog">Frukt o Gr�nt</option>
-                        <option value="kot">K�tt</option>
-                        <option value="las">L�skeblask</option>
+                        <option value="fog">Frukt o Grönt</option>
+                        <option value="kot">Kött</option>
+                        <option value="las">Läskeblask</option>
                     </select>
                 </td>
             </tr>

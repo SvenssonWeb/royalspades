@@ -1,9 +1,9 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-	Hjälp
+	HjÃ¤lp
 </h2>
 <p>
-	För hjälp angående dina kassar eller något annat sköj kan du lägga till Filip Fransson på facebook o fråga.
+	FÃ¶r hjÃ¤lp angÃ¥ende dina kassar eller nÃ¥got annat skÃ¶j kan du lÃ¤gga till Filip Fransson pÃ¥ facebook o frÃ¥ga.
 </p>

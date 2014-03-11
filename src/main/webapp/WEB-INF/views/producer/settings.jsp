@@ -2,16 +2,16 @@
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-	Inst�llningar
+	Inställningar
 </h2>
 
 <fieldset class="accountSettings">
-	<legend>Kontoinst�llningar</legend>
+	<legend>Kontoinställningar</legend>
 	<form name="account" id="account" method="POST">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="firstName">F�rnamn: </label>
+					<label for="firstName">Förnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="firstName" name="firstName">
@@ -20,7 +20,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="lastName">Eftername: </label>
+					<label for="lastName">Efternamn: </label>
 				</td>
 				<td>
 					<input type="text" id="lastName" name="lastName">
@@ -29,7 +29,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="username">Anv�ndarnamn: </label>
+					<label for="username">Användarnamn: </label>
 				</td>
 				<td>
 					<input type="text" id="username" name="username">
@@ -64,15 +64,15 @@
 <br />
 <br />
 <fieldset class="authoritySettings">
-	<legend>Ans�k om h�gre beh�righet</legend>
+	<legend>Ansök om högre behörighet</legend>
 	<form name="authorityForm" id="authorityForm">
 		<select id="authority">
-			<option value="0">V�lj</option> 
-			<option value="shopowner">Butiks�gare</option>
-			<option value="producer">Leverant�r</option>
-			<option value="admin">Administrat�r</option>
+			<option value="0">Välj</option> 
+			<option value="shopowner">Butiksägare</option>
+			<option value="producer">Leverantör</option>
+			<option value="admin">Administratör</option>
 		</select>
-		<input type="Submit" value="Ans�k">
+		<input type="Submit" value="Ansök">
 		
 	</form>
 </fieldset>
@@ -82,12 +82,12 @@
 <br />
 <br />
 <fieldset class="passwordSettings">
-	<legend>�ndra L�senord</legend>
+	<legend>Ändra Lösenord</legend>
 	<form name="passwordForm" id="passwordForm">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="oldPassword">Ditt nuvarande l�senord: </label>
+					<label for="oldPassword">Ditt nuvarande lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="oldPassword" name="oldPassword">
@@ -96,7 +96,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="password">Nytt l�senord: </label>
+					<label for="password">Nytt lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="password" name="password">
@@ -105,7 +105,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<label for="passwordConfirm">Bekr�fta nytt l�senord: </label>
+					<label for="passwordConfirm">Bekräfta nytt lösenord: </label>
 				</td>
 				<td>
 					<input type="password" id="passwordConfirm" name="passwordConfirm">
@@ -321,7 +321,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-  	  	   	$('#authorityError').text("Du m�ste v�lja en beh�righetsgrad f�r att kunna ans�ka"); 
+  	  	   	$('#authorityError').text("Du måste välja en behörighetsgrad för att kunna ansöka"); 
 	  	  }
 
 	   

@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
@@ -33,13 +33,13 @@ Ny matkasse
 				Varunamn
 			</th>
 			<th>
-				M�ngd
+				Mängd
 			</th>
 			<th>
-				M�tt
+				Mått
 			</th>
 			<th>
-				Leverant�r
+				Leverantör
 			</th>
 			<th>
 				Kategori
@@ -48,7 +48,7 @@ Ny matkasse
 				Antal
 			</th>
 			<th>
-				L�gg till
+				Lägg till
 			</th>
 		</tr>	
 	</thead>

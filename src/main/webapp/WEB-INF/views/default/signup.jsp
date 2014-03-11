@@ -1,10 +1,10 @@
-		<div id="register" class="animate form">
+ï»¿		<div id="register" class="animate form">
             <form id="signup" autocomplete="on" method="POST"> 
                 <h1> Skapa konto </h1> 
 				<table>
 					<tr>
 						<td>
-							<label for="firstName" data-icon="u">Förnamn</label>
+							<label for="firstName" data-icon="u">FÃ¶rnamn</label>
 						</td><td>
 							<input id="firstName" name="firstName" required="required" type="text"  maxlength="45" placeholder="Olle" />
 						</td>
@@ -20,7 +20,7 @@
 
 					<tr>
 						<td>
-							<label for="username" data-icon="u">Användarnamn</label>
+							<label for="username" data-icon="u">AnvÃ¤ndarnamn</label>
 						</td><td>
 							<input id="username" name="username" required="required" type="text" maxlength="45" placeholder="mysuperusername690" />
 						</td>

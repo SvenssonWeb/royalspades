@@ -10,14 +10,14 @@
 <h3 id="shopName">
 </h3>
 <p id="shopAddress">
-Du �r inte satt som administrat�r f�r n�gon butik?
+Du är inte satt som administratör för någon butik?
 <br />
 </p>
 <br />
 <fieldset class="allWares">
 	<legend>
         <span id="shopProductShow" class="active"><a href="#">Varor</a></span>
-        <span id="shopProductCreateNew"><a href="#">L�gg till Varor</a></span>
+        <span id="shopProductCreateNew"><a href="#">Lägg till Varor</a></span>
     </legend>
     <div class="shopProductPage">
         <table style="float: left" class="listtable productTable">
@@ -54,13 +54,13 @@ Du �r inte satt som administrat�r f�r n�gon butik?
             <select size="6" multiple style="width: 200px" id="selectNewProductsBrand">
 
             </select>
-            <button id="shopNewProductsAdd">L�gg till</button>
+            <button id="shopNewProductsAdd">Lägg till</button>
             <button>Klart</button>
         </div>
         <div>
             <label for="selectNewProducts">Producter</label>
             <select size="6" multiple style="width: 200px" id="selectNewProducts">
-                <option>V�lj ett Brand</option>
+                <option>Välj ett Brand</option>
             </select>
         </div>
         <div>
@@ -79,7 +79,7 @@ Du �r inte satt som administrat�r f�r n�gon butik?
                     <tr>
                         <td>Spendrups</td>
                         <td>Mineralvatten</td>
-                        <td>L�sk</td>
+                        <td>Läsk</td>
                         <td>9.98</td>
                         <td><i class="fa fa-times shopRemoveRow"></i></td>
                     </tr>
