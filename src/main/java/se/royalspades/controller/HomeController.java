@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -54,6 +55,17 @@ public class HomeController {
 		model.addAttribute("pageUid", "f5cb8520-8d76-11e3-baa8-0800200c9a66" );
 		
 		return "home/newgrocerybag";
+	}
+	
+	@RequestMapping("/home/editgrocerybag")
+	public String editgrocerybag(Locale locale, Model model, Principal principal, @RequestParam(value = "id", required = true) int id){
+		// user - Edit grocery bag page
+        final String currentUser = principal.getName();
+        model.addAttribute("username", currentUser);
+        model.addAttribute("groceryBagId", id);
+		model.addAttribute("pageUid", "ffcb8520-8d76-33e3-bcc8-3850211c9a66" );
+		
+		return "home/editgrocerybag";
 	}
 	
 	@RequestMapping("/home/settings")
