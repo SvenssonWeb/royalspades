@@ -80,7 +80,7 @@ $( document).on("click", '.shopProductPage .shopRemoveRow', function(event){
     console.log($(this).data());
     var dataString = $(this).data().productId;
     var dataArray = dataString.split('-');
-    var url = '/api/product/remove_product_from_store/'+dataArray[0]
+    var url = baseUrl+'/product/remove_product_from_store/'+dataArray[0]
                 +'/product/'+dataArray[1]+'/category/'+dataArray[2];
     if(!confirm('Du kommer nu ta bort produkten?')){
         return;
@@ -126,7 +126,7 @@ $( document).on("click", '.shopProductPage .fa-pencil', function(){
 function start(userName){
     $.ajax({
         type: "GET",
-        url: '/api/store/all/',
+        url: baseUrl+'/api/store/all/',
         headers: {
             'Accept':"application/json",
             'Content-Type':"application/json"
@@ -186,7 +186,7 @@ function setStoreAllProducts() {
 function setStoreProductTable(id){
     $.ajax({
         type: "GET",
-        url: '/api/store/'+id+'/',
+        url: baseUrl+'/api/store/'+id+'/',
         headers: {
             'Accept':"application/json",
             'Content-Type':"application/json"
@@ -354,7 +354,7 @@ function addStoreProduct(storeProduct){
     var categoryID = storeProduct.category;
     var price = storeProduct.price;
     // /api/product/add_product_to_store/{storeId}/product/{productId}/store_category/{storeCategory}
-    var url = '/api/product/add_product_to_store/'+storeID+'/product/'+productID+'/store_category/'+categoryID;
+    var url = baseUrl+'/api/product/add_product_to_store/'+storeID+'/product/'+productID+'/store_category/'+categoryID;
 
     $.post(url, price, function Success(data, textStatus){
         console.log(data);
@@ -369,6 +369,6 @@ function changeStoreProduct(){
     var oldCatId;
     var newCatId;
     var price;
-    var url = '/api/product/remove_product_from_store/{storeId}/product/{productId}/category/{categoryId}';
+    var url = baseUrl+'/api/product/remove_product_from_store/{storeId}/product/{productId}/category/{categoryId}';
 }
 

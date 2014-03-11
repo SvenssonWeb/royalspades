@@ -73,26 +73,54 @@ function start(username){
             }
             $(".quantity").val("-");
 
-            $('.groceryTable').dataTable({
-                "aLengthMenu": [
-                    [25, 50, 100, -1],
-                    [25, 50, 100, "All"]],
-                "iDisplayLength" : -1,
-                "bScrollInfinite": true,
-                "bScrollCollapse": false,
-                "sScrollY": "300px",
-                "oLanguage": {
-                    "sLengthMenu": "Visar _MENU_ produkter per sida",
-                    "sZeroRecords": "Hittade inget - tyv�rr",
-                    "sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
-                    "sInfoEmpty": "Visar 0 av 0 varor",
-                    "sInfoFiltered": "(filtrerat fr�n _MAX_ varor)",
-                    "sSearch": "Filtrera: "
-                }
-            });
+            enhanceGroceryTable();
         },
         error: function (data, textStatus, jqXHR) {
             $('.error').text("Error: " + textStatus + ", " + jqXHR);
+        }
+    });
+}
+function createGroceryTable(arr){
+    var html = "<tbody>";
+    for(var i = 0; i < arr.length; i++){
+        var product = arr[i];
+        var row = "<tr><td>";
+        row += '<input type="hidden" class="productId" id="' + product.id + '">';
+        row += product.name;
+        row += '</td><td style="text-align:right;">';
+        row += product.volume;
+        row += "</td><td>";
+        row += product.unit;
+        row += "</td><td>";
+        row += product.brand.name;
+        row += "</td><td>";
+        row += product.category.name;
+
+        row += '<td style="text-align:center;"><select class="quantity"></select></td>';
+        row += '</td><td style="text-align:center;">';
+        row += '<input type="checkbox" class="product_check">';
+        row += "</td></tr>";
+        html += row;
+    }
+
+    html += "</tbody>";
+}
+function enhanceGroceryTable(){
+    $('.groceryTable').dataTable({
+        "aLengthMenu": [
+            [25, 50, 100, -1],
+            [25, 50, 100, "All"]],
+        "iDisplayLength" : -1,
+        "bScrollInfinite": true,
+        "bScrollCollapse": false,
+        "sScrollY": "300px",
+        "oLanguage": {
+            "sLengthMenu": "Visar _MENU_ produkter per sida",
+            "sZeroRecords": "Hittade inget - tyv�rr",
+            "sInfo": "Visar _START_ till _END_ av _TOTAL_ varor",
+            "sInfoEmpty": "Visar 0 av 0 varor",
+            "sInfoFiltered": "(filtrerat fr�n _MAX_ varor)",
+            "sSearch": "Filtrera: "
         }
     });
 }
