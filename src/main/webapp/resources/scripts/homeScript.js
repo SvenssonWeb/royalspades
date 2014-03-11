@@ -1,6 +1,7 @@
 /**
  * Created by Artwar on 2014-03-11.
  */
+var user;
 var timesToGo = 0;
 var volumes = [];
 var productIds = [];
@@ -38,15 +39,7 @@ function groceryStart(username){
             preZero(d.getMinutes()))
         .prop('disabled', true);
 
-    $.getJSON(baseUrl+"/api/user/" + username)
-        .done(function(data) {
-            $($("input[name='userId']")).val(data.id);
-        })
-        .fail(function(jqxhr, textStatus, error) {
-            var err = textStatus + ", " + error;
-            $('#accountError').text("N�got gick fel: " + err);
-        });
-
+    getUserFromUsername(username);
 
     $.ajax({
         type: "GET",
@@ -223,27 +216,36 @@ function createGroceryBag(userId, name){
         }
     });
 }
-function getUserFromUsername(username){
-
+function getUserFromUsername(username, successFunction){
+    $.getJSON(baseUrl+"/api/user/" + username)
+        .done(function(data) {
+            user = data;
+            $($("input[name='userId']")).val(data.id);
+            if(successFunction) successFunction(data.id);
+        })
+        .fail(function(jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            $('#accountError').text("N�got gick fel: " + err);
+        });
 }
 function homeStart(username){
-
+    var id = getUserFromUsername(username, function(id){
+        getAllGroceryLists(id)
+    });
 }
-function getAllGroceryLists(){
+function getAllGroceryLists(id){
     //api/grocerylist/user/{userId}
     $.ajax({
         type: "GET",
-        url: baseUrl+"/api/grocerylist/user/",
+        url: baseUrl+"/api/grocerylist/user/"+id,
         dataType: "text",
         success: function (data) {
             var arr = parseJSON(data);
-            for(var i = 0; i < arr.size; i++){
+            console.log(arr);
+            for(var i = 0; i < arr.length; i++){
                 var groceryList = arr[i];
                 console.log(groceryList);
             }
-            createGroceryTable(arr);
-
-            enhanceGroceryTable();
         },
         error: function (data, textStatus, jqXHR) {
             $('.error').text("Error: " + textStatus + ", " + jqXHR);

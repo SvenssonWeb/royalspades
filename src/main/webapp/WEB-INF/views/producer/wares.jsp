@@ -82,7 +82,7 @@
 </fieldset>
 <script>
     $(document).ready(function(){
-        groceryStart('${username}');
+        brandStart('${username}');
 
     });
 </script>

@@ -99,7 +99,7 @@ $( document).on("click", '.brandAllProductsTable .fa-pencil', function(){
     ele.category.val(product.category.id);
 
 });
-function start(userName){
+function brandStart(userName){
     $.ajax({
         type: "GET",
         url: baseUrl+'/api/brand/all/',
