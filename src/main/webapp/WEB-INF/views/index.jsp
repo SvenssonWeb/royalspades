@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
@@ -43,7 +43,7 @@
 			<div class="maincontent">
                 
 				<p>
-					Aktivera Javascript för att kunna använda denna sida!
+					Aktivera Javascript fÃ¶r att kunna anvÃ¤nda denna sida!
 				</p>
 			</div>
 		</div>

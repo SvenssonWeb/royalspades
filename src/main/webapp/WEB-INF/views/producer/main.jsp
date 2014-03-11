@@ -1,10 +1,10 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-	Välkommen
+	VÃ¤lkommen
 </h2>
 <p>
-	Här kan lägga redigera varor och kategorier.<br />
-	Välj i menyn över.
+	HÃ¤r kan lÃ¤gga redigera varor och kategorier.<br />
+	VÃ¤lj i menyn Ã¶ver.
 </p>

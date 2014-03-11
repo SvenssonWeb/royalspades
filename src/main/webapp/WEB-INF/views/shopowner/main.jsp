@@ -1,4 +1,4 @@
-<div id="shopScriptLoader">
+﻿<div id="shopScriptLoader">
 <script>
 
 	window.location.hash = "p=" + "${pageUid}";

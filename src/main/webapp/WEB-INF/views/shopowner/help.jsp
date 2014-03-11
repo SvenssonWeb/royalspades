@@ -1,9 +1,9 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
-	Hjälp
+	HjÃ¤lp
 </h2>
 <p>
-	Här finner du hjälp om hur du kan använda sidan o sånt typ o massa tjafs o sånt med lixx...
+	HÃ¤r finner du hjÃ¤lp om hur du kan anvÃ¤nda sidan o sÃ¥nt typ o massa tjafs o sÃ¥nt med lixx...
 </p>

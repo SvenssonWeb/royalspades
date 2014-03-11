@@ -1,11 +1,11 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2>
 	Kategorier
 </h2>
 <p>
-	Här kan du uppdatera kategorier
+	HÃ¤r kan du uppdatera kategorier
 </p>
 <fieldset class="newCategory">
 	<legend>Ny kategori</legend>
@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="Submit" value="Lägg till">
+					<input type="Submit" value="LÃ¤gg till">
 				</td>
 			</tr>
 		</table>
@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<td>
-				Frukt o Grönt
+				Frukt o GrÃ¶nt
 			</td>
 			<td>
 				<a href="#"><img src="http://i.imgur.com/vwJIAvn.png" width="20"></a>
@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td>
-				Kött
+				KÃ¶tt
 			</td>
 			<td>
 				<a href="#"><img src="http://i.imgur.com/vwJIAvn.png" width="20"></a>
@@ -65,7 +65,7 @@
 		</tr>
 		<tr>
 			<td>
-				Läskeblask
+				LÃ¤skeblask
 			</td>
 			<td>
 				<a href="#"><img src="http://i.imgur.com/vwJIAvn.png" width="20"></a>

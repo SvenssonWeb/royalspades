@@ -1,4 +1,4 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2>
@@ -6,5 +6,5 @@
 </h2>
 
 <p>
-	Välkommen till admin, välj butik eller leverantör.  
+	VÃ¤lkommen till admin, vÃ¤lj butik eller leverantÃ¶r.  
 </p>
