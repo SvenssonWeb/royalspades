@@ -201,6 +201,10 @@ $(document).ready(function() {
     			if(response.status != 200){
         			var responseJSON = response.responseJSON;
         			
+       				if(response.responseText.indexOf('{"field"') > -1) {
+         				responseJSON = JSON.parse(response.responseText);
+       				}
+        			
         	  	   	if(typeof responseJSON != 'undefined'){
         	  	   		var errors = '';
         	  	   		
@@ -250,6 +254,10 @@ $(document).ready(function() {
     		  }, error: function(response){
     			if(response.status != 200){
         			var responseJSON = response.responseJSON;
+        			
+       				if(response.responseText.indexOf('{"field"') > -1) {
+         				responseJSON = JSON.parse(response.responseText);
+       				}
         			
         	  	   	if(typeof responseJSON != 'undefined'){
         	  	   		var errors = '';
