@@ -1,4 +1,4 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + "${pageUid}";
 </script>
 <h2> 
@@ -19,7 +19,7 @@
 	<input type="text" name="name" placeholder = "Skriv in din nya varukategori." >
 	<button id="toggleCatBtn">Spara</button>
 </form>
-<button id="addCatBtn">Lägg till ny kategori</button><br>
+<button id="addCatBtn">LÃ¤gg till ny kategori</button><br>
 
 <form id="editCatForm" style="display: none">
 	<input type="text" name="name" placeholder = "Skriv in din nya varukategori." >
@@ -61,7 +61,7 @@ $( document ).ready(function() {
        
     });
 	
-	//kunna posta datan i formuläret för att skapa ny cat, kunna markera nya poster och ta bort eller ändra
+	//kunna posta datan i formulÃ¤ret fÃ¶r att skapa ny cat, kunna markera nya poster och ta bort eller Ã¤ndra
 	
 	$("#addCatBtn").on("click", function(){
 		//$("newCatForm").show();

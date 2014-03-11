@@ -1,4 +1,4 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
@@ -11,7 +11,7 @@
 	<table>
 		<tr>
 			<td>
-				<label for="name">Namn på butik: </label>
+				<label for="name">Namn pÃ¥ butik: </label>
 			</td>
 			<td>
 				<input name="name" id="name"><br />
@@ -59,14 +59,14 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">Administratör: </label>
+				<label for="user">AdministratÃ¶r: </label>
 			</td>
 			<td>
 				<select id="user"></select>
 			</td>
 		</tr>
 	</table>
-    <input type="submit" value="Lägg till">
+    <input type="submit" value="LÃ¤gg till">
 </form>
 <br />
 <div class="response"></div>
@@ -97,7 +97,7 @@ $(document).ready(function() {
 	$.getJSON(baseUrl+"/api/admin/user/shop_managers/")
 	    .done(function(data) {
 		    $("#user").find("option").remove(); // Remove all <option> child tags.
-		    $("#user").append( $("<option></option>") .text("Välj"));  
+		    $("#user").append( $("<option></option>") .text("VÃ¤lj"));  
 		    $.each(data, function(index, item) { // Iterates through a collection
 		        $("#user").append( // Append an object to the inside of the select box
 		            $("<option></option>")
@@ -108,7 +108,7 @@ $(document).ready(function() {
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
-	        $('.error').text("Något gick fel: " + err);
+	        $('.error').text("NÃ¥got gick fel: " + err);
 		});
 	
 	
@@ -119,7 +119,7 @@ $(document).ready(function() {
 	  	  // get userId from selected option
 	  	  var userId = $("#user").find("option:selected").val();
 	  	  
-	  	  if(userId != 'Välj'){
+	  	  if(userId != 'VÃ¤lj'){
 	    	  var data = $(this).serializeObject();
 	    	  // will pass the form data and parse it to json string
 	    	  $.ajax({
@@ -160,7 +160,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-	  		  $('.error').text('Du måste välja en administratpr!');
+	  		  $('.error').text('Du mÃ¥ste vÃ¤lja en administratpr!');
 	  	  }
 
 	   

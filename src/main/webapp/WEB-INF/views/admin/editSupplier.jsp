@@ -1,15 +1,15 @@
-<script>
+ï»¿<script>
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Ändra leverantör
+	Ã„ndra leverantÃ¶r
 </h2>
 
 <form id="editSupplierForm" method="POST">
 	<table>
 		<tr>
 			<td>
-				<label for="name">Namn på leverantör: </label>
+				<label for="name">Namn pÃ¥ leverantÃ¶r: </label>
 			</td>
 			<td>
 				<input name="name" id="name"><br />
@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">Administratör: </label>
+				<label for="user">AdministratÃ¶r: </label>
 			</td>
 			<td>
 				<select id="user"></select>
@@ -90,7 +90,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('.error').text("NÃ¥got gick fel: " + err);
 			});
 		
 		// fill the select box with users that can be a supplier administrator
@@ -108,7 +108,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("Något gick fel: " + err);
+		        $('.error').text("NÃ¥got gick fel: " + err);
 			});
 	}
 	
@@ -166,7 +166,7 @@ $(document).ready(function() {
 	    		  }
 	    	  });
 	  	  } else {
-	  		  $('.error').text('Du måste välja en administratör!');
+	  		  $('.error').text('Du mÃ¥ste vÃ¤lja en administratÃ¶r!');
 	  	  }
 
 	   

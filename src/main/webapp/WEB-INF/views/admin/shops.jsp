@@ -1,4 +1,4 @@
-<script>
+Ôªø<script>
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
@@ -45,7 +45,7 @@ var oTable;
 function deleteShop(event, id){
 	$('.error').text("");
 	
-	if (confirm('ƒr du s‰ker pÂ att du vill ta bort aff‰ren?')) {
+	if (confirm('√Ñr du s√§ker p√• att du vill ta bort aff√§ren?')) {
    
 		$.ajax({
 			url:baseUrl+'/api/store/admin/remove_store/' + id,
@@ -145,10 +145,10 @@ $( document ).ready(function() {
 		        "sScrollY": "300px",
 				"oLanguage": {
 					"sLengthMenu": "Visar _MENU_ butiker per sida",
-					"sZeroRecords": "Hittade inget - tyv‰rr",
+					"sZeroRecords": "Hittade inget - tyv√§rr",
 					"sInfo": "Visar _START_ till _END_ av _TOTAL_ butiker",
 					"sInfoEmpty": "Visar 0 av 0 butiker",
-					"sInfoFiltered": "(filtrerat frÂn _MAX_ butiker)",
+					"sInfoFiltered": "(filtrerat fr√•n _MAX_ butiker)",
 					"sSearch": "Filtrera: "
 				}		
 			});

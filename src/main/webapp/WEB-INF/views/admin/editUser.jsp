@@ -1,10 +1,10 @@
-<fieldset class="passwordSettings">
-	<legend>Ändra Lösenord för: <b><span class="username"></span></b></legend>
+ï»¿<fieldset class="passwordSettings">
+	<legend>Ã„ndra LÃ¶senord fÃ¶r: <b><span class="username"></span></b></legend>
 	<form name="passwordForm" id="passwordForm">
 		<table class="formtable">
 			<tr>
 				<td>
-					<label for="password">Nytt lösenord: </label>
+					<label for="password">Nytt lÃ¶senord: </label>
 				</td>
 				<td>
 					<input type="password" id="password" name="password">
@@ -13,7 +13,7 @@
 			<tr><td>&nbsp;</td><td></td></tr>
 			<tr>
 				<td>
-					<input type="Submit" value="Sätt nytt lösenord">
+					<input type="Submit" value="SÃ¤tt nytt lÃ¶senord">
 				</td>
 			</tr>
 		</table>
@@ -25,16 +25,16 @@
 <br />
 <br />
 <fieldset class="authoritySettings">
-	<legend>Ändra behörighet för: <span class="username"></span></legend>
+	<legend>Ã„ndra behÃ¶righet fÃ¶r: <span class="username"></span></legend>
 	<form name="authorityForm" id="authorityForm">
-	    <div><b><span class="username"></span></b> Ansöker om behörighet: <b><span class="requestedAuthority"></span></b></div>
+	    <div><b><span class="username"></span></b> AnsÃ¶ker om behÃ¶righet: <b><span class="requestedAuthority"></span></b></div>
 		<select id="authority">
-			<option value="user">Användare</option>
-			<option value="shopowner">Butiksägare</option>
-			<option value="producer">Leverantör</option>
-			<option value="admin">Administratör</option>
+			<option value="user">AnvÃ¤ndare</option>
+			<option value="shopowner">ButiksÃ¤gare</option>
+			<option value="producer">LeverantÃ¶r</option>
+			<option value="admin">AdministratÃ¶r</option>
 		</select>
-		<input type="Submit" value="Ändra">
+		<input type="Submit" value="Ã„ndra">
 		
 	</form>
 </fieldset>
@@ -58,7 +58,7 @@ function grantAuthority(){
 	$('#authorityError').text("");
 
 	
-	if (confirm('Är du säker på att du vill ge denna användaren ny behörighet?')) {
+	if (confirm('Ã„r du sÃ¤ker pÃ¥ att du vill ge denna anvÃ¤ndaren ny behÃ¶righet?')) {
 
 		$.ajax({
 			url:baseUrl + '/api/admin/authorize/user/${id}',
@@ -96,7 +96,7 @@ function changePassword(){
 	$('#authorityResponse').text("");
 	$('#authorityError').text("");
 	
-	if (confirm('Är du säker på att du vill ändra lösenordet?')) {
+	if (confirm('Ã„r du sÃ¤ker pÃ¥ att du vill Ã¤ndra lÃ¶senordet?')) {
 
 		$.ajax({
 			url:baseUrl + '/api/admin/set_new_password/user/${id}',
@@ -142,8 +142,8 @@ $(document).ready(function() {
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
-	        $('#authorityError').text("Något gick fel: " + err);
-	        $('#passwordError').text("Något gick fel: " + err);
+	        $('#authorityError').text("NÃ¥got gick fel: " + err);
+	        $('#passwordError').text("NÃ¥got gick fel: " + err);
 		});
 	
 	// grant authority
