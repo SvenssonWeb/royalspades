@@ -47,6 +47,14 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
+	public User getUserByMobileToken(String mobileToken) {
+		return (User) getCurrentSession().createCriteria(User.class)
+        .add(Restrictions.eq("mobileToken", mobileToken)).setMaxResults(1)
+         .setCacheable(false)
+        .uniqueResult();
+	}
+	
+	@Override
 	public boolean checkIfUserExists(String username){
 		return getCurrentSession().createCriteria(User.class).add(Restrictions.eq("username", username))
                 .setMaxResults(1).uniqueResult() != null;

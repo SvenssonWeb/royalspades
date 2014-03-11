@@ -1,4 +1,4 @@
-ï»¿<script>
+<script>
 	window.location.hash = "p=" + "${pageUid}";
 	
 	
@@ -6,60 +6,62 @@
 		return "<div>TEST</div>";
 	}
 </script>
-<h2>API HjÃ¤lp</h2>
+<h2>API Hjälp</h2>
 <br />
 <div>
-	<p>Information om API, allt i {} ska ersÃ¤ttas med ett id text "{userId}" borde ersÃ¤ttas med rÃ¤tt id tex. "2"</p>
-	<p>SÃ¤kerhet: stÃ¥r fÃ¶r vilka som har rÃ¤tt att gÃ¶ra det. tex. "SÃ¤kerhet: admin" sÃ¥ Ã¤r det bara admin som kan gÃ¶ra det.</p>
-	<p>All data skickas som JSON strÃ¤ngar: {"name":"butik1","orgNumber":"9384284","address":"denvÃ¤gen 3","phone":"047099999"} Ã¤r tex. en LeverantÃ¶r.</p>
-	<p>Svar pÃ¥ alla fÃ¶rfrÃ¥gningar ges med korrekt svarstatus och en svarstrÃ¤ng.</p>
-	<p>Inget som anvÃ¤nds kan tas bort.</p>
-	<p>Rubriken stÃ¥r fÃ¶r vilken metod som ska anvÃ¤ndas: GET, POST, PUT, DELETE</p>
+	<p>Information om API, allt i {} ska ersättas med ett id text "{userId}" borde ersättas med rätt id tex. "2"</p>
+	<p>Säkerhet: står för vilka som har rätt att göra det. tex. "Säkerhet: admin" så är det bara admin som kan göra det.</p>
+	<p>All data skickas som JSON strängar: {"name":"butik1","orgNumber":"9384284","address":"denvägen 3","phone":"047099999"} är tex. en Leverantör.</p>
+	<p>Svar på alla förfrågningar ges med korrekt svarstatus och en svarsträng.</p>
+	<p>Inget som används kan tas bort.</p>
+	<p>Rubriken står för vilken metod som ska användas: GET, POST, PUT, DELETE</p>
 </div>
 <br />
 <div>
 	<h3>GET</h3>
 	<br />
 	<h4>/api/store/all</h4>
-	<p>Listar alla butiker, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Listar alla butiker, Säkerhet: Alla användare.</p>
 	<h4>/api/store/{id}</h4>
-	<p>HÃ¤mta enskild butik, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Hämta enskild butik, Säkerhet: Alla användare.</p>
 	<h4>/api/store/owner/{userId}</h4>
-	<p>HÃ¤mtar butik/butiker som anvÃ¤ndare Ã¤r butiksÃ¤gare fÃ¶r, SÃ¤kerhet: Bara satt butiksÃ¤gare.</p>
+	<p>Hämtar butik/butiker som användare är butiksägare för, Säkerhet: Bara satt butiksägare.</p>
 	<h4>/api/brand/all</h4>
-	<p>Listar alla leverantÃ¶rer, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Listar alla leverantörer, Säkerhet: Alla användare.</p>
 	<h4>/api/brand/{id}</h4>
-	<p>HÃ¤mtar enskild leverantÃ¶r, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Hämtar enskild leverantör, Säkerhet: Alla användare.</p>
 	<h4>/api/brand/owner/{ownerId}</h4>
-	<p>HÃ¤mtar leverantÃ¶r/leverantÃ¶rer som anvÃ¤ndare Ã¤r leverantÃ¶rÃ¤gare fÃ¶r, SÃ¤kerhet: Bara satt leverantÃ¶rÃ¤gare.</p>
+	<p>Hämtar leverantör/leverantörer som användare är leverantörägare för, Säkerhet: Bara satt leverantörägare.</p>
 	<h4>/api/category/all</h4>
-	<p>Listar alla kategorier, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Listar alla kategorier, Säkerhet: Alla användare.</p>
 	<h4>/api/category/{id}</h4>
-	<p>HÃ¤mtar enskild kategori, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Hämtar enskild kategori, Säkerhet: Alla användare.</p>
 	<h4>/api/grocerylist/all</h4>
-	<p>Listar alla shoppinglistor, SÃ¤kerhet: Admin</p>
+	<p>Listar alla shoppinglistor, Säkerhet: Admin</p>
 	<h4>/api/grocerylist/{id}</h4>
-	<p>HÃ¤mtar enskild shoppinglista, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Hämtar enskild shoppinglista, Säkerhet: Alla användare.</p>
 	<h4>/api/grocerylist/user/{userId}</h4>
-	<p>Listar shoppinglistor fÃ¶r anvÃ¤ndare, SÃ¤kerhet: Bara listÃ¤gare.</p>
+	<p>Listar shoppinglistor för användare, Säkerhet: Bara listägare.</p>
 	<h4>/api/product/all</h4>
-	<p>Listar alla produkter, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Listar alla produkter, Säkerhet: Alla användare.</p>
 	<h4>/api/product/{id}</h4>
-	<p>HÃ¤mtar enskild product, SÃ¤kerhet: Alla anvÃ¤ndare</p>
+	<p>Hämtar enskild product, Säkerhet: Alla användare</p>
 	<h4>/api/product/category/{categoryId}</h4>
-	<p>Listar alla produkter som tillhÃ¶r kategori, SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Listar alla produkter som tillhör kategori, Säkerhet: Alla användare.</p>
 	<h4>/api/admin/user/all</h4>
-	<p>Listar alla anvÃ¤ndare, SÃ¤kerhet: Admin</p>
+	<p>Listar alla användare, Säkerhet: Admin</p>
 	<h4>/api/user/{userName}</h4>
-	<p>HÃ¤mtar enskild anvÃ¤ndare, SÃ¤kerhet: Du kan bara se din egen anvÃ¤ndare.</p>
+	<p>Hämtar enskild användare, Säkerhet: Du kan bara se din egen användare.</p>
 	<h4>/api/admin/user/{id}</h4>
-	<p>HÃ¤mtar enskild anvÃ¤ndare, SÃ¤kerhet: Admin</p>
+	<p>Hämtar enskild användare, Säkerhet: Admin</p>
 	<h4>/api/admin/user/shop_managers</h4>
-	<p>Listar alla anvÃ¤ndare som Ã¤r butiksÃ¤gare, SÃ¤kerhet: Admin</p>
+	<p>Listar alla användare som är butiksägare, Säkerhet: Admin</p>
 	<h4>/api/admin/user/brand_managers</h4>
-	<p>Listar alla anvÃ¤ndare som Ã¤r leverantÃ¶rsÃ¤gare, SÃ¤kerhet: Admin</p>
+	<p>Listar alla användare som är leverantörsägare, Säkerhet: Admin</p>
 	<h4>/api/admin/get_users_requesting_higher_authority</h4>
-	<p>Listar alla anvÃ¤ndare som ansÃ¶kt om hÃ¶gre behÃ¶righet, SÃ¤kerhet: Admin</p>
+	<p>Listar alla användare som ansökt om högre behörighet, Säkerhet: Admin</p>
+	<h4>/api/grocerylist/mobile/{mobileToken}  </h4>
+	<p>Listar all handlarlistor för en användare, Säkerhet: ett "mobileToken" som retuneras vid mobil login, ska skickas med vid varje request.</p>
 </div>
 <br />
 <br />
@@ -67,19 +69,21 @@
 	<h3>POST</h3>
 	<br />
 	<h4>/api/store/admin/add_store/{userId}</h4>
-	<p>Skapa butik, SÃ¤kerhet: Admin</p>
+	<p>Skapa butik, Säkerhet: Admin</p>
 	<h4>/api/brand/admin/add_brand/{userId}</h4>
-	<p>Skapa leverantÃ¶r, SÃ¤kerhet: Admin</p>
+	<p>Skapa leverantör, Säkerhet: Admin</p>
 	<h4>/api/category/admin/add_category</h4>
-	<p>Skapa kategori, SÃ¤kerhet: Admin</p>
+	<p>Skapa kategori, Säkerhet: Admin</p>
 	<h4>/api/grocerylist/add_grocery_list/{userId}</h4>
-	<p>Skapa shoppinglist fÃ¶r anvÃ¤ndare, SÃ¤kerhet: Kan bara skapa listor till din egen anvÃ¤ndare</p>
+	<p>Skapa shoppinglist för användare, Säkerhet: Kan bara skapa listor till din egen användare</p>
 	<h4>/api/product/add_product/category/{categoryId}/brand/{brandId}</h4>
-	<p>LÃ¤gg till produkt till ditt varumÃ¤rke, SÃ¤kerhet: Bara leverantÃ¶rsÃ¤gare kan lÃ¤gga till produkter till sitt varumÃ¤rke.</p>
+	<p>Lägg till produkt till ditt varumärke, Säkerhet: Bara leverantörsägare kan lägga till produkter till sitt varumärke.</p>
 	<h4>/api/product/add_product_to_store/{storeId}/product/{productId}/store_category/{storeCategory}</h4>
-	<p>LÃ¤gg till produkt till din butik, pris skickas som JSON ex: 144, SÃ¤kerhet: Bara butiksÃ¤garen kan lÃ¤gga till produkter till sin butik.</p>
+	<p>Lägg till produkt till din butik, pris skickas som JSON ex: 144, Säkerhet: Bara butiksägaren kan lägga till produkter till sin butik.</p>
 	<h4>/api/user/new_user</h4>
-	<p>Skapa ny anvÃ¤ndare, SÃ¤kerhet: Ingen.</p>
+	<p>Skapa ny användare, Säkerhet: Ingen.</p>
+	<h4>/api/mobile/login</h4>
+	<p>Mobil-login, (JSON ex. {"username":"user"password":"password"}) Säkerhet: Ingen, vid korrekt loggin retuneras en "mobil-token" och status 200, annars status 400 med felmeddelande.</p>
 </div>
 <br />
 <br />
@@ -87,35 +91,37 @@
 	<h3>PUT</h3>
 	<br />
 	<h4>/api/grocerylist/add_product_to_grocery_list/{listid}/product/{productId}</h4>
-	<p>LÃ¤gg till product till din shoppinglista, volym skickas som JSON ex. {"volume":"12"}, SÃ¤kerhet: Du kan bara lÃ¤gga till i listor du sjÃ¤lv Ã¤ger.</p>
+	<p>Lägg till product till din shoppinglista, volym skickas som JSON ex. {"volume":"12"}, Säkerhet: Du kan bara lägga till i listor du själv äger.</p>
 	<h4>/api/store/admin/edit_store/{storeId}</h4>
-	<p>Ã„ndra butik, SÃ¤kerhet: Admin.</p>
+	<p>Ändra butik, Säkerhet: Admin.</p>
 	<h4>/api/store/edit_my_store</h4>	
-	<p>Ã„ndra din butik, SÃ¤kerhet: Du kan bara Ã¤ndra din egen butik. Som du Ã¤r Ã¤gare fÃ¶r.</p>
+	<p>Ändra din butik, Säkerhet: Du kan bara ändra din egen butik. Som du är ägare för.</p>
 	<h4>/api/brand/admin/edit_brand/{brandId}</h4>
-	<p>Ã„ndra leverantÃ¶r, SÃ¤kerhet: Admin.</p>
+	<p>Ändra leverantör, Säkerhet: Admin.</p>
 	<h4>/api/brand/edit_my_brand</h4>
-	<p>Ã„ndra din leverantÃ¶r, SÃ¤kerhet: Du kan bara Ã¤ndra din leverantÃ¶r. Som du Ã¤r Ã¤gare fÃ¶r.</p>
+	<p>Ändra din leverantör, Säkerhet: Du kan bara ändra din leverantör. Som du är ägare för.</p>
 	<h4>/api/category/admin/edit_category</h4>
-	<p>Editera kategory, SÃ¤kerhet: Admin.</p>
+	<p>Editera kategory, Säkerhet: Admin.</p>
 	<h4>/api/grocerylist/edit_grocery_list/{listId}</h4>
-	<p>Ã„ndra shoppinglista, SÃ¤kerhet: Du kan bara Ã¤ndra din egen lista.</p>
+	<p>Ändra shoppinglista, Säkerhet: Du kan bara ändra din egen lista.</p>
 	<h4>/api/product/edit_brand_product/category/{categoryId}/brand/{brandId}</h4>
-	<p>Ã„ndra din varumÃ¤rkes produkt, SÃ¤kerhet: Du kan bara Ã¤ndra det varumÃ¤rket du Ã¤r Ã¤gare fÃ¶r.</p>
+	<p>Ändra din varumärkes produkt, Säkerhet: Du kan bara ändra det varumärket du är ägare för.</p>
 	<h4>/api/admin/user/edit_user</h4>
-	<p>Ã„ndra anvÃ¤ndarkonto, SÃ¤kerhet: Admin</p>
+	<p>Ändra användarkonto, Säkerhet: Admin</p>
 	<h4>/api/user/edit_account</h4>
-	<p>Ã„ndra ditt anvÃ¤ndarkonto, SÃ¤kerhet: Du kan bara Ã¤ndra ditt eget konto.</p>
+	<p>Ändra ditt användarkonto, Säkerhet: Du kan bara ändra ditt eget konto.</p>
 	<h4>/api/user/edit_password</h4>
-	<p>Ã„ndra ditt lÃ¶senord, (JSON ex. {"userId":"23","password":"hej","repeatPassword":"haa","oldPassword":"daa"}) SÃ¤kerhet: Du kan bara Ã¤ndra ditt eget konto.</p>
+	<p>Ändra ditt lösenord, (JSON ex. {"userId":"23","password":"hej","repeatPassword":"haa","oldPassword":"daa"}) Säkerhet: Du kan bara ändra ditt eget konto.</p>
 	<h4>/api/admin/set_new_password/user/{userId}</h4>
-	<p>SÃ¤tt nytt lÃ¶senord fÃ¶r anvÃ¤ndare, skicka lÃ¶senord i body som "lÃ¶senord", SÃ¤kerhet: Admin.</p>
+	<p>Sätt nytt lösenord för användare, skicka lösenord i body som "lösenord", Säkerhet: Admin.</p>
 	<h4>/api/user/{userId}/request_authority</h4>
-	<p>BegÃ¤r hÃ¶gre behÃ¶righet pÃ¥ ditt konto. Skicka behÃ¶righeten som ex: "producer", SÃ¤kerhet: Alla anvÃ¤ndare.</p>
+	<p>Begär högre behörighet på ditt konto. Skicka behörigheten som ex: "producer", Säkerhet: Alla användare.</p>
 	<h4>/api/admin/authorize/user/{userId}</h4>
-	<p>BekrÃ¤fta ansÃ¶kning om hÃ¶gre behÃ¶righet.Skicka behÃ¶righeten som ex: "producer", SÃ¤kerhet: Admin.</p>
+	<p>Bekräfta ansökning om högre behörighet.Skicka behörigheten som ex: "producer", Säkerhet: Admin.</p>
 	<h4>/api/product/edit_store_product/{storeId}/product/{productId}/old_store_category/{oldStoreCategory}/new_store_category/{newStoreCategory}</h4>
-	<p>Ã„ndra pris/kategori fÃ¶r produkt i butik, pris skickas som JSON ex: 144. SÃ¤kerhet: ButiksÃ¤gare fÃ¶r butiken i frÃ¥ga.</p>
+	<p>Ändra pris/kategori för produkt i butik, pris skickas som JSON ex: 144. Säkerhet: Butiksägare för butiken i fråga.</p>
+	<h4>/api/user/unauthoriz_mobile</h4>
+	<p>Genererar en ny "mobil-token". Säkerhet: Endast för din egna användare.</p>
 </div>
 <br />
 <br />
@@ -123,19 +129,19 @@
 	<h3>DELETE</h3>
 	<br />
 	<h4>/api/store/admin/remove_store/{storeId}</h4>
-	<p>Ta bort butik, SÃ¤kerhet: Admin.</p>
+	<p>Ta bort butik, Säkerhet: Admin.</p>
 	<h4>/api/brand/admin/remove_brand/{brandId}</h4>
-	<p>Ta bort leverantÃ¶r, SÃ¤kerhet: Admin.</p>
+	<p>Ta bort leverantör, Säkerhet: Admin.</p>
 	<h4>/api/category/admin/remove_category/{id}</h4>
-	<p>Ta bort kategori, SÃ¤kerhet: Admin.</p>
+	<p>Ta bort kategori, Säkerhet: Admin.</p>
 	<h4>/api/admin/remove_user/{userId}</h4>
-	<p>Ta bort anvÃ¤ndare, SÃ¤kerhet: Admin</p>
+	<p>Ta bort användare, Säkerhet: Admin</p>
 	<h4>/api/product/remove_product/{productId}</h4>
-	<p>Ta bort product ifrÃ¥n leverantÃ¶r, SÃ¤kerhet: Du kan bara ta bort produkter ifrÃ¥n ditt varumÃ¤rke.</p>
+	<p>Ta bort product ifrån leverantör, Säkerhet: Du kan bara ta bort produkter ifrån ditt varumärke.</p>
 	<h4>/api/product/remove_product_from_store/{storeId}/product/{productId}/category/{categoryId}</h4>
-	<p>Ta bort produkt ifrÃ¥n Butik, SÃ¤kerhet: Du kan bara ta bort produkter ifrÃ¥n butiker du Ã¤r butiksÃ¤gare fÃ¶r.</p>
+	<p>Ta bort produkt ifrån Butik, Säkerhet: Du kan bara ta bort produkter ifrån butiker du är butiksägare för.</p>
 	<h4>/api/grocerylist/delete_product_from_groery_list/{listId}/product/{productId}</h4>
-	<p>Ta bort produkt ifrÃ¥n shoppinglista, SÃ¤kerhet: Du kan bara ta bort produkter ifrÃ¥n din egen shoppinglista.</p>
+	<p>Ta bort produkt ifrån shoppinglista, Säkerhet: Du kan bara ta bort produkter ifrån din egen shoppinglista.</p>
 	<h4>/api/grocerylist/remove_grocery_list/{listId}</h4>
-	<p>Ta bort shoppinglista, SÃ¤kerhet: Du kan bara ta bort dina egna shoppinglistor.</p>
+	<p>Ta bort shoppinglista, Säkerhet: Du kan bara ta bort dina egna shoppinglistor.</p>
 </div>

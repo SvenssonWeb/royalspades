@@ -11,6 +11,8 @@ public interface UserService {
 	public User getUser(int userId);
 	public boolean checkIfUserExists(String username);
 	public User getUserByUsername(String userName);
+	public User getMobileUserByUsername(String userName);
+	public User getUserByMobileToken(String mobileToken);
 	@SuppressWarnings("rawtypes")
 	public List getAllUsers();
 }

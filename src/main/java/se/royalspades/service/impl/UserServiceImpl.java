@@ -59,7 +59,31 @@ public class UserServiceImpl implements UserService {
 		
 		return user;
 	}
-
+	
+	// Used for mobile login
+	@Transactional (readOnly=true)
+	public User getMobileUserByUsername(String username) 
+			throws DataAccessException {
+		User user;
+		user = userDAO.getUserByUsername(username);
+		
+		return user;
+	}
+	
+	// Used for mobile authentication
+	@Transactional (readOnly=true)
+	public User getUserByMobileToken(String mobileToken) 
+			throws UsernameNotFoundException, DataAccessException {
+		User user;
+		user = userDAO.getUserByMobileToken(mobileToken);
+		
+		if(user == null){
+			throw new UsernameNotFoundException("user not found");
+		}
+		
+		return user;
+	}
+	
 	@SuppressWarnings("rawtypes")
 	@Transactional
 	public List getAllUsers() {

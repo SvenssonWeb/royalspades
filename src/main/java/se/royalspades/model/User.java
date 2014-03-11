@@ -43,6 +43,7 @@ public class User implements Serializable{
 	private String password;
 	private String passwordConfirm;
 	private String requestedAuthority;
+	private String mobileToken;
 	
 	public User(){
 		
@@ -145,4 +146,16 @@ public class User implements Serializable{
 	public void setRequestedAuthority(String requestedAuthority) {
 		this.requestedAuthority = requestedAuthority;
 	}
+
+	@Column(name = "mobile_token", length = 255)
+    @JsonIgnore 
+	public String getMobileToken() {
+		return mobileToken;
+	}
+
+	public void setMobileToken(String mobileToken) {
+		this.mobileToken = mobileToken;
+	}
+	
+	
 }

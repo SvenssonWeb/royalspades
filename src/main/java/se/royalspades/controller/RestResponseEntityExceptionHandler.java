@@ -63,7 +63,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler({ InvalidDataAccessApiUsageException.class, DataAccessException.class })
     protected ResponseEntity<Object> handleConflict(final RuntimeException ex, final WebRequest request) {
-        final String bodyOfResponse = "Serverfel: En konfilikt har uppståt!";
+        final String bodyOfResponse = "Serverfel: En konflikt har uppståt!";
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 

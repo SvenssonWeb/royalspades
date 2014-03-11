@@ -77,26 +77,26 @@ public class GroceryListController {
 		return groceryListsToReturn;
 	}
 	
-	/*
-	// get all grocery lists for a certain user, as mobile user    ----- 			TODO
-	@RequestMapping(value = "/mobile/{uniqueId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	
+	// get all grocery lists for a certain user, as mobile user
+	@RequestMapping(value = "/mobile/{mobileToken}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
-	public List<GroceryList> getMobileUserGroceryListsResponse(@PathVariable String uniqueId){
+	public List<GroceryList> getMobileUserGroceryListsResponse(@PathVariable String mobileToken){
 		
-		int id = 24;
+		User user = userService.getUserByMobileToken(mobileToken);
 		
-		if(uniqueId.equals("hej")){
+		if(user != null){
 			@SuppressWarnings("unchecked")
 			List<GroceryList> groceryLists = groceryListService.getAllGroceryLists();
 			List<GroceryList> groceryListsToReturn = new ArrayList<>();
 			
 			for(GroceryList groceryList : groceryLists){
-				if(groceryList.getListOwner().getId() == id){
+				if(groceryList.getListOwner().getId() == user.getId()){
 					groceryListsToReturn.add(groceryList);
 				}
 			}
 			
-			// return the grocery lists that belongs to the user (with path id)
+			// return the grocery lists that belongs to the user
 			return groceryListsToReturn;
 		} else {
 			//unauthorized
@@ -104,7 +104,6 @@ public class GroceryListController {
 		}
 
 	}
-	*/
 	
 	
 	// add new grocery list

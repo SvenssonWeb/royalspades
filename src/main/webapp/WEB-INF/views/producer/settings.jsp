@@ -128,6 +128,17 @@
 <br />
 <div id="passwordResponse" class="response"></div>
 <div id="passwordError" class="error"></div>
+<br />
+<br />
+<fieldset class="mobileAuthority">
+	<legend>Tappat din telefon? Spärra den här.</legend>
+	<form name="mobileForm" id="mobileForm">
+		<input type="Submit" value="Spärra">	
+	</form>
+</fieldset>
+<br />
+<div id="mobileResponse" class="response"></div>
+<div id="mobileError" class="error"></div>
 
 
 <script>
@@ -333,6 +344,35 @@ $(document).ready(function() {
   	  	   	$('#authorityError').text("Du måste välja en behörighetsgrad för att kunna ansöka"); 
 	  	  }
 
+	   
+	  e.preventDefault(); // prevent actual form submit and page reload
+	});
+	
+	// Un-authorize mobile clients
+	$('#mobileForm').submit(function(e) {
+		  $("#mobileResponse").text("");
+	  	  $('#mobileError').text("");
+
+    	  // will pass the form data and parse it to json string
+    	  $.ajax({
+    		  url:baseUrl+'/api/user/unauthoriz_mobile/' + userId,
+    		  data: '',
+    		  contentType:'application/json',
+    		  accept:'application/json',
+    		  processData:false,
+    		  type: 'PUT',
+    		  complete: function(response) {
+  				if(response.status == 200){
+  		    	    $('#mobileResponse').text(response.responseText);
+  				}
+				
+    		  }, error: function(response){
+    			if(response.status != 200){
+            		$('#mobileError').text(response.responseText); 
+    			}
+    	  	   	
+    		  }
+    	  });
 	   
 	  e.preventDefault(); // prevent actual form submit and page reload
 	});

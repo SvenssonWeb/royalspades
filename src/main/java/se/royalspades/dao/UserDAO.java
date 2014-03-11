@@ -11,6 +11,7 @@ public interface UserDAO {
 	public User getUser(int userId);
 	public boolean checkIfUserExists(String username);
 	public User getUserByUsername(String username);
+	public User getUserByMobileToken(String mobileToken);
 	@SuppressWarnings("rawtypes")
 	public List getAllUsers();
 }

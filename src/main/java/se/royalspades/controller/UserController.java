@@ -1,5 +1,7 @@
 package se.royalspades.controller;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import se.royalspades.model.Brand;
 import se.royalspades.model.Store;
 import se.royalspades.model.User;
+import se.royalspades.model.Validation.MobileLoginValidation;
 import se.royalspades.model.Validation.PasswordValidation;
 import se.royalspades.model.Validation.UserValidation;
 import se.royalspades.service.BrandService;
@@ -39,6 +42,7 @@ public class UserController {
 	@Autowired BrandService brandService;
 	@Autowired StoreService storeService;
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	SecureRandom random = new SecureRandom();
 	
 	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -149,10 +153,14 @@ public class UserController {
 		// role for everyone, update at request
 		user.setRole("user");
 		user.setRequestedAuthority(" ");
+		
+		// generate mobile token
+		String mobileToken = new BigInteger(260, random).toString(32);
+		user.setMobileToken(mobileToken);
 			
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 			
-		userService.add(user);						
+		userService.add(user);
 			
 		return new ResponseEntity<>("Användarkonto för " + user.getUsername() + " skapat!", HttpStatus.OK);
 	}
@@ -189,6 +197,7 @@ public class UserController {
 		user.setPassword(oldUser.getPassword());
 		user.setRole(oldUser.getRole());
 		user.setRequestedAuthority(oldUser.getRequestedAuthority());
+		user.setMobileToken(oldUser.getMobileToken());
 		
 		userService.edit(user);		
     	return new ResponseEntity<>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
@@ -221,6 +230,7 @@ public class UserController {
 			user.setPassword(oldUser.getPassword());
 			user.setRole(oldUser.getRole());
 			user.setRequestedAuthority(oldUser.getRequestedAuthority());
+			user.setMobileToken(oldUser.getMobileToken());
 			
 			userService.edit(user);		
 	    	return new ResponseEntity<>("Ändringar för " + user.getUsername() + " sparade!", HttpStatus.OK);
@@ -363,6 +373,55 @@ public class UserController {
 		
 		return new ResponseEntity<>(user.getUsername() + " har nu behörighet: " + user.getRole() + "!", HttpStatus.OK);
 	}
+	
+	
 
+	
+	// as user un-authorize your mobile clients
+	@Secured({"ROLE_USER","ROLE_ADMIN","ROLE_MODERATOR","ROLE_SUPERVISOR"})
+	@RequestMapping(value="/user/unauthoriz_mobile/{userId}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
+	ResponseEntity <String> unauthorizeMobile(@PathVariable int userId){			
+		// get user with id
+		User user = userService.getUser(userId);
+		
+		// get the user calling the method
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String username = authentication.getName();
+		
+    	if(username.equals(user.getUsername())){
+    		// set new mobile token
+    		// generate mobile token
+    		String mobileToken = new BigInteger(260, random).toString(32);
+    		user.setMobileToken(mobileToken);
+    		
+			userService.edit(user);
+    		return new ResponseEntity<>("Mobilklienterna kan inte längre se dina matkassar! De måste nu logga in igen.", HttpStatus.OK);
+			
+    	} else {
+    		return new ResponseEntity<>("Du kan inte ändra ett användarkonto som inte tillhör dig!", HttpStatus.UNAUTHORIZED);
+    	}
+	}
+	
+	
+	// mobile login
+	@RequestMapping(value="/mobile/login", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
+	ResponseEntity <String> mobileLogin(@RequestBody @Valid MobileLoginValidation mobileValidation){			
+		
+		User user = userService.getMobileUserByUsername(mobileValidation.getUsername());
+		
+		// if we find a user with that username
+		if(user != null){
+			
+			// if password matches
+			if(passwordEncoder.matches(mobileValidation.getPassword(), user.getPassword())){
+    			return new ResponseEntity<>(user.getMobileToken(), HttpStatus.OK);
+			} else {
+    			return new ResponseEntity<>("Fel användarnamn eller lösenord!", HttpStatus.BAD_REQUEST);
+			}
+		} else {
+			return new ResponseEntity<>("Fel användarnamn eller lösenord!", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 }
 
