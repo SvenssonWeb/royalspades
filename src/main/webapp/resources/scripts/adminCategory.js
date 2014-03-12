@@ -84,7 +84,7 @@ function updateCategory(data){
             complete: function(response) {
 
                 if(response.status == 200) {
-
+					history.go(-1);
                 } else {
                     alert(response.responseText);
                     //$('.error').text(response.responseText);
