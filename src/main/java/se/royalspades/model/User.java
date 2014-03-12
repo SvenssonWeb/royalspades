@@ -147,7 +147,7 @@ public class User implements Serializable{
 		this.requestedAuthority = requestedAuthority;
 	}
 
-	@Column(name = "mobile_token", length = 255)
+	@Column(name = "mobile_token", unique = true, length = 255)
     @JsonIgnore 
 	public String getMobileToken() {
 		return mobileToken;
