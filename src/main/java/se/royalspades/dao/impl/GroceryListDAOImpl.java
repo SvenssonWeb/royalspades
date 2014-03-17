@@ -23,6 +23,7 @@ public class GroceryListDAOImpl implements GroceryListDAO {
 
 	@Override
 	public void edit(GroceryList groceryList) {
+		getCurrentSession().clear();
 		getCurrentSession().update(groceryList);
 	}
 
