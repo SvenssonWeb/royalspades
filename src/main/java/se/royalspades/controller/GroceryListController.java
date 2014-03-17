@@ -25,9 +25,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import se.royalspades.model.GroceryList;
 import se.royalspades.model.GroceryListProduct;
 import se.royalspades.model.Product;
+import se.royalspades.model.Store;
+import se.royalspades.model.StoreProduct;
 import se.royalspades.model.User;
+import se.royalspades.model.helper.GroceryListPrice;
 import se.royalspades.service.GroceryListService;
 import se.royalspades.service.ProductService;
+import se.royalspades.service.StoreService;
 import se.royalspades.service.UserService;
 
 @Controller
@@ -36,6 +40,7 @@ public class GroceryListController {
 	@Autowired GroceryListService groceryListService;
 	@Autowired UserService userService;
 	@Autowired ProductService productService;
+	@Autowired StoreService storeService;
 	
 	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(GroceryListController.class);
@@ -103,6 +108,91 @@ public class GroceryListController {
 			return null;
 		}
 
+	}
+	
+	
+	// get all products in grocerylist
+	private List<Product> retriveProductsInGroceryList(GroceryList groceryList){	
+		List<Product> products = new ArrayList<Product>();
+
+		for(GroceryListProduct prod : groceryList.getGroceryListProducts()){
+			// add to products list (product will be added to list as many times as they are added by volume in grocerylist)
+			for(int i = 0; i < prod.getVolume(); i++){
+				products.add(prod.getProduct());
+			}
+		}		
+		return products;
+	}
+	
+	
+	// compare prices in different stores for grocerylist
+	@SuppressWarnings("unchecked")
+	private List<GroceryListPrice> compareAndReturnPricesForGroceryList(GroceryList groceryList){
+		
+		List<GroceryListPrice> storePrices = new ArrayList<GroceryListPrice>();
+		
+		// products in grocerylist
+		List<Product> products = retriveProductsInGroceryList(groceryList);
+		
+		// get all stores
+		List<Store> stores = storeService.getAllStores();
+		// check all stores
+		for(Store store : stores){
+			double price = 0;
+			// check products in store
+			for(StoreProduct sP : store.getStoreProduct()){
+				
+				// check all products
+				for(Product product : products){
+					// if the product math the store product
+					if(sP.getProduct().getId() == product.getId()){
+						// add price for each product to pricelist
+						price += sP.getPrice();
+					}
+				}
+			}
+			
+			// GroceryListPrice object
+			GroceryListPrice groceryListPrice = new GroceryListPrice();
+			groceryListPrice.setStoreName(store.getName());
+			groceryListPrice.setStoreId(store.getId());
+			groceryListPrice.setPrice(price);
+			
+			storePrices.add(groceryListPrice);
+		}		
+		return storePrices;	
+	}
+	
+	
+	// return prices for specific grocerylist
+	@RequestMapping(value = "/prices/{groceryListId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public ResponseEntity<?> getPricesForGroceryList(@PathVariable int groceryListId){
+		
+		// get grocerylist
+		GroceryList groceryList = groceryListService.getGroceryList(groceryListId);
+		User user;
+		
+		if(groceryList != null){
+			user = userService.getUser(groceryList.getListOwner().getId());	
+		} else {
+			return new ResponseEntity<>("Handlarlistan hittades ej!", HttpStatus.BAD_REQUEST); 
+		}
+
+		// get the user calling the method
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String username = authentication.getName();
+				
+		// check so the user trying to create a new list is the user that will have the list
+		if(user.getUsername().equals(username)){
+
+			// check and compare prices for that grocerylist
+			List<GroceryListPrice> groceryListPrices = compareAndReturnPricesForGroceryList(groceryList);
+
+			return new ResponseEntity<>(groceryListPrices, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Du kan bara jämnföra listor som tillhör din egen användare!", HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 	

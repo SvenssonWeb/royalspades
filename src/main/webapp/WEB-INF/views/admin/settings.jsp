@@ -125,7 +125,7 @@
 
 <script>
 $(document).ready(function() {
-	
+	var userId;
 	$.fn.serializeObject = function()
 	{
 	   var o = {};
@@ -149,6 +149,7 @@ $(document).ready(function() {
 			.done(function(data) {
 				$($("input[name='id']")[0]).val(data.id);
 				$($("input[name='id']")[1]).val(data.id);
+				userId = data.id;
 				$("input[name='firstName']").val(data.firstName);
 				$("input[name='lastName']").val(data.lastName);
 				$("input[name='username']").val(data.username);
