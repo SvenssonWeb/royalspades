@@ -122,6 +122,8 @@
 	<p>Ändra pris/kategori för produkt i butik, pris skickas som JSON ex: 144. Säkerhet: Butiksägare för butiken i fråga.</p>
 	<h4>/api/user/unauthoriz_mobile</h4>
 	<p>Genererar en ny "mobil-token". Säkerhet: Endast för din egna användare.</p>
+	<h4>api/grocerylist/add_products_to_grocery_list/{listId}</h4>
+	<p>Uppdatera handlar lista, produkter skickas in i json-array som: [{"id":"2","volume":"13"},{"id":3,"volume":"14"}]</p>
 </div>
 <br />
 <br />
