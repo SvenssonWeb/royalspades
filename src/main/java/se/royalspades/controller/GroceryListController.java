@@ -130,7 +130,7 @@ public class GroceryListController {
 	// compare prices in different stores for grocerylist
 	@SuppressWarnings("unchecked")
 	private List<GroceryListPrice> compareAndReturnPricesForGroceryList(GroceryList groceryList){
-		
+
 		List<GroceryListPrice> storePrices = new ArrayList<GroceryListPrice>();
 		
 		// products in grocerylist
@@ -140,18 +140,24 @@ public class GroceryListController {
 		List<Store> stores = storeService.getAllStores();
 		// check all stores
 		for(Store store : stores){
+			List<StoreProduct> checkedStoreProducts = new ArrayList<StoreProduct>();
 			double price = 0;
 			// check products in store
-			for(StoreProduct sP : store.getStoreProduct()){
+			for(StoreProduct sP : store.getStoreProduct()){									
 				
-				// check all products
-				for(Product product : products){
-					// if the product math the store product
-					if(sP.getProduct().getId() == product.getId()){
-						// add price for each product to pricelist
-						price += sP.getPrice();
+				// check so we only add price for the product in store once
+				if(!checkedStoreProducts.contains(sP)){
+					// check all products
+					for(Product product : products){
+						// if the product math the store product
+						if(sP.getProduct().getId() == product.getId()){
+							// add price for each product to pricelist
+							price += sP.getPrice();
+						}
 					}
 				}
+				
+				checkedStoreProducts.add(sP);	
 			}
 			
 			// GroceryListPrice object

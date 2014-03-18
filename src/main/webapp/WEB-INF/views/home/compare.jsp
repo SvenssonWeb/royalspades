@@ -89,7 +89,7 @@ function dropdown(){
 
 function compare (){
     var groceryListId = $("option:selected").val();
-
+    
     $('.priceTable tbody').remove();
     
     $.getJSON(baseUrl+"/api/grocerylist/prices/" + groceryListId)

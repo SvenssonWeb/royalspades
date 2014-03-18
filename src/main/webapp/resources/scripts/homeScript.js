@@ -65,7 +65,7 @@ function createGroceryListTable(arr){
         row += '<td>'+groceryList.name+'</td>';
         row += '<td>'+groceryList['groceryListProducts'].length+'</td>';
 
-        row += '<td><a class="link"  href="/home/editgrocerybag?id='+groceryList.id+'">' +
+        row += '<td><a class="link"  href="/royalspades/home/editgrocerybag?id='+groceryList.id+'">' +
                     '<i data-product-id="'+groceryList.id+'" class="fa fa-pencil point"></i>' +
                 '</a></td>';
         row += '<td><i data-product-id="'+groceryList.id+'" class="fa fa-times shopRemoveRow"></i></td>';
