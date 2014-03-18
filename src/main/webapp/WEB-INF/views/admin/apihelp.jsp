@@ -43,7 +43,7 @@
 	<h4>/api/grocerylist/user/{userId}</h4>
 	<p>Listar shoppinglistor för användare, Säkerhet: Bara listägare.</p>
 	<h4>/api/product/all</h4>
-	<p>Listar alla produkter, Säkerhet: Alla användare.</p>
+	<p>Listar alla produkter, Säkerhet: Ingen</p>
 	<h4>/api/product/{id}</h4>
 	<p>Hämtar enskild product, Säkerhet: Alla användare</p>
 	<h4>/api/product/category/{categoryId}</h4>
@@ -62,6 +62,8 @@
 	<p>Listar alla användare som ansökt om högre behörighet, Säkerhet: Admin</p>
 	<h4>/api/grocerylist/mobile/{mobileToken}  </h4>
 	<p>Listar all handlarlistor för en användare, Säkerhet: ett "mobileToken" som retuneras vid mobil login, ska skickas med vid varje request.</p>
+	<h4>/api/grocerylist/prices/{groceryListId}</h4>
+	<p>Listar olika priser i alla affärer för en viss handlarlista. Säkerhet: Kan bara kolla sin egen lista.</p>
 </div>
 <br />
 <br />

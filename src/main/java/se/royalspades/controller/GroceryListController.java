@@ -340,7 +340,7 @@ public class GroceryListController {
     		Set<GroceryListProduct> productsInList = new HashSet<GroceryListProduct>();
     		
     		// add each product to the grocerylist
-    		for(GroceryListHelperProduct groceryListHelperProduct: groceryListHelperProducts){
+    		for(GroceryListHelperProduct groceryListHelperProduct : groceryListHelperProducts){
         		// get product
         		Product productToAdd = productService.getProduct(groceryListHelperProduct.getId());	
         		
@@ -354,7 +354,11 @@ public class GroceryListController {
         		productsInList.add(groceryListProduct);
     		}
 
-    		// set the new products list
+    		// clear old products in grocerylist
+    		groceryList.getGroceryListProducts().clear();
+    		groceryListService.edit(groceryList);
+    		
+    		// set the new products list 		
     		groceryList.setGroceryListProducts(productsInList);
     		
     		// edit
