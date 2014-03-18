@@ -19,6 +19,13 @@
             </td>
         </tr>
         <tr>
+            <td>
+                <input id="compare" type="Submit" value="J&auml;mf&ouml;r">
+            </td>
+        </tr>
+    </table>
+
+</form>
             <table id="dataTable" class="priceTable listtable">
                 <thead>
                 <tr>
@@ -30,43 +37,7 @@
                     </th>
                 </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            Ica
-                        </td>
-                        <td>
-                            500
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Coop
-                        </td>
-                        <td>
-                            551
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            City Gross
-                        </td>
-                        <td>
-                            400
-                        </td>
-                    </tr>
-                </tbody>
             </table>
-
-        </tr>
-        <tr>
-            <td>
-                <input id="compare" type="Submit" value="J&auml;mf&ouml;r">
-            </td>
-        </tr>
-    </table>
-
-</form>
 
 <script>
 
@@ -90,7 +61,7 @@ $(document).ready(function(){
             })
             .fail(function(jqxhr, textStatus, error) {
                 var err = textStatus + ", " + error;
-                $('#accountError').text("Nï¿½got gick fel: " + err);
+                $('#accountError').text("Något gick fel: " + err);
             });
 
 });
@@ -111,17 +82,32 @@ function dropdown(){
             .fail(function(jqxhr, textStatus, error) {
                 var err = textStatus + ", " + error;
                 console.log("gffdjktdfcjyddc");
-                $('.error').text("NÃ¥got gick fel: " + err);
+                $('.error').text("Något gick fel: " + err);
             });
 }
+
 
 function compare (){
     var groceryListId = $("option:selected").val();
 
+    $('.priceTable tbody').remove();
+    
     $.getJSON(baseUrl+"/api/grocerylist/prices/" + groceryListId)
             .done(function(data){
-                console.log(data);
-            })
+            	
+            	$(".priceTable").append("<tbody>");
+    			for(var i = 0; i < data.length; i++){
+    				var row = "<tr id=" + data[i].storeId + ">" + "<td>";
+    				row += data[i].storeName;
+    				row += "</td><td>";
+    				row += data[i].price + ' kr';
+    				row += "</td></tr>";
+    				$(".priceTable").append(row);
+    			}
+    			
+    		    $(".priceTable").append("</tbody>");
+            	
+            });
 }
 
 </script>
