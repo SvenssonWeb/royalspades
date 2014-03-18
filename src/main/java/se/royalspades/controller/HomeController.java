@@ -69,12 +69,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/home/settings")
-	public String settings(Locale locale, Model model, Principal principal){
-		// user - Settings page
+     public String settings(Locale locale, Model model, Principal principal){
+        // user - Settings page
         final String currentUser = principal.getName();
         model.addAttribute("username", currentUser);
-		model.addAttribute("pageUid", "fd2e63a0-8d76-11e3-baa8-0800200c9a66" );
-		
-		return "home/settings";
-	}
+        model.addAttribute("pageUid", "fd2e63a0-8d76-11e3-baa8-0800200c9a66" );
+
+        return "home/settings";
+    }
+    @RequestMapping("/home/compare")
+    public String compare(Locale locale, Model model, Principal principal){
+        // user - Settings page
+        final String currentUser = principal.getName();
+        model.addAttribute("username", currentUser);
+        model.addAttribute("pageUid", "ffcb8520-8d76-33e3-bcc8-3850222c9a66" );
+
+        return "home/compare";
+    }
+
 }
