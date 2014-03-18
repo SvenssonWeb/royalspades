@@ -5,10 +5,6 @@
 	Mina kassar
 </h2>
 
-<p>
-<a href="${pageContext.request.contextPath}/home/newgrocerybag" class="link">Ny matkasse</a>
-</p>
-
 <fieldset class="allGrocerybags">
 	<legend>Kassar</legend>
 	<table id="allGroceryListTable" class="listtable">
@@ -48,11 +44,18 @@
 		</tr>
         </tbody>
 	</table>
+    <form id="newGroceryForm" style="display: none">
+        <input type="text" name="name" placeholder = "Skriv in namnet på din nya matkasse." >
+        <button id="toggleCatBtn">Spara</button>
+    </form>
+    <button id="newGroceryBtn">Ny Matkasse</button><br>
+
 </fieldset>
 <script>
-    $( document ).ready(function() {
 
-        homeStart("${username}");
+    $( document ).ready(function() {
+        bindGroceryListMain();
+        showMyGroceryLists("${username}");
 
     });
 </script>

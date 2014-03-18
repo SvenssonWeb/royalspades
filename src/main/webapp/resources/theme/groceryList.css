@@ -1,0 +1,23 @@
+.groceryListAddedProducts,
+.groceryListAllProducts {
+    display: inline-block;
+    width: 49%;
+}
+#newGroceryListView select {
+    margin: 0;
+    padding: 2px 0 1px 10px;
+}
+.groceryListAddedProducts tbody tr td:nth-child(2) {
+    text-align: right;
+}
+.groceryListAllProducts tbody tr td:nth-child(3) {
+    text-align: right;
+}
+.groceryListAddedProducts tbody tr td:nth-child(5) {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.moveIt {
+    cursor: pointer;
+}

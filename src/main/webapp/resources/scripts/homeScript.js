@@ -2,10 +2,10 @@
  * Created by Artwar on 2014-03-11.
  */
 var user;
-var timesToGo = 0;
+var groceryListID;
 var volumes = [];
 var productIds = [];
-
+// bound functions
 $(document).on('click', '.shopRemoveRow', function(){
     var productId = $(this).data('productId');
     console.log('id: ' + productId);
@@ -18,13 +18,13 @@ function preZero(s){
     }
     return s;
 }
-
-
-function homeStart(username){
+// Run when home has loaded
+function showMyGroceryLists(username){
     getUserFromUsername(username, function(id){
         getAllGroceryLists(id)
     });
 }
+// Get user data
 function getUserFromUsername(username, successFunction){
     $.getJSON(baseUrl+"/api/user/" + username)
         .done(function(data) {
@@ -37,9 +37,7 @@ function getUserFromUsername(username, successFunction){
             $('#accountError').text("N�got gick fel: " + err);
         });
 }
-
-
-
+// Get Grocery lists
 function getAllGroceryLists(userID){
     //api/grocerylist/user/{userId}
     $.ajax({
