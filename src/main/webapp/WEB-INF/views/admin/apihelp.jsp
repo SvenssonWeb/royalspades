@@ -43,7 +43,7 @@
 	<h4>/api/grocerylist/user/{userId}</h4>
 	<p>Listar shoppinglistor för användare, Säkerhet: Bara listägare.</p>
 	<h4>/api/product/all</h4>
-	<p>Listar alla produkter, Säkerhet: Alla användare.</p>
+	<p>Listar alla produkter, Säkerhet: Ingen</p>
 	<h4>/api/product/{id}</h4>
 	<p>Hämtar enskild product, Säkerhet: Alla användare</p>
 	<h4>/api/product/category/{categoryId}</h4>
@@ -62,6 +62,8 @@
 	<p>Listar alla användare som ansökt om högre behörighet, Säkerhet: Admin</p>
 	<h4>/api/grocerylist/mobile/{mobileToken}  </h4>
 	<p>Listar all handlarlistor för en användare, Säkerhet: ett "mobileToken" som retuneras vid mobil login, ska skickas med vid varje request.</p>
+	<h4>/api/grocerylist/prices/{groceryListId}</h4>
+	<p>Listar olika priser i alla affärer för en viss handlarlista. Säkerhet: Kan bara kolla sin egen lista.</p>
 </div>
 <br />
 <br />
@@ -122,6 +124,8 @@
 	<p>Ändra pris/kategori för produkt i butik, pris skickas som JSON ex: 144. Säkerhet: Butiksägare för butiken i fråga.</p>
 	<h4>/api/user/unauthoriz_mobile</h4>
 	<p>Genererar en ny "mobil-token". Säkerhet: Endast för din egna användare.</p>
+	<h4>api/grocerylist/add_products_to_grocery_list/{listId}</h4>
+	<p>Uppdatera handlar lista, produkter skickas in i json-array som: [{"id":"2","volume":"13"},{"id":3,"volume":"14"}]</p>
 </div>
 <br />
 <br />

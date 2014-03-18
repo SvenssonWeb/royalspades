@@ -145,7 +145,7 @@ public class Product implements Serializable{
 	} 
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.product")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.product", orphanRemoval=true)
 	public Set<GroceryListProduct> getGroceryListProducts() {
 		return groceryListProducts;
 	}

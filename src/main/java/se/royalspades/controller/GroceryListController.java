@@ -1,6 +1,7 @@
 package se.royalspades.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,6 +29,7 @@ import se.royalspades.model.Product;
 import se.royalspades.model.Store;
 import se.royalspades.model.StoreProduct;
 import se.royalspades.model.User;
+import se.royalspades.model.helper.GroceryListHelperProduct;
 import se.royalspades.model.helper.GroceryListPrice;
 import se.royalspades.service.GroceryListService;
 import se.royalspades.service.ProductService;
@@ -311,6 +313,58 @@ public class GroceryListController {
     		groceryListService.edit(groceryList);
 
     		return new ResponseEntity<>(productToAdd.getName() + " tillagd i " + groceryList.getName(), HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity<>("Du kan inte lägga till produkter i listor som inte är dina!", HttpStatus.UNAUTHORIZED);
+    	}	
+	}
+	
+	
+	// add array of product's to grocery list, (each product is sent as [{"id":"2","volume":"13"},{"id":3,"volume":"14"}] );
+	@Secured({"ROLE_USER","ROLE_ADMIN","ROLE_MODERATOR","ROLE_SUPERVISOR"})
+	@RequestMapping(value = "add_products_to_grocery_list/{listId}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = "application/json; charset=utf-8")
+	ResponseEntity<String> addSeveralProductsToGroceryList(@PathVariable int listId, @Valid @RequestBody GroceryListHelperProduct[] groceryListHelperProducts){
+				
+		// get grocery list
+		GroceryList groceryList = groceryListService.getGroceryList(listId);
+		
+		// get the user calling the method
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String user = authentication.getName();
+    	
+    	// get the list owner 
+    	User owner = groceryList.getListOwner();
+
+    	// check if the user is in fact the list owner
+    	if(owner.getUsername().equals(user)){
+    		
+    		Set<GroceryListProduct> productsInList = new HashSet<GroceryListProduct>();
+    		
+    		// add each product to the grocerylist
+    		for(GroceryListHelperProduct groceryListHelperProduct : groceryListHelperProducts){
+        		// get product
+        		Product productToAdd = productService.getProduct(groceryListHelperProduct.getId());	
+        		
+        		// set GroceryListProduct and volume
+        		GroceryListProduct groceryListProduct = new GroceryListProduct();
+        		groceryListProduct.setGroceryList(groceryList);
+        		groceryListProduct.setProduct(productToAdd);
+        		groceryListProduct.setVolume(groceryListHelperProduct.getVolume());
+        		
+        		// add product 
+        		productsInList.add(groceryListProduct);
+    		}
+
+    		// clear old products in grocerylist
+    		groceryList.getGroceryListProducts().clear();
+    		groceryListService.edit(groceryList);
+    		
+    		// set the new products list 		
+    		groceryList.setGroceryListProducts(productsInList);
+    		
+    		// edit
+    		groceryListService.edit(groceryList);
+
+    		return new ResponseEntity<>("All produkter tillagda i " + groceryList.getName(), HttpStatus.OK);
     	} else {
     		return new ResponseEntity<>("Du kan inte lägga till produkter i listor som inte är dina!", HttpStatus.UNAUTHORIZED);
     	}	
