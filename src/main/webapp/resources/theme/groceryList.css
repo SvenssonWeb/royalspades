@@ -21,3 +21,9 @@
 .moveIt {
     cursor: pointer;
 }
+
+#groceryListAddedProducts_wrapper{
+
+    position: absolute;
+    top: 260px;
+}
