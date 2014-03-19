@@ -46,7 +46,6 @@ function getAllGroceryLists(userID){
         dataType: "text",
         success: function (data) {
             var arr = parseJSON(data);
-            console.log(arr);
             createGroceryListTable(arr);
         },
         error: function (data, textStatus, jqXHR) {
@@ -59,20 +58,23 @@ function createGroceryListTable(arr){
     var html = "";
     for(var i = 0; i < arr.length; i++){
         var groceryList = arr[i];
-        console.log(groceryList);
-        var row = '<tr>';
-        row += '<td>2014-01-22 09:45</td>';
-        row += '<td>'+groceryList.name+'</td>';
-        row += '<td>'+groceryList['groceryListProducts'].length+'</td>';
 
-        row += '<td><a class="link"  href="/royalspades/home/editgrocerybag?id='+groceryList.id+'">' +
-                    '<i data-product-id="'+groceryList.id+'" class="fa fa-pencil point"></i>' +
-                '</a></td>';
-        row += '<td><i data-product-id="'+groceryList.id+'" class="fa fa-times shopRemoveRow"></i></td>';
-        row += '</tr>';
-        html += row;
+        html += createGroceryListTableRow(groceryList);
     }
     table.html(html);
+}
+function createGroceryListTableRow(groceryList){
+    var row = '<tr>';
+    row += '<td>2014-01-22 09:45</td>';
+    row += '<td>'+groceryList.name+'</td>';
+    row += '<td>'+groceryList['groceryListProducts'].length+'</td>';
+
+    row += '<td><a class="link"  href="'+baseUrl+'/home/editgrocerybag?id='+groceryList.id+'">' +
+        '<i data-product-id="'+groceryList.id+'" class="fa fa-pencil point"></i>' +
+        '</a></td>';
+    row += '<td><i data-product-id="'+groceryList.id+'" class="fa fa-times shopRemoveRow"></i></td>';
+    row += '</tr>';
+    return row;
 }
 function removeGroceryList(id){
     //api/grocerylist/remove_grocery_list/{listId}

@@ -11,10 +11,10 @@
         <thead>
 		<tr>
 			<th>
-				Datum &darr;
+				Datum
 			</th>
 			<th>
-				Beskrivning &darr;
+				Beskrivning
 			</th>
 			<th>
 				Antal varor

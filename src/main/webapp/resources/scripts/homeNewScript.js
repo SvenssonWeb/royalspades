@@ -4,8 +4,7 @@
 
 function bindGroceryListMain(){
     $('#allGroceryListTable').on('click', '.fa-pencil', function(){
-        var link = $(this).parent('a').prop('href');
-        groceryListID = link.split('=')[1];
+        groceryListID = $(this).data('productId');
     });
     $("#newGroceryBtn").on("click", function(){
         $(this).hide();
@@ -13,11 +12,11 @@ function bindGroceryListMain(){
     });
     $('#newGroceryForm').submit(function(e){
         e.preventDefault();
-        var name = {};
-        name.name = $(this).find('input').val();
+        var groceryList = {};
+        groceryList.name = $(this).find('input').val();
         $.ajax({
             url:baseUrl+'/api/grocerylist/add_grocery_list/' + user.id,
-            data: JSON.stringify(name),
+            data: JSON.stringify(groceryList),
             contentType:'application/json',
             accept:'application/json',
             processData:false,
@@ -32,16 +31,11 @@ function bindGroceryListMain(){
                 $("#newGroceryForm").find('input').val('');
                 $("#newGroceryForm").hide();
 
-                var row = '<tr>';
-                row += '<td>2014-01-22 09:45</td>';
-                row += '<td>'+name.name+'</td>';
-                row += '<td>0</td>';
+                groceryList.id = data;
+                groceryList.groceryListProducts = [];
 
-                row += '<td><a class="link"  href="/home/editgrocerybag?id='+data+'">' +
-                    '<i data-product-id="'+data+'" class="fa fa-pencil point"></i>' +
-                    '</a></td>';
-                row += '<td><i data-product-id="'+data+'" class="fa fa-times shopRemoveRow"></i></td>';
-                row += '</tr>';
+                var row = createGroceryListTableRow(groceryList);
+
                 $('#allGroceryListTable').find('tbody').append(row);
                 //showMyGroceryLists(user.name);
 
