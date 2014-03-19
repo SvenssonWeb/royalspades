@@ -100,7 +100,12 @@ function compare (){
     				var row = "<tr id=" + data[i].storeId + ">" + "<td>";
     				row += data[i].storeName;
     				row += "</td><td>";
-    				row += data[i].price + ' kr';
+    				
+    				if(data[i].price != 0){
+        				row += data[i].price + ' kr';
+    				} else {
+        				row += 'hittades ej';
+    				}
     				row += "</td></tr>";
     				$(".priceTable").append(row);
     			}

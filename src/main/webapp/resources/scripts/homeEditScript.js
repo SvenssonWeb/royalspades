@@ -188,7 +188,6 @@ function enhanceGroceryAddedTable(){
         "iDisplayLength" : -1,
         "bScrollInfinite": false,
         "bScrollCollapse": false,
-        "sScrollY": "270px",
         "oLanguage": {
             "sLengthMenu": "Visar _MENU_ produkter per sida",
             "sZeroRecords": "Hittade inget - tyvärr",
@@ -222,7 +221,6 @@ function enhanceGroceryAllTable(){
         "iDisplayLength" : -1,
         "bScrollInfinite": false,
         "bScrollCollapse": false,
-        "sScrollY": "270px",
         "oLanguage": {
             "sLengthMenu": "Visar _MENU_ produkter per sida",
             "sZeroRecords": "Hittade inget - tyvärr",
