@@ -1,15 +1,15 @@
-ï»¿<script>
+<script>
 	window.location.hash = "p=" + '${pageUid}';
 </script>
 <h2> 
-	Ã„ndra butik
+	Ändra butik
 </h2>
 
 <form id="editShopForm" method="POST" name="editShopForm">
 	<table>	
 		<tr>
 			<td>
-				<label for="name">Namn pÃ¥ butik: </label>
+				<label for="name">Namn på butik: </label>
 			</td>
 			<td>
 				<input name="name" type="text" id="name"><br />
@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td>
-				<label for="user">AdministratÃ¶r: </label>
+				<label for="user">Administratör: </label>
 			</td>
 			<td>
 				<select id="user"></select>
@@ -108,7 +108,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("NÃ¥got gick fel: " + err);
+		        $('.error').text("Något gick fel: " + err);
 			});
 		
 		// fill the select box with users that can be a shop administrator
@@ -126,7 +126,7 @@ $(document).ready(function() {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 			    var err = textStatus + ", " + error;
-		        $('.error').text("NÃ¥got gick fel: " + err);
+		        $('.error').text("Något gick fel: " + err);
 			});
 	}
 	
@@ -165,7 +165,11 @@ $(document).ready(function() {
 					
 	    		  }, error: function(response){
 	    			if(response.status != 200){
-	        			var responseJSON = response.responseJSON;
+	        			var responseJSON = response.responseJSON;  // not working here
+	        			
+	       				if(response.responseText.indexOf('{"field"') > -1) {
+	         				responseJSON = JSON.parse(response.responseText);
+	       				}
 	        			
 	        	  	   	if(typeof responseJSON != 'undefined'){
 	        	  	   		var errors = '';
@@ -186,7 +190,7 @@ $(document).ready(function() {
 	    	  });
 		   
 	  	  } else {
-	  		  $('.error').text('Du mÃ¥ste vÃ¤lja en administratÃ¶r!');
+	  		  $('.error').text('Du måste välja en administratör!');
 	  	  }
 
 	  e.preventDefault(); // prevent actual form submit and page reload
