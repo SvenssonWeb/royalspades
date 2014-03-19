@@ -20,6 +20,8 @@ body {
 	background-image: url("../Images/tumblr_static.jpg"); 
 	/*background-color:#3D4460;*/
 	background-size:cover;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
 	overflow:visible;
 }
 .mainwrapper {
